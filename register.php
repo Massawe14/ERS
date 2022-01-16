@@ -28,10 +28,10 @@
 		if ($result) {
 			// code...
 			echo "<script>alert('Wow! User Registration Completed.')</script>";
+			header("Location: authentication.php");
 			$username = "";
 			$email = "";
 			$_POST['password'] = "";
-			header("Location: authentication.php");
 		} else {
 			echo "<script>alert('Woops! Something went wrong.')</script>";
 			header("Location: authentication.php");

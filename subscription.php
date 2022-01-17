@@ -47,7 +47,7 @@
     }
 
     .button {
-      background-color: #287bff;
+      background-color: #e1251b;
       border: none;
       color: white;
       padding: 10px 25px;
@@ -68,7 +68,7 @@
   <br>
   <div class="columns">
     <ul class="price">
-      <li class="header" style="background-color:#287bff">Basic</li>
+      <li class="header" style="background-color:#e1251b">Basic</li>
       <li class="grey">TZS 1000 / users</li>
       <li>100 Users</li>
       <li>
@@ -77,13 +77,13 @@
           Debitis, ex ratione. Aliquid!
         </p>
       </li>
-      <li class="grey"><a href="index.php" class="button">Subscribe</a></li>
+      <li class="grey"><a href="index.php" class="button">Choose</a></li>
     </ul>
   </div>
 
   <div class="columns">
     <ul class="price">
-      <li class="header" style="background-color:#287bff">Pro</li>
+      <li class="header" style="background-color:#e1251b">Pro</li>
       <li class="grey">TZS 500 / users</li>
       <li>500 Users</li>
       <li>
@@ -92,13 +92,13 @@
           Debitis, ex ratione. Aliquid!
         </p>
       </li>
-      <li class="grey"><a href="#" class="button">Subscribe</a></li>
+      <li class="grey"><a href="#" class="button">Choose</a></li>
     </ul>
   </div>
 
   <div class="columns">
     <ul class="price">
-      <li class="header" style="background-color:#287bff">Premium</li>
+      <li class="header" style="background-color:#e1251b">Premium</li>
       <li class="grey">TZS 100 / users</li>
       <li>1000 users</li>
       <li>
@@ -107,7 +107,7 @@
           Debitis, ex ratione. Aliquid!
         </p>
       </li>
-      <li class="grey"><a href="#" class="button">Subscribe</a></li>
+      <li class="grey"><a href="#" class="button">Choose</a></li>
     </ul>
   </div>
 

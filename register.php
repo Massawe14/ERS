@@ -27,17 +27,20 @@
 
 		if ($result) {
 			// code...
-			echo "<script>alert('Wow! User Registration Completed.')</script>";
+			// echo "<script>alert('Wow! User Registration Completed.')</script>";
+			$_SESSION['status'] = "Wow! User Registration Completed.";
 			header("Location: authentication.php");
 			$username = "";
 			$email = "";
 			$_POST['password'] = "";
 		} else {
-			echo "<script>alert('Woops! Something went wrong.')</script>";
+			// echo "<script>alert('Woops! Something went wrong.')</script>";
+			$_SESSION['status'] = "Woops! Something went wrong.";
 			header("Location: authentication.php");
 		}  
   	} else {
-  		echo "<script>alert('Woops! Email Already Exists.')</script>";
+  		// echo "<script>alert('Woops! Email Already Exists.')</script>";
+  		$_SESSION['status'] = "Woops! Email Already Exists.";
   		header("Location: authentication.php");
   	}
   }

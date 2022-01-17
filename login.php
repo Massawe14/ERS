@@ -24,7 +24,8 @@
    		$_SESSION['username'] = $row['username'];
    		header("Location: index.php");
    	} else {
-      echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
+      // echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
+      $_SESSION['status'] = "Woops! Username or Password is Wrong.";
    		header("Location: authentication.php");
    	}
   } 

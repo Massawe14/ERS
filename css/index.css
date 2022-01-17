@@ -13,6 +13,8 @@
 	--grey: #f5f5f5;
 	--black1: #222;
 	--black2: #999;
+	--red: #e1251b;
+	--red1: #f61206;
 }
 body
 {
@@ -29,8 +31,8 @@ body
 	position: fixed;
 	width: 300px;
 	height: 100%;
-	background: var(--blue);
-	border-left: 10px solid var(--blue);
+	background: var(--red);
+	border-left: 10px solid var(--red);
 	transition: 0.5s;
 	overflow: hidden;
 }
@@ -75,7 +77,7 @@ body
 .navigation ul li:hover a,
 .navigation ul li.hovered a
 {
-	color: var(--blue);
+	color: var(--red);
 }
 .navigation ul li a .icon
 {
@@ -239,7 +241,7 @@ body
 	position: relative;
 	font-weight: 500;
 	font-size: 2.5em;
-	color: var(--blue);
+	color: var(--red);
 }
 .cardBox .card .cardName
 {
@@ -254,7 +256,7 @@ body
 }
 .cardBox .card:hover
 {
-	background: var(--blue);
+	background: var(--red);
 }
 .cardBox .card:hover .numbers,
 .cardBox .card:hover .cardName,
@@ -291,13 +293,13 @@ body
 .cardHeader h2
 {
 	font-weight: 600;
-	color: var(--blue);
+	color: var(--red);
 }
 .btn
 {
 	position: relative;
 	padding: 5px 10px;
-	background: var(--blue);
+	background: var(--red);
 	text-decoration: none;
 	color: var(--white);
 	border-radius: 6px;
@@ -323,7 +325,7 @@ body
 }
 .details .recentDetails table tbody tr:hover
 {
-	background: var(--blue);
+	background: var(--red);
 	color: var(--white);
 }
 .details .recentDetails table tr td
@@ -375,7 +377,7 @@ body
 .circle-wrap .circle .mask .fill
 {
 	clip: rect(0px, 75px, 150px, 0px);
-	background: var(--blue);
+	background: var(--red);
 }
 .circle-wrap .circle .mask.full,
 .circle-wrap .circle .fill

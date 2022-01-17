@@ -1,65 +1,62 @@
 <?php  
-  include('auth.php');
   include('config/dbconn.php');
 
-  if (isset($_POST['logout_btn'])) {
-    // session_destroy();
-    unset($_SESSION['auth']);
-    // unset($_SESSION['auth_admin']);
+  error_reporting(0);
 
-    $_SESSION['status'] = "Logged out successfully";
-    header('Location: authentication.php');
-    exit(0);
+  session_start();
+
+  if (isset($_SESSION['username'])) {
+    // code...
+    header("Location: authentication.php");
   }
 
-  // USER
-  if (isset($_POST['check_Emailbtn'])) {
+  if (isset($_POST['addEvent'])) {
+    // code...
+    $eventname = $_POST['eventname'];
+    $venue = $_POST['venue'];
+    $image = $_POST['image']['name'];
 
-    $useremail = $_POST['email'];
+    $allowed_extension = array('png','jpg','jpeg');
+    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
 
-    $checkemail = "SELECT email FROM users WHERE email='$useremail'";
-    $checkemail_result = mysqli_query($conn, $checkemail);
+    $filename = time().'.'.$file_extension;
 
-    if (mysqli_num_rows($checkemail_result) > 0) {
-      echo "Email Already Exists";
+    $check = getimagesize($_FILES["image"]["tmp_name"]);
+
+    if ($check == false) {
+      // code...
+      $_SESSION['status'] = "File is not an image.";
+      header('Location: event.php');
+      exit(0);
     }
-    else{
-      echo "It's Available";
-    }
-  }
-
-  if (isset($_POST['signupbtn'])) {
-    // there are no errors so let's get data from the form
-    $username = $_POST['username'];
-    $useremail = $_POST['email'];
-    $password = $_POST['password'];
-
-    // password encryption
-    $password_encrypt = password_hash($password, PASSWORD_DEFAULT);
-
-    $checkemail = "SELECT email FROM users WHERE email='$useremail'";
-    $checkemail_result = mysqli_query($conn, $checkemail);
-
-   if (mysqli_num_rows($checkemail_result) > 0) {
-     // Taken - Already Exists
-     $_SESSION['status'] = "Email Already Exists";
-     header('Location: authentication.php');
+    elseif (file_exists($filename)) {
+     $_SESSION['status'] = "Sorry, file already exists.";
+     header('Location: event.php');
      exit(0);
-   }
-   else{
-      // Now we have collected the form data in variables
-      // Let's insert them to the table
-      $query = "INSERT INTO `users`(`username`, `email`, `password`) VALUES ('$username', '$useremail', '$password_encrypt')";
-      $result = mysqli_query($conn, $query); 
+    }
+    elseif (!in_array($file_extension, $allowed_extension)) {
+     $_SESSION['status'] = "You are allowed with only jpg, png and jpeg Image";
+     header('Location: event.php');
+     exit(0);
+    }
+    elseif ($_FILES["image"]["size"] > 500000) {
+     $_SESSION['status'] = "Sorry, your file is too large.";
+     header('Location: event.php');
+     exit(0);
+    }
+    else {
+      $sql = "INSERT INTO event (name, venue, image) VALUES ('$eventname', '$venue', '$filename')";
+      $result = mysqli_query($conn, $sql);
 
       if ($result) {
-        $_SESSION['status'] = "Registration Successfully";
-        header('Location: authentication.php');
+        move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/images/'.$filename);
+        $_SESSION['status'] = "Event Added Successfully";
+        header('Location: event.php');
         exit(0);
       }
       else{
-        $_SESSION['status'] = "Registration Failed";
-        header('Location: authentication.php');
+        $_SESSION['status'] = "Event Registration Failed";
+        header('Location: event.php');
         exit(0);
       }
     }

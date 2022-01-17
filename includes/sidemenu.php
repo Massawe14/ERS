@@ -3,7 +3,8 @@
 		<li>
 			<a href="index.php">
 				<span class="icon"><ion-icon name="analytics"></ion-icon></span>
-				<span class="title">Analytics</span>
+				<img class="title" src="assets/imperial-innovations.png">
+				<!-- <span class="title">Imperial Innovations</span> -->
 			</a>
 		</li>
 		<li>

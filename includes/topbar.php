@@ -12,8 +12,15 @@
   				</label>
   			</div>
   			<!-- userimg -->
+			<!-- <button class="userdetails">
+				<?php  
+				  // if (isset($_SESSION['username'])) {
+				  // 	// code...
+				  // 	echo $_SESSION['username'];
+				  // }
+				?>
+			</button> -->
   			<div class="user">
-  				<?php echo "Welcome" . $_SESSION['username']; ?>
   				<img src="assets/Passport.jpg">
   			</div>
   		</div>

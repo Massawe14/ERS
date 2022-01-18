@@ -155,6 +155,25 @@
 	    }
 		}*/
 
+		.controls {
+			width: 294px;
+			margin: 15px auto;
+
+		}
+
+		#remove_fields {
+			float: right;
+		}
+
+		.controls a ion-icon {
+			margin-right: 5px;
+		}
+
+		a {
+			color: black;
+			text-decoration: none;
+		}
+
 	</style>
 </head>
 <body>
@@ -199,6 +218,10 @@
 				<input type="text" name="position" placeholder="Enter Position" required>
 				<input type="button" value="Save" name="submit"> 
 				<!-- <input onclick="document.getElementById('eventmodal').style.display='none'" type="button" value="Cancel" class="cancel"> -->
+			</div>
+			<div class="controls">
+				<a href="#" id="add_more_fields"><ion-icon name="add"></ion-icon>Add More</a>
+				<a href="#" id="remove_fields"><ion-icon name="close"></ion-icon>Remove Field</a>
 			</div>
 		</form>
 	</div>

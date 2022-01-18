@@ -77,10 +77,9 @@
 			border: none;
 			cursor: pointer;
 			width: 100%;
-			border-radius: 5%;
 		}
 
-		button:hover {
+		input[type='button']:hover {
 			opacity: 0.8;
 		}
 
@@ -165,12 +164,12 @@
 		    <div class="event">
 		      <h2 align="center">Add Event</h2>
 		      <label for="ename"><b>Event Name</b></label>
-		      <input type="text" name="eventname" value="<?php echo $eventname; ?>" required/>
+		      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $eventname; ?>" required/>
 		      <label for="venue"><b>Venue</b></label>
-		      <input type="text" name="venue" value="<?php echo $venue; ?>" required/>
+		      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php echo $venue; ?>" required/>
 		      <label for="artwork"><b>Artwork</b></label>
 		      <input type="file" name="image" value="<?php echo $image; ?>" required/>  
-		      <input type="submit" value="Next" name="addEvent" onclick="document.getElementById('eventmodal').style.display='block'" style="width: auto;">
+		      <input type="submit" value="Next" name="addEvent" onclick="document.getElementById('eventmodal').style.display='block'">
 		    </div>
 		</form>
 	</div>
@@ -185,19 +184,19 @@
 			<div class="eventcontainer">
 				<h2 align="center">Event Registration Form</h2>
 				<label for="firstname">First Name</label>
-				<input type="text" name="firstname" placeholder="Enter your First Name" required>
+				<input type="text" name="firstname" placeholder="Enter First Name" required>
 				<label for="lastname">Last Name</label>
-				<input type="text" name="lastname" placeholder="Enter your Last Name" required>
+				<input type="text" name="lastname" placeholder="Enter Last Name" required>
 				<label for="fullname">Full Name</label>
-				<input type="text" name="fullname" placeholder="Enter your Full Name" required>
+				<input type="text" name="fullname" placeholder="Enter Full Name" required>
 				<label for="email">Email</label>
-				<input type="email" name="email" placeholder="Enter your Email Address" required>
+				<input type="email" name="email" placeholder="Enter Email Address" required>
 				<label for="phonenumber">Phone Number</label>
-				<input type="tel" name="phonenumber" placeholder="Enter your Phone Number" required>
+				<input type="tel" name="phonenumber" placeholder="Enter Phone Number" required>
 				<label for="companyname">Company Name</label>
-				<input type="text" name="companyname" placeholder="Enter your Company Name" required>
+				<input type="text" name="companyname" placeholder="Enter Company Name" required>
 				<label for="position">Position</label>
-				<input type="text" name="position" placeholder="Enter your Position" required>
+				<input type="text" name="position" placeholder="Enter Position" required>
 				<input type="button" value="Save" name="submit"> 
 				<!-- <input onclick="document.getElementById('eventmodal').style.display='none'" type="button" value="Cancel" class="cancel"> -->
 			</div>

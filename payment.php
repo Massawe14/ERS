@@ -14,37 +14,42 @@
 			<h1>Select Payment Method</h1>
 		</div>
 		<div class="card">
-			<input type="radio" id="tigopesa" name="tigopesa">
+			<input type="radio" id="tigopesa" name="card">
 			<label for="tigopesa">
-				<i class="fa fa-cc-visa"></i>
+				<!-- <i class="fa fa-cc-visa"></i> -->
+				<img src="assets/tigopesa.png" class="fa">
 				<span>Tigo Pesa</span>
 			</label>
 		</div>
 		<div class="card">
-			<input type="radio" id="mpesa" name="mpesa">
+			<input type="radio" id="mpesa" name="card">
 			<label for="mpesa">
-				<i class="fa fa-cc-visa"></i>
+				<!-- <i class="fa fa-cc-visa"></i> -->
+				<img src="assets/mpesa.png" class="fa">
 				<span>Mpesa</span>
 			</label>
 		</div>
 		<div class="card">
-			<input type="radio" id="airtelmoney" name="airtelmoney">
+			<input type="radio" id="airtelmoney" name="card">
 			<label for="airtelmoney">
-				<i class="fa fa-cc-visa"></i>
+				<!-- <i class="fa fa-cc-visa"></i> -->
+				<img src="assets/airtelmoney.png" class="fa">
 				<span>Airtel Money</span>
 			</label>
 		</div>
 		<div class="card">
-			<input type="radio" id="visa" name="visa">
+			<input type="radio" id="visa" name="card">
 			<label for="visa">
-				<i class="fa fa-cc-visa"></i>
+				<!-- <i class="fa fa-cc-visa"></i> -->
+				<img src="assets/visa.png" class="fa">
 				<span>Visa</span>
 			</label>
 		</div>
 		<div class="card">
-			<input type="radio" id="mastercard" name="mastercard">
+			<input type="radio" id="mastercard" name="card">
 			<label for="mastercard">
-				<i class="fa fa-cc-mastercard"></i>
+				<!-- <i class="fa fa-cc-mastercard"></i> -->
+				<img src="assets/mastercard.png" class="fa">
 				<span>Mastercard</span>
 			</label>
 		</div>

@@ -56,24 +56,35 @@
 		    opacity: 0.8;
 		}
 
+		.wrapper {
+			background-color: #fff;
+			width: 800px;
+			padding: 25px;
+			margin: 25px auto 0;
+			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+			border-radius: 20px;
+		}
+
 		.event {
 		    padding: 80px;
 		}
 	</style>
 </head>
 <body>
-	<form action="code.php" method="post" enctype="multipart/form-data">
-	    <div class="event">
-	      <h2 align="center">Add Event</h2>
-	      <label for="ename"><b>Event Name</b></label>
-	      <input type="text" name="eventname" value="<?php echo $eventname; ?>" required/>
-	      <label for="venue"><b>Venue</b></label>
-	      <input type="text" name="venue" value="<?php echo $venue; ?>" required/>
-	      <label for="artwork"><b>Artwork</b></label>
-	      <input type="file" name="image" value="<?php echo $image; ?>" required/>  
-	      <input type="submit" value="Next" name="addEvent">
-	    </div>
-	</form>
+	<div class="wrapper">
+		<form action="code.php" method="POST" enctype="multipart/form-data">
+		    <div class="event">
+		      <h2 align="center">Add Event</h2>
+		      <label for="ename"><b>Event Name</b></label>
+		      <input type="text" name="eventname" value="<?php echo $eventname; ?>" required/>
+		      <label for="venue"><b>Venue</b></label>
+		      <input type="text" name="venue" value="<?php echo $venue; ?>" required/>
+		      <label for="artwork"><b>Artwork</b></label>
+		      <input type="file" name="image" value="<?php echo $image; ?>" required/>  
+		      <input type="submit" value="Next" name="addEvent">
+		    </div>
+		</form>
+	</div>
 	<?php include('includes/script.php'); ?>
 </body>
 </html>

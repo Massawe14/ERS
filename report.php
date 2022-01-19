@@ -18,47 +18,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Report</title>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
   <style>
-
-    /*.content-table {
-      border-collapse: collapse;
-      padding: 25px;
-      margin: 25px auto 0;
-      font-size: 0.9em;
-      width: 1000px;
-      border-radius: 5px 5px 0 0;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .content-table thead tr {
-      background-color: #e1251b;
-      color: #ffffff;
-      text-align: left;
-      font-weight: bold;
-    }
-
-    .content-table th,
-    .content-table td {
-      padding: 12px 15px;
-    }
-
-    .content-table tbody tr {
-      border-bottom: 1px solid #dddddd;
-    }
-
-    .content-table tbody tr:nth-of-type(even) {
-      background-color: #f3f3f3;
-    }
-
-    .content-table tbody tr:last-of-type {
-      border-bottom: 2px solid #e1251b;
-    }*/
-
-    /*.content-table tbody tr.active-row {
-      font-weight: bold;
-      color: #009879;
-    }*/
 
     .report-container {
       width: 940px;
@@ -156,8 +117,14 @@
     </table>
   </div>
   <?php include('includes/script.php'); ?>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script
-  src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+  src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script>
+    $(document).ready( function () {
+      $('#table').DataTable();
+    });
+  </script>
   <script>
     $('.btn').click(function(){
       var printme = document.getElementById('table');

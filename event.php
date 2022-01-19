@@ -216,8 +216,7 @@
 				<input type="text" name="companyname" placeholder="Enter Company Name" required>
 				<label for="position">Position</label>
 				<input type="text" name="position" placeholder="Enter Position" required>
-				<input type="button" value="Save" name="submit"> 
-				<!-- <input onclick="document.getElementById('eventmodal').style.display='none'" type="button" value="Cancel" class="cancel"> -->
+				<input type="button" value="Save" name="submit">
 			</div>
 			<div class="controls">
 				<a href="#" id="add_more_fields"><ion-icon name="add"></ion-icon>Add More</a>
@@ -227,6 +226,7 @@
 	</div>
 
 	<?php include('includes/script.php'); ?>
+	<script src="scripts/fields.js"></script>
 	<!-- how to make close when click on any point of the browser -->
 	<script>
 		var modal = document.getElementById('eventmodal');

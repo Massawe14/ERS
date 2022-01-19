@@ -78,12 +78,24 @@
       opacity: 0.8;
     }
 
+    @media print {
+      /* Hide every other element */
+      body * {
+        visibility: hidden;
+      }
+
+      /* Then displaying report container elements */
+      .table, .table * {
+        visibility: visible;
+      }
+    }
+
   </style>
 </head>
 <body>
   <div class="report-container">
     <p>
-      <button class="btn">Print</button>
+      <button onclick="window.print();" class="btn">Print</button>
     </p>
     <table class="table" id="table">
       <thead>
@@ -123,17 +135,6 @@
   <script>
     $(document).ready( function () {
       $('#table').DataTable();
-    });
-  </script>
-  <script>
-    $('.btn').click(function(){
-      var printme = document.getElementById('table');
-      var wme = window.open("","","width=900,height=700");
-      wme.document.write(printme.outerHTML);
-      wme.document.close();
-      wme.focus();
-      wme.print();
-      wme.close();
     });
   </script>
 </body>

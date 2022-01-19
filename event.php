@@ -182,11 +182,11 @@
 		<form action="code.php" method="POST" enctype="multipart/form-data">
 		    <div class="event">
 		      <h2 align="center">Add Event</h2>
-		      <label for="ename"><b>Event Name</b></label>
+		      <label for="ename">Event Name</label>
 		      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $eventname; ?>" required/>
-		      <label for="venue"><b>Venue</b></label>
+		      <label for="venue">Venue</label>
 		      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php echo $venue; ?>" required/>
-		      <label for="artwork"><b>Artwork</b></label>
+		      <label for="artwork">Artwork</label>
 		      <input type="file" name="image" value="<?php echo $image; ?>" required/>  
 		      <input type="submit" value="Next" name="addEvent" onclick="document.getElementById('eventmodal').style.display='block'">
 		    </div>

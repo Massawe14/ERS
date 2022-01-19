@@ -59,7 +59,7 @@
 
 		.wrapper {
 			background-color: #fff;
-			width: 800px;
+			width: 1000px;
 			padding: 25px;
 			margin: 25px auto 0;
 			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);

@@ -20,7 +20,7 @@
 			</a>
 		</li>
 		<li>
-			<a href="#">
+			<a href="report.php">
 				<span class="icon"><ion-icon name="print"></ion-icon></span>
 				<span class="title">Reports</span>
 			</a>

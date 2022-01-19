@@ -8,6 +8,7 @@
   if (isset($_SESSION['username'])) {
     // code...
     header("Location: event.php");
+    exit(0);
   }
 
   if (isset($_POST['addEvent'])) {

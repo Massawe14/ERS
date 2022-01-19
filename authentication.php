@@ -6,7 +6,8 @@
 
   if (isset($_SESSION['username'])) {
     // code...
-    header("Location: index.php");
+    header("Location: subscription.php");
+    exit(0);
   }
 
 ?>

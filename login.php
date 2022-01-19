@@ -7,7 +7,8 @@
 
   if (isset($_SESSION['username'])) {
   	// code...
-  	header("Location: index.php");
+  	header("Location: subscription.php");
+    exit(0);
   }
 
   if (isset($_POST['loginbtn'])) {
@@ -22,7 +23,7 @@
    		// code...
    		$row = mysqli_fetch_assoc($result);
    		$_SESSION['username'] = $row['username'];
-   		header("Location: index.php");
+   		header("Location: subscription.php");
    	} else {
       // echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
       $_SESSION['status'] = "Woops! Username or Password is Wrong.";

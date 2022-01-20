@@ -91,43 +91,51 @@
       }
     }
 
+    .print-table {
+      padding-top: 20px;
+    }
+
   </style>
 </head>
 <body>
   <div class="report-container">
-    <p>
-      <button onclick="window.print();" class="btn">Print</button>
-    </p>
-    <table class="table" id="table">
-      <thead>
-        <tr>
-          <th>Rank</th>
-          <th>Name</th>
-          <th>Points</th>
-          <th>Team</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Domenic</td>
-          <td>88,110</td>
-          <td>dcode</td>
-        </tr>
-        <tr class="active-row">
-          <td>2</td>
-          <td>Sally</td>
-          <td>72,400</td>
-          <td>Students</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>Nick</td>
-          <td>52,300</td>
-          <td>dcode</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="print-btn">
+      <p>
+        <button onclick="window.print();" class="btn">Print</button>
+      </p>
+    </div>
+    <div class="print-table">
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Points</th>
+            <th>Team</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Domenic</td>
+            <td>88,110</td>
+            <td>dcode</td>
+          </tr>
+          <tr class="active-row">
+            <td>2</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td>Students</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
   <?php include('includes/script.php'); ?>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

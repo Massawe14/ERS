@@ -229,7 +229,7 @@
 <body>
 
 	<div class="wrapper">
-		<form action="code.php" method="POST" enctype="multipart/form-data">
+		<form action="#" method="POST" enctype="multipart/form-data">
 		    <div class="event">
 		      <h2 align="center">Add Event</h2>
 		      <label for="ename">Event Name</label>
@@ -245,7 +245,7 @@
 
 	<!-- Event Modal -->
 	<div class="modal" id="eventmodal">
-		<form class="modal-content animate" action="#" method="POST">
+		<form class="modal-content animate" action="table.php" method="POST">
 			<div class="img">
 				<span onclick="document.getElementById('eventmodal').style.display='none'" class="close" title="close button">&times;</span>
 				<!-- <img src="" alt="Avatar" class="avater"> -->

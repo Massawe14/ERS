@@ -11,7 +11,7 @@
   	exit(0);
   }
 
-  if (isset($_POST['addEvent'])) {
+  if (isset($_POST['submit'])) {
   	// code...
   	$eventname = $_POST['eventname'];
 
@@ -24,7 +24,7 @@
     if ($result) {
     	// code...
     	$_SESSION['status'] = "Table created successfully.";
-		header("Location: event.php");
+		header("Location: index.php");
 		exit(0);
     } else {
     	$_SESSION['status'] = "Woops! Something went wrong.";

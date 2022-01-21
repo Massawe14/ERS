@@ -1,9 +1,10 @@
 <?php 
+
+  session_start();
+
   include('config/dbconn.php');
 
   error_reporting(0); 
-
-  session_start();
 
   if (isset($_SESSION['username'])) {
   	// code...

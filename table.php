@@ -7,7 +7,8 @@
 
   if (isset($_SESSION['username'])) {
   	// code...
-  	header("Location: authentication.php");
+  	header("Location: event.php");
+  	exit(0);
   }
 
   if (isset($_POST['addEvent'])) {
@@ -18,7 +19,18 @@
   		phonenumber VARCHAR(100) NOT NULL, companyname VARCHAR(100) NOT NULL, 
   		position VARCHAR(100) NOT NULL, PRIMARY KEY(id))";
 
-    $result = mysqli_query($conn, $sql) or die("Bad Create: $sql");
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+    	// code...
+    	$_SESSION['status'] = "Table created successfully.";
+		header("Location: event.php");
+		exit(0);
+    } else {
+    	$_SESSION['status'] = "Woops! Something went wrong.";
+		header("Location: event.php");
+		exit(0);
+    }
   }
 
 ?>

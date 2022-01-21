@@ -24,25 +24,28 @@
   		// code...
   		$sql = "INSERT INTO users (username, email, password) 
   	        VALUES ('$username', '$email', '$password')";
-		$result = mysqli_query($conn, $sql);
+		  $result = mysqli_query($conn, $sql);
 
-		if ($result) {
-			// code...
-			// echo "<script>alert('Wow! User Registration Completed.')</script>";
-			$_SESSION['status'] = "Wow! User Registration Completed.";
-			header("Location: authentication.php");
-			$username = "";
-			$email = "";
-			$_POST['password'] = "";
-		} else {
-			// echo "<script>alert('Woops! Something went wrong.')</script>";
-			$_SESSION['status'] = "Woops! Something went wrong.";
-			header("Location: authentication.php");
-		}  
+			if ($result) {
+				// code...
+				// echo "<script>alert('Wow! User Registration Completed.')</script>";
+				$_SESSION['status'] = "Wow! User Registration Completed.";
+				header("Location: authentication.php");
+				$username = "";
+				$email = "";
+				$_POST['password'] = "";
+				exit(0);
+			} else {
+				// echo "<script>alert('Woops! Something went wrong.')</script>";
+				$_SESSION['status'] = "Woops! Something went wrong.";
+				header("Location: authentication.php");
+				exit(0);
+			}  
   	} else {
   		// echo "<script>alert('Woops! Email Already Exists.')</script>";
   		$_SESSION['status'] = "Woops! Email Already Exists.";
   		header("Location: authentication.php");
+  		exit(0);
   	}
   }
 ?>

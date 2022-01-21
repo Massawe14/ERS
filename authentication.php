@@ -4,9 +4,9 @@
 
   error_reporting(0);
 
-  if (isset($_SESSION['username'])) {
+  if (!isset($_SESSION['username'])) {
     // code...
-    header("Location: subscription.php");
+    header("Location: authentication.php");
     exit(0);
   }
 

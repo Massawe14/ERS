@@ -4,5 +4,6 @@
   session_destroy();
 
   header("Location: authentication.php");
+  exit(0);
 
 ?>

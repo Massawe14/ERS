@@ -96,7 +96,11 @@
 		}*/
 
 		.eventcontainer {
-			padding: 16px;
+			padding: 15px;
+		}
+
+		.input-group {
+			display: none;
 		}
 
 		.modal {
@@ -177,55 +181,6 @@
 		}
 
 	</style>
-	<script>
-		function text(x) {
-			if (x == 0) document.getElementById("fname").style.display = "block";
-			else document.getElementById("fname").style.display = "none";
-			return;
-		}
-	</script>
-	<script>
-		function text(x) {
-			if (x == 0) document.getElementById("lname").style.display = "block";
-			else document.getElementById("lname").style.display = "none";
-			return;
-		}
-	</script>
-	<script>
-		function text(x) {
-			if (x == 0) document.getElementById("fullname").style.display = "block";
-			else document.getElementById("fullname").style.display = "none";
-			return;
-		}
-	</script>
-	<script>
-		function text(x) {
-			if (x == 0) document.getElementById("email").style.display = "block";
-			else document.getElementById("email").style.display = "none";
-			return;
-		}
-	</script>
-	<script>
-		function text(x) {
-			if (x == 0) document.getElementById("pnumber").style.display = "block";
-			else document.getElementById("pnumber").style.display = "none";
-			return;
-		}
-	</script>
-	<script>
-		function text(x) {
-			if (x == 0) document.getElementById("cname").style.display = "block";
-			else document.getElementById("cname").style.display = "none";
-			return;
-		}
-	</script>
-	<script>
-		function text(x) {
-			if (x == 0) document.getElementById("position").style.display = "block";
-			else document.getElementById("position").style.display = "none";
-			return;
-		}
-	</script>
 </head>
 <body>
 
@@ -253,105 +208,90 @@
 			</div>
 			<div class="eventcontainer">
 				<h2 align="center">Event Registration Form</h2>
-				<div class="input-group" id="fname">
+				<div class="checkbox-card">
 					<label for="firstname">First Name</label>
-					<input type="text" name="firstname" placeholder="Enter First Name" required>
-					<span class="radio"></span>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" class="checkme"> Yes
+						</label>
+					</div>
+					<div class="input-group" id="fname">
+						<!-- <label for="firstname">First Name</label> -->
+						<input type="text" name="firstname" placeholder="Enter First Name" required>
+					</div>
 				</div>
-				<div class="p-t-10">
-					<label class="radio-container">Yes
-						<input type="radio" name="firstname" value="YES" onclick="text(0)" checked>
-						<span class="checkmark"></span>
-					</label>
-					<label class="radio-container">No
-						<input type="radio" name="firstname" value="NO" onclick="text(1)">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="input-group" id="lname">
+				<div class="checkbox-card">
 					<label for="lastname">Last Name</label>
-					<input type="text" name="lastname" placeholder="Enter Last Name" required>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" class="checkme"> Yes
+						</label>
+					</div>
+					<div class="input-group" id="lname">
+						<!-- <label for="lastname">Last Name</label> -->
+						<input type="text" name="lastname" placeholder="Enter Last Name" required>
+					</div>
 				</div>
-				<div class="p-t-10">
-					<label class="radio-container">Yes
-						<input type="radio" name="lastname" value="YES" onclick="text(0)" checked>
-						<span class="checkmark"></span>
-					</label>
-					<label class="radio-container">No
-						<input type="radio" name="lastname" value="NO" onclick="text(1)">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="input-group" id="fullname">
+				<div class="checkbox-card">
 					<label for="fullname">Full Name</label>
-					<input type="text" name="fullname" placeholder="Enter Full Name" required>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" class="checkme"> Yes
+						</label>
+					</div>
+					<div class="input-group" id="fullname">
+						<!-- <label for="fullname">Full Name</label> -->
+						<input type="text" name="fullname" placeholder="Enter Full Name" required>
+					</div>
 				</div>
-				<div class="p-t-10">
-					<label class="radio-container">Yes
-						<input type="radio" name="fullname" value="YES" onclick="text(0)" checked>
-						<span class="checkmark"></span>
-					</label>
-					<label class="radio-container">No
-						<input type="radio" name="fullname" value="NO" onclick="text(1)">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="input-group" id="email">
+				<div class="checkbox-card">
 					<label for="email">Email</label>
-					<input type="email" name="email" placeholder="Enter Email Address" required>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" class="checkme"> Yes
+						</label>
+					</div>
+					<div class="input-group" id="email">
+						<!-- <label for="email">Email</label> -->
+						<input type="email" name="email" placeholder="Enter Email Address" required>
+					</div>
 				</div>
-				<div class="p-t-10">
-					<label class="radio-container">Yes
-						<input type="radio" name="email" value="YES" onclick="text(0)" checked>
-						<span class="checkmark"></span>
-					</label>
-					<label class="radio-container">No
-						<input type="radio" name="email" value="NO" onclick="text(1)">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="input-group" id="pnumber">
+				<div class="checkbox-card">
 					<label for="phonenumber">Phone Number</label>
-					<input type="tel" name="phonenumber" placeholder="Enter Phone Number" required>
-				</div>
-				<div class="p-t-10">
-					<label class="radio-container">Yes
-						<input type="radio" name="phonenumber" value="YES" onclick="text(0)" checked>
-						<span class="checkmark"></span>
-					</label>
-					<label class="radio-container">No
-						<input type="radio" name="phonenumber" value="NO" onclick="text(1)">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="input-group" id="cname">
-					<label for="companyname">Company Name</label>
-					<input type="text" name="companyname" placeholder="Enter Company Name" required>
-				</div>
-				<div class="p-t-10">
-					<label class="radio-container">Yes
-						<input type="radio" name="companyname" value="YES" onclick="text(0)" checked>
-						<span class="checkmark"></span>
-					</label>
-					<label class="radio-container">No
-						<input type="radio" name="companyname" value="NO" onclick="text(1)">
-						<span class="checkmark"></span>
-					</label>
-				</div>
-				<div class="input-group" id="position">
-					<label for="position">Position</label>
-					<input type="text" name="position" placeholder="Enter Position" required>
-				</div>
-				<div class="p-t-10">
-					<label class="radio-container">Yes
-						<input type="radio" name="position" value="YES" onclick="text(0)" checked>
-						<span class="checkmark"></span>
-					</label>
-					<label class="radio-container">No
-						<input type="radio" name="position" value="NO" onclick="text(1)">
-						<span class="checkmark"></span>
-					</label>
-				</div>
+					<div class="checkbox">
+						<label>
+							<input type="checkbox" class="checkme"> Yes
+						</label>
+					</div>
+					<div class="input-group" id="pnumber">
+						<!-- <label for="phonenumber">Phone Number</label> -->
+						<input type="tel" name="phonenumber" placeholder="Enter Phone Number" required>
+					</div>
+			  </div>
+			  <div class="checkbox-card">
+			  	<label for="companyname">Company Name</label>
+			  	<div class="checkbox">
+						<label>
+							<input type="checkbox" class="checkme"> Yes
+						</label>
+					</div>
+					<div class="input-group" id="cname">
+						<!-- <label for="companyname">Company Name</label> -->
+						<input type="text" name="companyname" placeholder="Enter Company Name" required>
+					</div>
+			  </div>
+			  <div class="checkbox-card">
+			  	<label for="position">Position</label>
+			  	<div class="checkbox">
+						<label>
+							<input type="checkbox" class="checkme"> Yes
+						</label>
+					</div>
+					<div class="input-group" id="position">
+						<!-- <label for="position">Position</label> -->
+						<input type="text" name="position" placeholder="Enter Position" required>
+					</div>
+				</div>	
 				<input type="button" value="Save" name="submit">
 			</div>
 		</form>
@@ -359,6 +299,19 @@
 
 	<?php include('includes/script.php'); ?>
 	<!-- how to make close when click on any point of the browser -->
+	<script>
+		$(function(){
+			$(".checkme").click(function(event){
+				var x = $(this).is(':checked');
+				if (x == true) {
+					$(this).parents(".checkbox-card").find('.input-group').show();
+				}
+				else {
+					$(this).parents(".checkbox-card").find('.input-group').hide();
+				}
+			});
+		});
+	</script>
 	<script>
 		var modal = document.getElementById('eventmodal');
 		window.onclick = function(event) {

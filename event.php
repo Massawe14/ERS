@@ -185,7 +185,7 @@
 <body>
 
 	<div class="wrapper">
-		<form action="#" method="POST" enctype="multipart/form-data">
+		<form action="code.php" method="POST" enctype="multipart/form-data">
 		    <div class="event">
 		      <h2 align="center">Add Event</h2>
 		      <label for="ename">Event Name</label>
@@ -201,7 +201,7 @@
 
 	<!-- Event Modal -->
 	<div class="modal" id="eventmodal">
-		<form class="modal-content animate" action="table" method="POST">
+		<form class="modal-content animate" action="code.php" method="POST">
 			<div class="img">
 				<span onclick="document.getElementById('eventmodal').style.display='none'" class="close" title="close button">&times;</span>
 				<!-- <img src="" alt="Avatar" class="avater"> -->
@@ -292,7 +292,7 @@
 						<input type="text" name="position" placeholder="Enter Position" required>
 					</div>
 				</div>	
-				<input type="button" value="Save" name="submit">
+				<input type="button" value="Save" name="save">
 			</div>
 		</form>
 	</div>
@@ -305,6 +305,20 @@
 				var x = $(this).is(':checked');
 				if (x == true) {
 					$(this).parents(".checkbox-card").find('.input-group').show();
+					var firstname = document.getElementById('fname');
+					console.log(firstname);
+					var lastname = document.getElementById('lname');
+					console.log(lastname);
+					var fullname = document.getElementById('fullname');
+					console.log(fullname);
+					var email = document.getElementById('email');
+					console.log(email);
+					var phonenumber = document.getElementById('pnumber');
+					console.log(phonenumber);
+					var companyname = document.getElementById('cname');
+					console.log(companyname);
+					var position = document.getElementById('position');
+					console.log(position);
 				}
 				else {
 					$(this).parents(".checkbox-card").find('.input-group').hide();

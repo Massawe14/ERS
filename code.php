@@ -11,6 +11,7 @@
     exit(0);
   }
 
+  // Event
   if (isset($_POST['addEvent'])) {
     // code...
     $eventname = $_POST['eventname'];
@@ -62,9 +63,16 @@
       }
     }
     
-    $sql = "CREATE TEMPORARY TABLE '$eventname' IF NOT EXIST (id INT NOT NULL AUTO_INCREMENT, firstname VARCHAR(100) NOT NULL, lastname VARCHAR(100) NOT NULL, fullname VARCHAR(100) NOT NULL, email VARCHAR(100) NOT NULL, 
-      phonenumber VARCHAR(100) NOT NULL, companyname VARCHAR(100) NOT NULL, 
-      position VARCHAR(100) NOT NULL, PRIMARY KEY(id))";
+    $sql = "CREATE TABLE '$eventname' (
+      id INT NOT NULL AUTO_INCREMENT, 
+      firstname VARCHAR(100) NOT NULL, 
+      lastname VARCHAR(100) NOT NULL, 
+      fullname VARCHAR(100) NOT NULL, 
+      email VARCHAR(100) NOT NULL, 
+      phonenumber VARCHAR(100) NOT NULL, 
+      companyname VARCHAR(100) NOT NULL, 
+      position VARCHAR(100) NOT NULL, PRIMARY KEY(id)
+    )";
 
     $result = mysqli_query($conn, $sql);
 
@@ -79,15 +87,19 @@
       exit(0);
     }
   }
-
-  $firstname = $_POST['firstname'];
-  // print_r($firstname);
-  // exit();
-
-  foreach ($firstname as $key => $value) {
+  
+  // Registration Form
+  if (isset($_POST['save'])) {
     // code...
-    // print_r($value);
-    $sql = $conn->query("INSERT INTO table VALUES('','".$value."')");
+    header("Content-Type: application/json; charset=UTF-8");
+
+    $field1 = {
+      "id" => "",
+      "eventname" => $_POST['eventname'],
+      "label" => "firstname",
+      "type" => "text",
+      "placeholder" => "Enter First Name"
+    };
   }
-  exit();
+  
 ?>

@@ -300,6 +300,8 @@
 	<?php include('includes/script.php'); ?>
 	<!-- how to make close when click on any point of the browser -->
 	<script>
+		var valueList = document.getElementById('valueList');
+		var text = '<span> you have selected : </span>'
 		var listArray = [];
 		var checkboxes = document.querySelectorAll('.checkme');
 
@@ -309,10 +311,13 @@
 					$(this).parents(".checkbox-card").find('.input-group').show();
 					console.log(this.value);
 					listArray.push(this.value);
+					valueList.innerHTML = text + listArray.join(' / ');
 				}
 				else {
 					$(this).parents(".checkbox-card").find('.input-group').hide();
 					console.log('You unchecked the checkbox');
+					listArray = listArray.filter(e => e !== this.value);
+					valueList.innerHTML = text + listArray.join(' / ');
 				}
 			});
 		}

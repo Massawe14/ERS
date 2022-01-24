@@ -212,7 +212,7 @@
 					<label for="firstname">First Name</label>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" class="checkme"> Yes
+							<input type="checkbox" class="checkme" value="firstname" id="firstname"> Yes
 						</label>
 					</div>
 					<div class="input-group" id="fname">
@@ -224,7 +224,7 @@
 					<label for="lastname">Last Name</label>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" class="checkme"> Yes
+							<input type="checkbox" class="checkme" value="lastname" id="lastname"> Yes
 						</label>
 					</div>
 					<div class="input-group" id="lname">
@@ -236,7 +236,7 @@
 					<label for="fullname">Full Name</label>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" class="checkme"> Yes
+							<input type="checkbox" class="checkme" value="fullname" id="fullname"> Yes
 						</label>
 					</div>
 					<div class="input-group" id="fullname">
@@ -248,7 +248,7 @@
 					<label for="email">Email</label>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" class="checkme"> Yes
+							<input type="checkbox" class="checkme" value="email" id="email"> Yes
 						</label>
 					</div>
 					<div class="input-group" id="email">
@@ -260,7 +260,7 @@
 					<label for="phonenumber">Phone Number</label>
 					<div class="checkbox">
 						<label>
-							<input type="checkbox" class="checkme"> Yes
+							<input type="checkbox" class="checkme" value="phonenumber" id="phonenumber"> Yes
 						</label>
 					</div>
 					<div class="input-group" id="pnumber">
@@ -272,7 +272,7 @@
 			  	<label for="companyname">Company Name</label>
 			  	<div class="checkbox">
 						<label>
-							<input type="checkbox" class="checkme"> Yes
+							<input type="checkbox" class="checkme" value="companyname" id="companyname"> Yes
 						</label>
 					</div>
 					<div class="input-group" id="cname">
@@ -284,7 +284,7 @@
 			  	<label for="position">Position</label>
 			  	<div class="checkbox">
 						<label>
-							<input type="checkbox" class="checkme"> Yes
+							<input type="checkbox" class="checkme" value="position" id="position"> Yes
 						</label>
 					</div>
 					<div class="input-group" id="position">
@@ -300,31 +300,33 @@
 	<?php include('includes/script.php'); ?>
 	<!-- how to make close when click on any point of the browser -->
 	<script>
-		$(function(){
-			$(".checkme").click(function(event){
-				var x = $(this).is(':checked');
-				if (x == true) {
+		var listArray = [];
+		var checkboxes = document.querySelectorAll('.checkme');
+
+		for (var checkbox of checkboxes) {
+			checkbox.addEventListener('click',function(){
+				if (this.checked == true) {
 					$(this).parents(".checkbox-card").find('.input-group').show();
-					var firstname = document.getElementById('fname');
-					console.log(firstname);
-					var lastname = document.getElementById('lname');
-					console.log(lastname);
-					var fullname = document.getElementById('fullname');
-					console.log(fullname);
-					var email = document.getElementById('email');
-					console.log(email);
-					var phonenumber = document.getElementById('pnumber');
-					console.log(phonenumber);
-					var companyname = document.getElementById('cname');
-					console.log(companyname);
-					var position = document.getElementById('position');
-					console.log(position);
+					console.log(this.value);
+					listArray.push(this.value);
 				}
 				else {
 					$(this).parents(".checkbox-card").find('.input-group').hide();
+					console.log('You unchecked the checkbox');
 				}
 			});
-		});
+		}
+		// $(function(){
+		// 	$(".checkme").click(function(event){
+		// 		var x = $(this).is(':checked');
+		// 		if (x == true) {
+		// 			$(this).parents(".checkbox-card").find('.input-group').show();
+		// 		}
+		// 		else {
+		// 			$(this).parents(".checkbox-card").find('.input-group').hide();
+		// 		}
+		// 	});
+		// });
 	</script>
 	<script>
 		var modal = document.getElementById('eventmodal');

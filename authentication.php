@@ -4,9 +4,9 @@
 
   error_reporting(0);
 
-  if (!isset($_SESSION['username'])) {
+  if (isset($_SESSION['username'])) {
     // code...
-    header("Location: authentication.php");
+    header("Location: subscription");
     exit(0);
   }
 
@@ -15,6 +15,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script
       src="https://kit.fontawesome.com/64d58efce2.js"
@@ -27,7 +28,7 @@
     <div class="container">
       <div class="forms-container">
         <div class="signin-signup">
-          <form action="login.php" class="sign-in-form" method="POST">
+          <form action="login" class="sign-in-form" method="POST">
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -54,7 +55,7 @@
               </a>
             </div>
           </form>
-          <form action="register.php" class="sign-up-form" method="POST">
+          <form action="register" class="sign-up-form" method="POST">
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
@@ -127,7 +128,7 @@
 
           $.ajax({
             type: "POST",
-            url: "code.php",
+            url: "register.php",
             data: {
               'check_Emailbtn':1,
               'email':useremail,

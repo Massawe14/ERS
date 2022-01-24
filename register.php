@@ -8,7 +8,7 @@
 
   if (isset($_SESSION['username'])) {
   	// code...
-  	header("Location: authentication.php");
+  	header("Location: authentication");
   }
 
   if (isset($_POST['signupbtn'])) {
@@ -30,7 +30,7 @@
 				// code...
 				// echo "<script>alert('Wow! User Registration Completed.')</script>";
 				$_SESSION['status'] = "Wow! User Registration Completed.";
-				header("Location: authentication.php");
+				header("Location: authentication");
 				$username = "";
 				$email = "";
 				$_POST['password'] = "";
@@ -38,13 +38,13 @@
 			} else {
 				// echo "<script>alert('Woops! Something went wrong.')</script>";
 				$_SESSION['status'] = "Woops! Something went wrong.";
-				header("Location: authentication.php");
+				header("Location: authentication");
 				exit(0);
 			}  
   	} else {
   		// echo "<script>alert('Woops! Email Already Exists.')</script>";
   		$_SESSION['status'] = "Woops! Email Already Exists.";
-  		header("Location: authentication.php");
+  		header("Location: authentication");
   		exit(0);
   	}
   }

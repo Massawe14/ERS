@@ -7,7 +7,7 @@
 
   if (!isset($_SESSION['username'])) {
   	// code...
-  	header("Location: authentication.php");
+  	header("Location: authentication");
   	exit(0);
   }
 ?>

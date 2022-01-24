@@ -7,7 +7,7 @@
 
   if (isset($_SESSION['username'])) {
     // code...
-    header("Location: event.php");
+    header("Location: event");
     exit(0);
   }
 
@@ -27,22 +27,22 @@
     if ($check == false) {
       // code...
       $_SESSION['status'] = "File is not an image.";
-      header('Location: event.php');
+      header('Location: event');
       exit(0);
     }
     elseif (file_exists($filename)) {
      $_SESSION['status'] = "Sorry, file already exists.";
-     header('Location: event.php');
+     header('Location: event');
      exit(0);
     }
     elseif (!in_array($file_extension, $allowed_extension)) {
      $_SESSION['status'] = "You are allowed with only jpg, png and jpeg Image";
-     header('Location: event.php');
+     header('Location: event');
      exit(0);
     }
     elseif ($_FILES["image"]["size"] > 500000) {
      $_SESSION['status'] = "Sorry, your file is too large.";
-     header('Location: event.php');
+     header('Location: event');
      exit(0);
     } 
     else {
@@ -52,12 +52,12 @@
       if ($result) {
         move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/images/'.$filename);
         $_SESSION['status'] = "Event Added Successfully";
-        header('Location: event.php');
+        header('Location: event');
         exit(0);
       }
       else{
         $_SESSION['status'] = "Event Registration Failed";
-        header('Location: event.php');
+        header('Location: event');
         exit(0);
       }
     }
@@ -71,12 +71,23 @@
     if ($result) {
       // code...
       $_SESSION['status'] = "Table created successfully.";
-      header("Location: event.php");
+      header("Location: event");
       exit(0);
     } else {
       $_SESSION['status'] = "Woops! Something went wrong.";
-      header("Location: event.php");
+      header("Location: event");
       exit(0);
     }
   }
+
+  $firstname = $_POST['firstname'];
+  // print_r($firstname);
+  // exit();
+
+  foreach ($firstname as $key => $value) {
+    // code...
+    // print_r($value);
+    $sql = $conn->query("INSERT INTO table VALUES('','".$value."')");
+  }
+  exit();
 ?>

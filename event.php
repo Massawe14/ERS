@@ -9,7 +9,7 @@
 
   if (!isset($_SESSION['username'])) {
   	// code...
-  	header("Location: authentication.php");
+  	header("Location: authentication");
   	exit(0);
   }
 ?>
@@ -17,6 +17,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Event</title>
 	<style>
@@ -245,7 +246,7 @@
 
 	<!-- Event Modal -->
 	<div class="modal" id="eventmodal">
-		<form class="modal-content animate" action="table.php" method="POST">
+		<form class="modal-content animate" action="table" method="POST">
 			<div class="img">
 				<span onclick="document.getElementById('eventmodal').style.display='none'" class="close" title="close button">&times;</span>
 				<!-- <img src="" alt="Avatar" class="avater"> -->

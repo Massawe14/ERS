@@ -97,26 +97,25 @@
 		/* Full-width input fields */
 		input[type=text], input[type=password], input[type=file], input[type=email], 
 		input[type=tel] {
-		    width: 100%;
-		    padding: 12px 20px;
-		    margin: 8px 0;
-		    display: inline-block;
-		    border: 1px solid #ccc;
-		    box-sizing: border-box;
+	    width: 100%;
+	    padding: 12px 20px;
+	    margin: 8px 0;
+	    display: inline-block;
+	    border: 1px solid #ccc;
+	    box-sizing: border-box;
 		}
 
 		/* Set a style for all buttons */
 		input[type=submit]{
-		    background-color: #e1251b;
-		    color: white;
-		    padding: 14px 20px;
-		    margin: 8px 0;
-		    border: none;
-		    cursor: pointer;
-		    width: 100%;
-		    text-align: center;
-		    text-decoration: none;
-
+	    background-color: #e1251b;
+	    color: white;
+	    padding: 14px 20px;
+	    margin: 8px 0;
+	    border: none;
+	    cursor: pointer;
+	    width: 100%;
+	    text-align: center;
+	    text-decoration: none;
 		}
 
 		input[type=submit]:hover {
@@ -394,27 +393,5 @@
 			}
 		}
 	</script>
-	<!-- <script>
-		$('#next').click(function(){
-			var eventname = $('#eventname').val();
-			var venue = $('#venue').val();
-			var image = $('#image').val();
-
-			if (eventname == '' || venue == '' || image == '') {
-				swal({
-					title: "Empty Fields!!",
-					text: "Please check the missing field!!",
-					icon: "warning",
-					button: "OK",
-				});
-			}else {
-				swal({
-					title: "Successfully submitted",
-					icon: "success",
-					button: "YES",
-				});
-			}
-		});
-	</script> -->
 </body>
 </html>

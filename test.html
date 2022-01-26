@@ -201,7 +201,7 @@
         };
 
         const addField = (i) => {
-            console.log('adding field ' + i);
+            // console.log('adding field ' + i);
             const list_item_view = document.createElement('div');
             list_item_view.className = 'field';
             list_item_view.id = `field-${i}`;
@@ -233,12 +233,14 @@
             }
 
             fields_container.appendChild(list_item_view);
-
+            console.log("added: " + i);
             fields_count++;
         }
 
         const updateField = (oldId, newId) => {
+            if (oldId == 1) return;
             const _div = document.getElementById(`field-${oldId}`);
+            if (_div === null) return;
             const _label = document.getElementById(`label-${oldId}`);
             const _input1 = document.getElementById(`name-${oldId}`);
             const _input2 = document.getElementById(`hint-${oldId}`);
@@ -262,13 +264,18 @@
 
             _remove.id = `delete-field-${newId}`;
             _remove.onclick = (e) => {
-                removeField(newId);
+                removeField(_remove.id.split("-")[1]);
             }
+
+            console.log("updated old: " + oldId + "   new: " + newId);
         }
 
         const removeField = (id) => {
             if (id === 0) return;
             fields_count--;
+            if (fields_count <= 1) {
+                fields_count = 1;
+            }
             if (fields_count <= 6) {
                 add_btn.style.display = "flex";
             } else {
@@ -278,16 +285,16 @@
             _div.style.visibility = "hidden";
             setTimeout(() => {
                 fields_container.removeChild(_div);
+                console.log("removed: " + id);
+                //if (id >= 7) return;
                 setTimeout(() => {
-                    if (fields_count > 1) {
-                        const fields_element_count = fields_container.childElementCount;
-                        console.log("fields_element_count: " + fields_element_count);
-                        for (var i = 1; i < fields_element_count; i++) {
-                            const element = fields_container.children[i];
-                            console.log("element id: ", element.id);
-                            //const id_number = element.id.split("-")[1];
-                            updateField(element.id.split("-")[1], i);
-                        }
+                    for (var i = 0; i < fields_container.childElementCount; i++) {
+                        const element = fields_container.children[i];
+                        const id_number = element.id.split("-")[1];
+                        console.log("element id: ", id_number);
+                        //if (id > parseInt(id_number)) {
+                        updateField(element.id.split("-")[1], i + 1);
+                        //}
                     }
                 }, 100);
             }, 500);

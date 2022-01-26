@@ -3,6 +3,7 @@
   session_start();
   
   include('config/dbconn.php');
+  include('includes/message.php');
 
   error_reporting(0); 
 
@@ -17,20 +18,31 @@
    	$username = $_POST['username'];
    	$password = md5($_POST['password']);
 
-   	$sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
-   	$result = mysqli_query($conn, $sql);
+    if ($username == '' || $password == '') {
+      // code...
+      $_SESSION['status'] = "Please check the missing field";
+      $_SESSION['status_code'] = "error";
+      header('Location: event');
+      exit(0);
+    }
+    else {
+      $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+      $result = mysqli_query($conn, $sql);
 
-   	if ($result->num_rows > 0) {
-   		// code...
-   		$row = mysqli_fetch_assoc($result);
-   		$_SESSION['username'] = $row['username'];
-   		header("Location: subscription");
-      exit(0);
-   	} else {
-      // echo "<script>alert('Woops! Username or Password is Wrong.')</script>";
-      $_SESSION['status'] = "Woops! Username or Password is Wrong.";
-   		header("Location: authentication");
-      exit(0);
-   	}
+      if ($result->num_rows > 0) {
+        // code...
+        $row = mysqli_fetch_assoc($result);
+        $_SESSION['username'] = $row['username'];
+        $_SESSION['status'] = "Logged In Successfully";
+        $_SESSION['status_code'] = "success";
+        header("Location: subscription");
+        exit(0);
+      } else {
+        $_SESSION['status'] = "Woops! Username or Password is Wrong.";
+        $_SESSION['status_code'] = "error";
+        header("Location: authentication");
+        exit(0);
+      }
+    }
   } 
 ?>

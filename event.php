@@ -3,14 +3,78 @@
 
   error_reporting(0);
 
+  include "eventdb.php";
+
   include('includes/header.php');
   include('includes/sidemenu.php');
   include('includes/topbar.php');
+  include('includes/message.php');
 
   if (!isset($_SESSION['username'])) {
   	// code...
   	header("Location: authentication");
   	exit(0);
+  }
+
+  if (isset($_POST['addEvent'])) {
+  	// code...
+  	$eventname = $_POST['eventname'];
+  	$venue = $_POST['venue'];
+  	$image = $_FILES['image']['name'];
+
+  	if ($eventname == '' || $venue == '' || $image == '') {
+  		// code...
+  		$_SESSION['status'] = "Please check the missing field";
+    	$_SESSION['status_code'] = "error";
+      header('Location: event');
+      exit(0);
+  	}
+  	else {
+  		$allowed_extension = array('png','jpg','jpeg');
+	    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
+
+	    $filename = time().'.'.$file_extension;
+
+	    $check = getimagesize($_FILES["image"]["tmp_name"]);
+
+	    if ($check == false) {
+	    	// code...
+	    	$_SESSION['status'] = "File is not an image.";
+	    	$_SESSION['status_code'] = "error";
+	      header('Location: event');
+	      exit(0);
+	    }
+	    elseif (file_exists($filename)) {
+	     $_SESSION['status'] = "Sorry, file already exists.";
+	     $_SESSION['status_code'] = "error";
+	     header('Location: event');
+	     exit(0);
+	    }
+		  elseif (!in_array($file_extension, $allowed_extension)) {
+		    $_SESSION['status'] = "You are allowed with only jpg, png and jpeg Image";
+		    $_SESSION['status_code'] = "error";
+		    header('Location: event');
+		    exit(0);
+		  }
+		  else {
+		  	$sql = $db->insert($eventname,$venue,$filename);
+
+		  	if($sql == true)
+	      {
+	        $_SESSION['status'] = "Thank You. Event created successfully";
+	        $_SESSION['status_code'] = "success";
+	        header('Location: event');
+	        exit(0);
+	      }
+	      else
+	      {
+	        $_SESSION['status'] = "cant create Event";
+	        $_SESSION['status_code'] = "error";
+	        header('Location: event');
+	        exit(0);
+	      }
+		  }
+  	}
   }
 ?>
 <!DOCTYPE html>
@@ -185,23 +249,23 @@
 <body>
 
 	<div class="wrapper">
-		<form action="code.php" method="POST" enctype="multipart/form-data">
+		<form method="POST" enctype="multipart/form-data">
 		    <div class="event">
 		      <h2 align="center">Add Event</h2>
 		      <label for="ename">Event Name</label>
-		      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $eventname; ?>" required/>
+		      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $_POST['eventname']; ?>">
 		      <label for="venue">Venue</label>
-		      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php echo $venue; ?>" required/>
+		      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php $_POST['venue']; ?>">
 		      <label for="artwork">Artwork</label>
-		      <input type="file" name="image" value="<?php echo $image; ?>" required/>  
-		      <input type="submit" value="Next" name="addEvent" onclick="document.getElementById('eventmodal').style.display='block'">
+		      <input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
+		      <input type="submit" value="Next" name="addEvent">
 		    </div>
 		</form>
 	</div>
 
 	<!-- Event Modal -->
 	<div class="modal" id="eventmodal">
-		<form class="modal-content animate" action="code.php" method="POST">
+		<form class="modal-content animate" method="POST">
 			<div class="img">
 				<span onclick="document.getElementById('eventmodal').style.display='none'" class="close" title="close button">&times;</span>
 				<!-- <img src="" alt="Avatar" class="avater"> -->
@@ -321,17 +385,6 @@
 				}
 			});
 		}
-		// $(function(){
-		// 	$(".checkme").click(function(event){
-		// 		var x = $(this).is(':checked');
-		// 		if (x == true) {
-		// 			$(this).parents(".checkbox-card").find('.input-group').show();
-		// 		}
-		// 		else {
-		// 			$(this).parents(".checkbox-card").find('.input-group').hide();
-		// 		}
-		// 	});
-		// });
 	</script>
 	<script>
 		var modal = document.getElementById('eventmodal');
@@ -341,5 +394,27 @@
 			}
 		}
 	</script>
+	<!-- <script>
+		$('#next').click(function(){
+			var eventname = $('#eventname').val();
+			var venue = $('#venue').val();
+			var image = $('#image').val();
+
+			if (eventname == '' || venue == '' || image == '') {
+				swal({
+					title: "Empty Fields!!",
+					text: "Please check the missing field!!",
+					icon: "warning",
+					button: "OK",
+				});
+			}else {
+				swal({
+					title: "Successfully submitted",
+					icon: "success",
+					button: "YES",
+				});
+			}
+		});
+	</script> -->
 </body>
 </html>

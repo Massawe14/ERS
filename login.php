@@ -22,7 +22,7 @@
       // code...
       $_SESSION['status'] = "Please check the missing field";
       $_SESSION['status_code'] = "error";
-      header('Location: event');
+      header('Location: authentication');
       exit(0);
     }
     else {
@@ -32,7 +32,6 @@
       if ($result->num_rows > 0) {
         // code...
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['username'] = $row['username'];
         $_SESSION['status'] = "Logged In Successfully";
         $_SESSION['status_code'] = "success";
         header("Location: subscription");

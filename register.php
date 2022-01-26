@@ -22,7 +22,7 @@
   		// code...
   		$_SESSION['status'] = "Please check the missing field";
     	$_SESSION['status_code'] = "error";
-      header('Location: event');
+      header('Location: authentication');
       exit(0);
   	}
   	else {

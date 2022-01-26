@@ -356,7 +356,7 @@
 						<input type="text" name="position" placeholder="Enter Position" required>
 					</div>
 				</div>	
-				<input type="button" value="Save" name="save">
+				<input type="button" value="Save Form" name="save">
 			</div>
 		</form>
 	</div>

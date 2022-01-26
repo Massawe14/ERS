@@ -228,7 +228,7 @@
                         <option id="option-${i}" value="option-3">field type: 3. Email Address</option>             
                         <option id="option-${i}" value="option-4">field type: 4. Phone Number</option>             
                     </select>
-                    <div class="close-field-btn" id="delete-field-${i}" onclick="removeField(${i});">Remove</div>
+                    <div class="close-field-btn" id="delete-field-${i}">Remove</div>
                     `;
             }
 
@@ -263,15 +263,20 @@
             _option4.id = `option-${newId}`;
 
             _remove.id = `delete-field-${newId}`;
-            _remove.onclick = (e) => {
-                removeField(_remove.id.split("-")[1]);
-            }
 
             console.log("updated old: " + oldId + "   new: " + newId);
         }
 
+        document.addEventListener("click", function(evnt) {
+            console.log("clicked: ", evnt.target.id);
+            if (evnt.target.id.includes("delete-field-")) {
+                const id = evnt.target.id.split("-")[1];
+                removeField(parseInt(id));
+            }
+        });
+
         const removeField = (id) => {
-            if (id === 0) return;
+            //if (id === 0) return;
             fields_count--;
             if (fields_count <= 1) {
                 fields_count = 1;

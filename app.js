@@ -14,10 +14,6 @@ app.use(express.json()); // For Express v4.16.0 and higher
 
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.get('/', function(req, res) {
-    res.sendFile(__dirname + "/views/index.html");
-});
-
 app.get('/quiz', function(req, res) {
     res.sendFile(__dirname + "/views/quiz.html");
 });

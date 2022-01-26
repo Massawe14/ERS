@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Test</title>
+    <style>
+        html {
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        body {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .container {
+            width: 60%;
+            height: 80%;
+            display: flex;
+            flex-direction: column;
+            /* justify-content: center; */
+            align-items: center;
+            border-radius: 8px;
+            border-color: black;
+            border-style: solid;
+            padding: 20px;
+            background-color: #f2f2f2;
+            overflow: auto;
+        }
+        
+        .fields-container {
+            width: 60%;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            /* border-radius: 8px;
+            border-color: black;
+            border-style: solid; */
+            padding: 8px;
+        }
+        
+        .field {
+            width: 100%;
+            height: auto;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            background-color: #3c87ba;
+            border-radius: 8px;
+            border-color: rgb(36, 36, 36);
+            border-style: solid;
+            border-width: 1px;
+            padding: 8px;
+            margin: 8px;
+        }
+        
+        .close-field-btn {
+            width: auto;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: absolute;
+            right: 0;
+            top: 0;
+            text-align: center;
+            color: white;
+            font-style: bold;
+            font-size: 16px;
+            background-color: #da2929;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 8px;
+            padding: 4px 8px 4px 8px;
+            margin: 8px 12px 8px 8px;
+            cursor: pointer;
+        }
+        
+        .close-field-btn:hover {
+            background-color: #b12020;
+        }
+        
+        label {
+            color: rgb(255, 255, 255);
+            font-style: bold;
+            font-size: 20px;
+            margin: 0 0 0 10px;
+        }
+        
+        input,
+        select {
+            width: calc(100% - 24px);
+            height: 30px;
+            border-radius: 8px;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 1px;
+            padding: 4px;
+            margin: 8px;
+        }
+        
+        select {
+            width: calc(100% - 16px);
+            height: 40px !important;
+            cursor: pointer;
+        }
+        
+        .btn-container {
+            width: 80%;
+            height: auto;
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #add-btn {
+            width: 100px;
+            height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            font-style: bold;
+            background-color: #3c87ba;
+            border-color: transparent;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 8px;
+            padding: 4px;
+            margin: 8px;
+            cursor: pointer;
+        }
+        
+        #add-btn:hover {
+            background-color: #285e82;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Form</h1>
+    <div class="container" id="container">
+        <div class="fields-container" id="fields-container">
+            <!-- <div class="field" id="field-1">
+                <div class="close-field-btn" id="delete-field-1" onclick="return onRemoveBtnClick(1)">Remove</div>
+                <label id="label-1">Field 1</label>
+                <input type="text" id="name-1" placeholder="field title">
+                <input type="text" id="hint-1" placeholder="hint / placeholder">
+                <select id="selector-1">
+                    <option value="option-1-1">field type: 1. Text</option>
+                    <option value="option-3-1">field type: 2. Number</option>             
+                    <option value="option-4-1">field type: 3. Email Address</option>             
+                    <option value="option-5-1">field type: 4. Phone Number</option>             
+                </select>
+            </div> -->
+        </div>
+        <div class="btn-container">
+            <div id="add-btn">+ Add Field</div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        console.log("DOM loaded");
+        const fields_container = document.getElementById("fields-container");
+        const add_btn = document.getElementById("add-btn");
+        // name.addEventListener("keyup", function(e) {
+        //     container.innerHTML = name.value;
+        // });
+
+        const fieldList = [];
+
+        // const field = {
+        //     name: "name",
+        //     type: "text",
+        //     placeholder: "Name",
+        //     value: "",
+        //     onChange: function(e) {
+        //         container.innerHTML = e.target.value;
+        //     }
+        // };
+
+        add_btn.onclick = () => {
+            if (fieldList.length <= 6) {
+                addField(fieldList.length + 1);
+            }
+            if (fieldList.length <= 6) {
+                add_btn.style.display = "flex";
+            } else {
+                add_btn.style.display = "none";
+            }
+        };
+
+        const addField = (i) => {
+            console.log('adding field ' + i);
+            const list_item_view = document.createElement('div');
+            list_item_view.className = 'field';
+            list_item_view.id = `field-${i}`;
+            if (i == 1) {
+                list_item_view.innerHTML = `
+                    <label id="label-${i}">Field ${i}</label>
+                    <input type="text" id="name-${i}" placeholder="field title">
+                    <input type="text" id="hint-${i}" placeholder="hint / placeholder">
+                    <select id="selector-${i}">
+                        <option id="option-${i}" value="option-1">field type: 1. Text</option>
+                        <option id="option-${i}" value="option-2">field type: 2. Number</option>             
+                        <option id="option-${i}" value="option-3">field type: 3. Email Address</option>             
+                        <option id="option-${i}" value="option-4">field type: 4. Phone Number</option>          
+                    </select>
+                    `;
+            } else {
+                list_item_view.innerHTML = `
+                    <label id="label-${i}">Field ${i}</label>
+                    <input type="text" id="name-${i}" placeholder="field title">
+                    <input type="text" id="hint-${i}" placeholder="hint / placeholder">
+                    <select id="selector-${i}">
+                        <option id="option-${i}" value="option-1">field type: 1. Text</option>
+                        <option id="option-${i}" value="option-2">field type: 2. Number</option>             
+                        <option id="option-${i}" value="option-3">field type: 3. Email Address</option>             
+                        <option id="option-${i}" value="option-4">field type: 4. Phone Number</option>             
+                    </select>
+                    <div class="close-field-btn" id="delete-field-${i}" onclick="removeField(${i});">Remove</div>
+                    `;
+            }
+
+            fields_container.appendChild(list_item_view);
+
+            fieldList.push({
+                id: i,
+                name: `name-${i}`,
+                type: `option-1-${i}`,
+                placeholder: `hint-${i}`
+            });
+        }
+
+        const updateField = (oldId, newId) => {
+            const _div = document.getElementById(`field-${oldId}`);
+            const _label = document.getElementById(`label-${oldId}`);
+            const _input1 = document.getElementById(`name-${oldId}`);
+            const _input2 = document.getElementById(`hint-${oldId}`);
+            const _selector = document.getElementById(`selector-${oldId}`);
+            const _option1 = document.getElementById(`option-${oldId}`);
+            const _option2 = document.getElementById(`option-${oldId}`);
+            const _option3 = document.getElementById(`option-${oldId}`);
+            const _option4 = document.getElementById(`option-${oldId}`);
+            const _remove = document.getElementById(`delete-field-${oldId}`);
+
+            _div.id = `field-${newId}`;
+            _label.id = `label-${newId}`;
+            _label.innerText = `Field ${newId}`;
+            _input1.id = `name-${newId}`;
+            _input2.id = `hint-${newId}`;
+            _selector.id = `selector-${newId}`;
+            _option1.id = `option-${newId}`;
+            _option2.id = `option-${newId}`;
+            _option3.id = `option-${newId}`;
+            _option4.id = `option-${newId}`;
+
+            _remove.id = `delete-field-${newId}`;
+            _remove.onclick = (e) => {
+                removeField(newId);
+            }
+
+            fieldList[oldId].id = newId;
+            fieldList[oldId].name = `name-${newId}`;
+            fieldList[oldId].type = `option-1-${newId}`;
+            fieldList[oldId].placeholder = `hint-${newId}`;
+        }
+
+
+        const removeField = (id) => {
+            if (id === 0) return;
+            const position = id - 1;
+            fieldList.splice(position, 1);
+            if (fieldList.length <= 6) {
+                add_btn.style.display = "flex";
+            } else {
+                add_btn.style.display = "none";
+            }
+            const _div = document.getElementById(`field-${id}`);
+            _div.style.visibility = "hidden";
+            setTimeout(() => {
+                fields_container.removeChild(_div);
+                if (fieldList.length > 0) {
+                    for (var i = 0; i < fieldList.length; i++) {
+                        if (i > 1) {
+                            updateField(id, i + 1);
+                        }
+                    }
+                }
+            }, 500);
+        }
+
+        window.addEventListener("DOMContentLoaded", () => {
+            addField(1);
+        });
+    </script>
+</body>

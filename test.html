@@ -26,11 +26,12 @@
             flex-direction: column;
             /* justify-content: center; */
             align-items: center;
-            border-radius: 8px;
-            border-color: black;
+            border-radius: 32px;
+            border-color: transparent;
             border-style: solid;
+            box-shadow: 1px 0px 20px 0px rgba(22, 22, 22, 0.5);
             padding: 20px;
-            background-color: #f2f2f2;
+            background-color: #ffffff;
             overflow: auto;
         }
         
@@ -148,7 +149,7 @@
 </head>
 
 <body>
-    <h1>Form</h1>
+    <h1>Create Form</h1>
     <div class="container" id="container">
         <div class="fields-container" id="fields-container">
             <!-- <div class="field" id="field-1">
@@ -176,7 +177,7 @@
         //     container.innerHTML = name.value;
         // });
 
-        const fieldList = [];
+        var fields_count = 0;
 
         // const field = {
         //     name: "name",
@@ -189,10 +190,10 @@
         // };
 
         add_btn.onclick = () => {
-            if (fieldList.length <= 6) {
-                addField(fieldList.length + 1);
+            if (fields_count <= 6) {
+                addField(fields_count + 1);
             }
-            if (fieldList.length <= 6) {
+            if (fields_count <= 6) {
                 add_btn.style.display = "flex";
             } else {
                 add_btn.style.display = "none";
@@ -233,12 +234,7 @@
 
             fields_container.appendChild(list_item_view);
 
-            fieldList.push({
-                id: i
-                    // name: `name-${i}`,
-                    // type: `option-1-${i}`,
-                    // placeholder: `hint-${i}`
-            });
+            fields_count++;
         }
 
         const updateField = (oldId, newId) => {
@@ -268,18 +264,12 @@
             _remove.onclick = (e) => {
                 removeField(newId);
             }
-
-            fieldList[oldId].id = newId;
-            // fieldList[oldId].name = `name-${newId}`;
-            // fieldList[oldId].type = `option-1-${newId}`;
-            // fieldList[oldId].placeholder = `hint-${newId}`;
         }
 
         const removeField = (id) => {
             if (id === 0) return;
-            const position = id - 1;
-            fieldList.splice(position, 1);
-            if (fieldList.length <= 6) {
+            fields_count--;
+            if (fields_count <= 6) {
                 add_btn.style.display = "flex";
             } else {
                 add_btn.style.display = "none";
@@ -288,13 +278,18 @@
             _div.style.visibility = "hidden";
             setTimeout(() => {
                 fields_container.removeChild(_div);
-                if (fieldList.length > 0) {
-                    for (var i = 0; i < fieldList.length; i++) {
-                        if (i > 1) {
-                            updateField(id, i + 1);
+                setTimeout(() => {
+                    if (fields_count > 1) {
+                        const fields_element_count = fields_container.childElementCount;
+                        console.log("fields_element_count: " + fields_element_count);
+                        for (var i = 1; i < fields_element_count; i++) {
+                            const element = fields_container.children[i];
+                            console.log("element id: ", element.id);
+                            //const id_number = element.id.split("-")[1];
+                            updateField(element.id.split("-")[1], i);
                         }
                     }
-                }
+                }, 100);
             }, 500);
         }
 

@@ -14,22 +14,12 @@ app.use(express.json()); // For Express v4.16.0 and higher
 
 app.use(express.static(path.join(__dirname, '/public')));
 
-app.get('/quiz', function(req, res) {
-    res.sendFile(__dirname + "/views/quiz.html");
-});
-
-app.post('/', function(req, res) {
-    console.log("request: ", req.body);
-    res.send("Successfully Submitted. Please continue to next section");
-});
-
 app.get('/', function(req, res) {
     res.sendFile(__dirname + "/test.html");
 });
 
 var server = app.listen(port, function() {
-    var host = server.address().address
+    //var host = server.address().address
     var port = server.address().port
-
     console.log("Example app listening at http://localhost:" + port)
 })

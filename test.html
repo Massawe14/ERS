@@ -270,7 +270,7 @@
         document.addEventListener("click", function(evnt) {
             console.log("clicked: ", evnt.target.id);
             if (evnt.target.id.includes("delete-field-")) {
-                const id = evnt.target.id.split("-")[1];
+                const id = evnt.target.id.split("-")[2];
                 removeField(parseInt(id));
             }
         });

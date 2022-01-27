@@ -48,7 +48,7 @@
         
         .field {
             width: 100%;
-            height: auto;
+            height: 190px;
             position: relative;
             display: flex;
             flex-direction: column;
@@ -118,12 +118,12 @@
             height: auto;
             display: flex;
             position: relative;
-            flex-direction: column;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
         }
         
-        #add-btn {
+        .action-btn {
             width: 100px;
             height: 40px;
             display: flex;
@@ -142,8 +142,36 @@
             cursor: pointer;
         }
         
+        #add-btn {
+            background-color: #3c87ba;
+        }
+        
+        #ok-btn {
+            background-color: #34bb97;
+        }
+        
         #add-btn:hover {
             background-color: #285e82;
+        }
+        
+        #ok-btn:hover {
+            background-color: #26876d;
+        }
+        
+        .remove-anim {
+            animation-name: remove-field-anim;
+            animation-duration: 1s;
+        }
+        
+        @keyframes remove-field-anim {
+            0% {
+                opacity: 1;
+                height: 190px;
+            }
+            100% {
+                opacity: 0;
+                height: 0px;
+            }
         }
     </style>
 </head>
@@ -152,44 +180,23 @@
     <h1>Create Form</h1>
     <div class="container" id="container">
         <div class="fields-container" id="fields-container">
-            <!-- <div class="field" id="field-1">
-                <div class="close-field-btn" id="delete-field-1" onclick="return onRemoveBtnClick(1)">Remove</div>
-                <label id="label-1">Field 1</label>
-                <input type="text" id="name-1" placeholder="field title">
-                <input type="text" id="hint-1" placeholder="hint / placeholder">
-                <select id="selector-1">
-                    <option value="option-1-1">field type: 1. Text</option>
-                    <option value="option-3-1">field type: 2. Number</option>             
-                    <option value="option-4-1">field type: 3. Email Address</option>             
-                    <option value="option-5-1">field type: 4. Phone Number</option>             
-                </select>
-            </div> -->
         </div>
         <div class="btn-container">
-            <div id="add-btn">+ Add Field</div>
+            <div id="ok-btn" class="action-btn">Create</div>
+            <div id="add-btn" class="action-btn">+ Add Field</div>
         </div>
     </div>
     <script type="text/javascript">
         console.log("DOM loaded");
         const fields_container = document.getElementById("fields-container");
         const add_btn = document.getElementById("add-btn");
-        // name.addEventListener("keyup", function(e) {
-        //     container.innerHTML = name.value;
-        // });
+        const ok_btn = document.getElementById("ok-btn");
 
         var fields_count = 0;
-
-        // const field = {
-        //     name: "name",
-        //     type: "text",
-        //     placeholder: "Name",
-        //     value: "",
-        //     onChange: function(e) {
-        //         container.innerHTML = e.target.value;
-        //     }
-        // };
+        var is_updating = false;
 
         add_btn.onclick = () => {
+            if (is_updating) return;
             if (fields_count <= 6) {
                 addField(fields_count + 1);
             }
@@ -200,8 +207,8 @@
             }
         };
 
-        const addField = (i) => {
-            // console.log('adding field ' + i);
+        const addField = (i, name, hint, type) => {
+            is_updating = true;
             const list_item_view = document.createElement('div');
             list_item_view.className = 'field';
             list_item_view.id = `field-${i}`;
@@ -211,10 +218,10 @@
                     <input type="text" id="name-${i}" placeholder="field title">
                     <input type="text" id="hint-${i}" placeholder="hint / placeholder">
                     <select id="selector-${i}">
-                        <option id="option-${i}" value="option-1">field type: 1. Text</option>
-                        <option id="option-${i}" value="option-2">field type: 2. Number</option>             
-                        <option id="option-${i}" value="option-3">field type: 3. Email Address</option>             
-                        <option id="option-${i}" value="option-4">field type: 4. Phone Number</option>          
+                        <option value="text">field type: 1. Text</option>
+                        <option value="number">field type: 2. Number</option>             
+                        <option value="email">field type: 3. Email Address</option>             
+                        <option value="phone">field type: 4. Phone Number</option>          
                     </select>
                     `;
             } else {
@@ -223,60 +230,69 @@
                     <input type="text" id="name-${i}" placeholder="field title">
                     <input type="text" id="hint-${i}" placeholder="hint / placeholder">
                     <select id="selector-${i}">
-                        <option id="option-${i}" value="option-1">field type: 1. Text</option>
-                        <option id="option-${i}" value="option-2">field type: 2. Number</option>             
-                        <option id="option-${i}" value="option-3">field type: 3. Email Address</option>             
-                        <option id="option-${i}" value="option-4">field type: 4. Phone Number</option>             
+                        <option value="text">field type: 1. Text</option>
+                        <option value="number">field type: 2. Number</option>             
+                        <option value="email">field type: 3. Email Address</option>             
+                        <option value="phone">field type: 4. Phone Number</option>             
                     </select>
-                    <div class="close-field-btn" id="delete-field-${i}">Remove</div>
+                    <div class="close-field-btn" id="delete-${i}">Remove</div>
                     `;
             }
 
             fields_container.appendChild(list_item_view);
             console.log("added: " + i);
+
+
             fields_count++;
+            setTimeout(() => {
+                (document.getElementById(`name-${i}`)).value = name;
+                (document.getElementById(`hint-${i}`)).value = hint;
+                (document.getElementById(`selector-${i}`)).value = type;
+
+                is_updating = false;
+            }, 500);
         }
 
         const updateField = (oldId, newId) => {
             if (oldId == 1) return;
             const _div = document.getElementById(`field-${oldId}`);
             if (_div === null) return;
+            const _remove = document.getElementById(`delete-${oldId}`);
             const _label = document.getElementById(`label-${oldId}`);
             const _input1 = document.getElementById(`name-${oldId}`);
             const _input2 = document.getElementById(`hint-${oldId}`);
             const _selector = document.getElementById(`selector-${oldId}`);
-            const _option1 = document.getElementById(`option-${oldId}`);
-            const _option2 = document.getElementById(`option-${oldId}`);
-            const _option3 = document.getElementById(`option-${oldId}`);
-            const _option4 = document.getElementById(`option-${oldId}`);
-            const _remove = document.getElementById(`delete-field-${oldId}`);
+            // const _option1 = document.getElementById(`option-${oldId}`);
+            // const _option2 = document.getElementById(`option-${oldId}`);
+            // const _option3 = document.getElementById(`option-${oldId}`);
+            // const _option4 = document.getElementById(`option-${oldId}`);
 
             _div.id = `field-${newId}`;
+            _remove.id = `delete-${newId}`;
             _label.id = `label-${newId}`;
             _label.innerText = `Field ${newId}`;
             _input1.id = `name-${newId}`;
             _input2.id = `hint-${newId}`;
             _selector.id = `selector-${newId}`;
-            _option1.id = `option-${newId}`;
-            _option2.id = `option-${newId}`;
-            _option3.id = `option-${newId}`;
-            _option4.id = `option-${newId}`;
-
-            _remove.id = `delete-field-${newId}`;
+            // _option1.id = `option-${newId}`;
+            // _option2.id = `option-${newId}`;
+            // _option3.id = `option-${newId}`;
+            // _option4.id = `option-${newId}`;
 
             console.log("updated old: " + oldId + "   new: " + newId);
         }
 
         document.addEventListener("click", function(evnt) {
             console.log("clicked: ", evnt.target.id);
-            if (evnt.target.id.includes("delete-field-")) {
-                const id = evnt.target.id.split("-")[2];
+            if (evnt.target.id.includes("delete-")) {
+                const id = evnt.target.id.split("-")[1];
+                if (is_updating) return;
                 removeField(parseInt(id));
             }
         });
 
         const removeField = (id) => {
-            //if (id === 0) return;
+            is_updating = true;
             fields_count--;
             if (fields_count <= 1) {
                 fields_count = 1;
@@ -287,7 +303,8 @@
                 add_btn.style.display = "none";
             }
             const _div = document.getElementById(`field-${id}`);
-            _div.style.visibility = "hidden";
+            //_div.style.visibility = "hidden";
+            _div.className = _div.className + " remove-anim";
             setTimeout(() => {
                 fields_container.removeChild(_div);
                 console.log("removed: " + id);
@@ -301,12 +318,69 @@
                         updateField(element.id.split("-")[1], i + 1);
                         //}
                     }
-                }, 100);
+                    setTimeout(() => {
+                        is_updating = false;
+                    }, 500);
+                }, 500);
             }, 500);
         }
 
-        window.addEventListener("DOMContentLoaded", () => {
-            addField(1);
-        });
+        const fieldList = [];
+
+        var form_id = 0;
+
+        function loadFields(id, list) {
+            fieldList.length = 0;
+            if (id === 0) {
+                id = new Date().getTime();
+            }
+            form_id = id;
+            if (list.length > 0) {
+                for (var i = 0; i < list.length; i++) {
+                    const field = list[i];
+                    fieldList.push({
+                        name: field.name,
+                        hint: field.hint,
+                        type: field.type
+                    });
+                    addField(i + 1, field.name, field.hint, field.type);
+                }
+            } else {
+                addField(1, "", "", "text");
+            }
+        }
+
+        ok_btn.onclick = () => {
+            fieldList.length = 0;
+            for (var i = 0; i < fields_container.childElementCount; i++) {
+                const element = fields_container.children[i];
+                const id_number = element.id.split("-")[1];
+                //console.log("element id: ", id_number);
+                const _remove = document.getElementById(`delete-${id_number}`);
+                const _label = document.getElementById(`label-${id_number}`);
+                const _input1 = document.getElementById(`name-${id_number}`);
+                const _input2 = document.getElementById(`hint-${id_number}`);
+                const _selector = document.getElementById(`selector-${id_number}`);
+
+                const name = _input1.value;
+                const hint = _input2.value;
+
+                if (name === "" || hint === "") {
+                    alert("Please fill all fields");
+                    break;
+                } else {
+                    var field_type = "text";
+                    const field = {
+                        name: name,
+                        hint: hint,
+                        type: _selector.value
+                    };
+                    fieldList.push(field);
+                }
+            }
+            if (fieldList.length > 0) {
+                console.log("fieldList: ", fieldList);
+            }
+        }
     </script>
 </body>

@@ -17,40 +17,40 @@
   }
 
 //   if (isset($_POST['event_id']) && isset($_POST['fields'])) {
-// 	// code...
-// 	$event_id = $_POST['event_id'];
-// 	$fields = $_POST['fields'];
-// 	// convert string to json in php
-// 	$fields = json_decode($fields);
-// 	$sql = "REPLACE INTO form_setting (event_id ";
-// 	for ($i=0; $i < count($fields); $i++) { 
-// 		$aa = $i + 1;
-// 		$sql = $ql . ", field_" . $ss;
-// 	}
-// 	$sql = "VALUES ($event_id, ";
-// 	for ($i=0; $i < count($fields); $i++) { 
-// 		$field = $fields[$i];
-// 		$field = json_encode($field);
-// 		$sql = $sql . ", '$field'";
-// 	}
-// 	$sql = ")";
-// 	$query = $conn->query($sql);
-	
-// 	if ($query) {
-// 		echo "success";
-// 		$_SESSION['status'] = "Form successfully created / updated.";
-// 		$_SESSION['status_code'] = "success";
-// 		header('Location: form-setting');
-// 		exit(0);
-// 	}
-// 	else{
-// 		echo "error";
-// 		$_SESSION['status'] = "Failed to Create or Update Form";
-//     	$_SESSION['status_code'] = "error";
-//       header('Location: form-setting');
-//       exit(0);
-// 	}
-// }
+//         // code...
+//         $event_id = $_POST['event_id'];
+//         $fields = $_POST['fields'];
+//         // convert string to json in php
+//         $fields = json_decode($fields);
+//         $sql = "REPLACE INTO form_setting (event_id ";
+//         for ($i=0; $i < count($fields); $i++) { 
+//             $aa = $i + 1;
+//             $sql = $ql . ", field_" . $ss;
+//         }
+//         $sql = "VALUES ($event_id, ";
+//         for ($i=0; $i < count($fields); $i++) { 
+//             $field = $fields[$i];
+//             $field = json_encode($field);
+//             $sql = $sql . ", '$field'";
+//         }
+//         $sql = ")";
+//         $query = $conn->query($sql);
+        
+//         if ($query) {
+//             echo "success";
+//             $_SESSION['status'] = "Form successfully created / updated.";
+//             $_SESSION['status_code'] = "success";
+//             header('Location: form-setting');
+//             exit(0);
+//         }
+//         else{
+//             echo "error";
+//             $_SESSION['status'] = "Failed to Create or Update Form";
+//             $_SESSION['status_code'] = "error";
+//         header('Location: form-setting');
+//         exit(0);
+//         }
+//     }
 
 ?>
 <!DOCTYPE html>
@@ -398,28 +398,16 @@
 <body>
 
 	<div class="wrapper">
-		<!-- <form method="POST" enctype="multipart/form-data">
-		    <div class="event">
-		      <h2 align="center">Add Event</h2>
-		      <label for="ename">Event Name</label>
-		      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $_POST['eventname']; ?>">
-		      <label for="venue">Venue</label>
-		      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php $_POST['venue']; ?>">
-		      <label for="artwork">Artwork</label>
-		      <input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
-		      <input type="submit" value="Next" name="addEvent">
-		    </div>
-		</form> -->
 		<div class="fields-container" id="fields-container">
         </div>
         <div class="btn-container">
             <div id="ok-btn" class="action-btn">Create / Update</div>
             <div id="add-btn" class="action-btn">+ Add Field</div>
         </div>
-        <form id="the-form" action="form-setting" method="post" style="display: none">
+        <!-- <form id="the-form" action="form-setting" method="post" style="display: none">
             <input id="the-event-id" type="hidden" name="event_id" value="" />
             <input id="the-fields" type="hidden" name="fields" value="" />
-        </form>
+        </form> -->
 	</div>
 
 	<?php include('includes/script.php'); ?>
@@ -466,9 +454,9 @@
         const add_btn = document.getElementById("add-btn");
         const ok_btn = document.getElementById("ok-btn");
 
-        const the_form = document.getElementById("the-form");
-        const the_event_id = document.getElementById("the-event-id");
-        const the_fields = document.getElementById("the-fields");
+        // const the_form = document.getElementById("the-form");
+        // const the_event_id = document.getElementById("the-event-id");
+        // const the_fields = document.getElementById("the-fields");
 
         var fields_count = 0;
         var is_updating = false;
@@ -654,55 +642,39 @@
             if (fieldList.length > 0) {
                 console.log("fieldList: ", fieldList);
                 // post data to server
-                // const url = window.location.origin + "/ers/event-form.php";
+                const url = window.location.origin + "/ers/event-form.php";
                 // const url = window.location.href;
 				// console.log("url: ", url);
                 const payload = JSON.stringify(fieldList); // [{},{}]
                 console.log("payload: " + typeof payload, payload);
 				// return;
-                // var theForm, newInput1, newInput2;
-                // Start by creating a <form>
-                // theForm = document.createElement('form');
-                the_form.action = 'event-form';
-                the_form.method = 'post';
-                // // Next create the <input>s in the form and give them names and values
-                // newInput1 = document.createElement('input');
-                // newInput1.type = 'hidden';
-                // newInput1.name = 'event_id';
-                the_event_id.value = event_id;
-                // newInput2 = document.createElement('input');
-                // newInput2.type = 'hidden';
-                // newInput2.name = 'fields';
-                the_fields.value = payload;
-                // Now put everything together...
-                // theForm.appendChild(newInput1);
-                // theForm.appendChild(newInput2);
-                // ...and it to the DOM...
-                // document.getElementById('hidden_form_container').appendChild(theForm);
-                // ...and submit it
-                the_form.submit();
+                // the_form.action = 'form-setting';
+                // the_form.method = 'post';
+                // the_event_id.value = event_id;
+                // the_fields.value = payload;
+                // the_form.submit();
 
-                // $.ajax({
-                //     type: "POST",
-                //     url: "event-form.php",
-                //     data: {
-                //         event_id: event_id,
-                //         fields: payload
-                //     },
-                //     success: function(data) {
-                //         console.log("result: ", data);
-                //         // if (data.success) {
-                //         //     alert("Event form saved successfully");
-                //         //     window.location.href = window.location.origin;
-                //         // } else {
-                //         //     alert("Error: " + data.error);
-                //         // }
-                //     },
-                //     error: function(err) {
-                //         console.log("error: ", err);
-                //         alert("Error: " + err);
-                //     }
-                // });
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: {
+                        event_id: "96f8d078e3",
+                        fields: payload
+                    },
+                    success: function(data) {
+                        console.log("result: ", data);
+                        // if (data.success) {
+                        //     alert("Event form saved successfully");
+                        //     window.location.href = window.location.origin;
+                        // } else {
+                        //     alert("Error: " + data.error);
+                        // }
+                    },
+                    error: function(err) {
+                        console.log("error: ", err);
+                        // alert("Error: " + err);
+                    }
+                });
             }
         }
     </script>

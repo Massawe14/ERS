@@ -18,11 +18,15 @@
 
   if (isset($_POST['addEvent'])) {
   	// code...
-  	$eventname = $_POST['eventname'];
+  	$name = $_POST['eventname'];
   	$venue = $_POST['venue'];
   	$image = $_FILES['image']['name'];
+	// generate random id with string length of 10
+	$eventid = substr(md5(time()), 0, 10) . "";
+	//$id = date('YmdHis');
+	//$id = $id . rand(10, 99);
 
-  	if ($eventname == '' || $venue == '' || $image == '') {
+  	if ($name == '' || $venue == '' || $image == '') {
   		// code...
   		$_SESSION['status'] = "Please check the missing field";
     	$_SESSION['status_code'] = "error";
@@ -30,7 +34,7 @@
       exit(0);
   	}
   	else {
-  		$allowed_extension = array('png','jpg','jpeg');
+  		$allowed_extension = array('png','jpg','jpeg', 'PNG', 'JPG', 'JPEG');
 	    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
 
 	    $filename = time().'.'.$file_extension;
@@ -57,7 +61,7 @@
 		    exit(0);
 		  }
 		  else {
-		  	$sql = $db->insert($eventname,$venue,$filename);
+		  	$sql = $db->insert($eventid,$name,$venue,$filename);
 
 		  	if($sql == true)
 	      {

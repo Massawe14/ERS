@@ -26,9 +26,9 @@
 			</a>
 		</li>
 		<li>
-			<a href="settings">
+			<a href="form-setting">
 				<span class="icon"><ion-icon name="settings"></ion-icon></span>
-				<span class="title">Settings</span>
+				<span class="title">Form Setting</span>
 			</a>
 		</li>
 		<li>

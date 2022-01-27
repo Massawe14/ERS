@@ -14,13 +14,11 @@
         die("connection failed");
       }
     }
-    public function insert($eventname,$venue,$filename)
+    public function insert($eventid,$name,$venue,$filename)
     {
-        $sql = "INSERT INTO event(eventname,venue,image) VALUES('$eventname','$venue','$filename')";
+        $sql = "INSERT INTO event(id,name,venue,image) VALUES('$eventid','$name','$venue','$filename')";
         $query = $this->conn->query($sql);
         return $query;
-
-    
     }
     // public function displayImg()
     // {

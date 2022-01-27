@@ -416,6 +416,10 @@
             <div id="ok-btn" class="action-btn">Create / Update</div>
             <div id="add-btn" class="action-btn">+ Add Field</div>
         </div>
+        <form id="the-form" action="form-setting" method="post" style="display: none">
+            <input id="the-event-id" type="hidden" name="event_id" value="" />
+            <input id="the-fields" type="hidden" name="fields" value="" />
+        </form>
 	</div>
 
 	<?php include('includes/script.php'); ?>
@@ -452,12 +456,19 @@
 		}
 	</script>-->
 	<script type="text/javascript">
-        // document.addEventListener("DOMContentLoaded", function() {
-        //     document.getElementById("form-setting").className = "btn-active";
-        // });
+        document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("home").className = "";
+			document.getElementById("event").className = "";
+			document.getElementById("report").className = "";
+			document.getElementById("form-setting").className = "btn-active";
+		});
         const fields_container = document.getElementById("fields-container");
         const add_btn = document.getElementById("add-btn");
         const ok_btn = document.getElementById("ok-btn");
+
+        const the_form = document.getElementById("the-form");
+        const the_event_id = document.getElementById("the-event-id");
+        const the_fields = document.getElementById("the-fields");
 
         var fields_count = 0;
         var is_updating = false;
@@ -623,7 +634,12 @@
                 const hint = _input2.value;
 
                 if (name === "" || hint === "") {
-                    alert("Please fill all fields");
+                    //alert("Please fill all fields");
+                    swal({
+                        title: "Please fill all fields",
+                        icon: "error",
+                        button: "OK",
+                    });
                     break;
                 } else {
                     var field_type = "text";
@@ -638,33 +654,55 @@
             if (fieldList.length > 0) {
                 console.log("fieldList: ", fieldList);
                 // post data to server
-                const url = window.location.origin + "/ers/event-form.php";
+                // const url = window.location.origin + "/ers/event-form.php";
                 // const url = window.location.href;
-				console.log("url: ", url);
+				// console.log("url: ", url);
                 const payload = JSON.stringify(fieldList); // [{},{}]
                 console.log("payload: " + typeof payload, payload);
 				// return;
-                $.ajax({
-                    type: "POST",
-                    url: "event-form.php",
-                    data: {
-                        event_id: event_id,
-                        fields: payload
-                    },
-                    success: function(data) {
-                        console.log("result: ", data);
-                        // if (data.success) {
-                        //     alert("Event form saved successfully");
-                        //     window.location.href = window.location.origin;
-                        // } else {
-                        //     alert("Error: " + data.error);
-                        // }
-                    },
-                    error: function(err) {
-                        console.log("error: ", err);
-                        alert("Error: " + err);
-                    }
-                });
+                // var theForm, newInput1, newInput2;
+                // Start by creating a <form>
+                // theForm = document.createElement('form');
+                the_form.action = 'event-form';
+                the_form.method = 'post';
+                // // Next create the <input>s in the form and give them names and values
+                // newInput1 = document.createElement('input');
+                // newInput1.type = 'hidden';
+                // newInput1.name = 'event_id';
+                the_event_id.value = event_id;
+                // newInput2 = document.createElement('input');
+                // newInput2.type = 'hidden';
+                // newInput2.name = 'fields';
+                the_fields.value = payload;
+                // Now put everything together...
+                // theForm.appendChild(newInput1);
+                // theForm.appendChild(newInput2);
+                // ...and it to the DOM...
+                // document.getElementById('hidden_form_container').appendChild(theForm);
+                // ...and submit it
+                the_form.submit();
+
+                // $.ajax({
+                //     type: "POST",
+                //     url: "event-form.php",
+                //     data: {
+                //         event_id: event_id,
+                //         fields: payload
+                //     },
+                //     success: function(data) {
+                //         console.log("result: ", data);
+                //         // if (data.success) {
+                //         //     alert("Event form saved successfully");
+                //         //     window.location.href = window.location.origin;
+                //         // } else {
+                //         //     alert("Error: " + data.error);
+                //         // }
+                //     },
+                //     error: function(err) {
+                //         console.log("error: ", err);
+                //         alert("Error: " + err);
+                //     }
+                // });
             }
         }
     </script>

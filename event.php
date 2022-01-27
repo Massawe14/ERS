@@ -130,8 +130,8 @@
 			background-color: #fff;
 			width: 1000px;
 			padding: 25px;
-			margin: 25px auto 0;
-			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+			margin: 80px 25px 25px 25px;
+			/* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); */
 			border-radius: 20px;
 		}
 
@@ -367,9 +367,12 @@
 	<?php include('includes/script.php'); ?>
 	<!-- how to make close when click on any point of the browser -->
 	<script>
-		// document.addEventListener("DOMContentLoaded", function() {
-        //     document.getElementById("event").className = "btn-active";
-        // });
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("home").className = "";
+			document.getElementById("event").className = "btn-active";
+			document.getElementById("report").className = "";
+			document.getElementById("form-setting").className = "";
+		});
 		var valueList = document.getElementById('valueList');
 		var text = '<span> you have selected : </span>'
 		var listArray = [];

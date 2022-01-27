@@ -125,7 +125,10 @@
 <?php include('includes/footer.php'); ?>
 
 <script type="text/javascript">
-    // document.addEventListener("DOMContentLoaded", function() {
-	// 	document.getElementById("home").className = "btn-active";
-	// });
+    document.addEventListener("DOMContentLoaded", function() {
+		document.getElementById("home").className = "btn-active";
+		document.getElementById("event").className = "";
+		document.getElementById("report").className = "";
+		document.getElementById("form-setting").className = "";
+	});
 </script>

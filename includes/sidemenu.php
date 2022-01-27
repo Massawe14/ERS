@@ -1,4 +1,4 @@
-<div class="navigation">
+<div class="navigation" id="navigation-menu">
 	<ul>
 		<li>
 			<a href="index">
@@ -7,32 +7,32 @@
 				<!-- <span class="title">Imperial Innovations</span> -->
 			</a>
 		</li>
-		<li>
-			<a href="index" id="home" class="btn-active">
+		<li id="home">
+			<a href="index">
 				<span class="icon"><ion-icon name="speedometer"></ion-icon></span>
 				<span class="title">Dashboard</span>
 			</a>
 		</li>
-		<li>
-			<a href="event" id="event">
+		<li id="event">
+			<a href="event">
 				<span class="icon"><ion-icon name="calendar"></ion-icon></span>
 				<span class="title">Events</span>
 			</a>
 		</li>
-		<li>
-			<a href="report" id="report">
+		<li id="report">
+			<a href="report">
 				<span class="icon"><ion-icon name="print"></ion-icon></span>
 				<span class="title">Reports</span>
 			</a>
 		</li>
-		<li>
-			<a href="form-setting" id="form-setting">
+		<li id="form-setting">
+			<a href="form-setting">
 				<span class="icon"><ion-icon name="settings"></ion-icon></span>
 				<span class="title">Form Setting</span>
 			</a>
 		</li>
-		<li>
-			<a href="logout" id="logout">
+		<li id="logout">
+			<a href="logout">
 				<span class="icon"><ion-icon name="exit"></ion-icon></span>
 				<span class="title">Log Out</span>
 			</a>

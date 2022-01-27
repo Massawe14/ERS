@@ -622,7 +622,6 @@
                 const hint = _input2.value;
 
                 if (name === "" || hint === "") {
-                    //alert("Please fill all fields");
                     swal({
                         title: "Please fill all fields",
                         icon: "error",
@@ -642,37 +641,50 @@
             if (fieldList.length > 0) {
                 console.log("fieldList: ", fieldList);
                 // post data to server
-                const url = window.location.origin + "/ers/event-form.php";
-                // const url = window.location.href;
-				// console.log("url: ", url);
                 const payload = JSON.stringify(fieldList); // [{},{}]
                 console.log("payload: " + typeof payload, payload);
-				// return;
-                // the_form.action = 'form-setting';
-                // the_form.method = 'post';
-                // the_event_id.value = event_id;
-                // the_fields.value = payload;
-                // the_form.submit();
 
                 $.ajax({
                     type: "POST",
-                    url: url,
+                    url: "event-form.php",
                     data: {
-                        event_id: "96f8d078e3",
+                        event_id:  event_id, // "96f8d078e3",
                         fields: payload
                     },
-                    success: function(data) {
-                        console.log("result: ", data);
-                        // if (data.success) {
-                        //     alert("Event form saved successfully");
-                        //     window.location.href = window.location.origin;
-                        // } else {
-                        //     alert("Error: " + data.error);
-                        // }
+                    success: function(result) {
+                        // convert json to object
+                        try {
+                            const data = JSON.parse(result);
+                            console.log("result: ", data);
+                            if (data.success) {
+                                swal({
+                                    title: "Form successfully created / updated",
+                                    icon: "success",
+                                    button: "OK",
+                                });
+                            } else {
+                                swal({
+                                    title: "Failed to Create or Update Form",
+                                    icon: "error",
+                                    button: "OK",
+                                });
+                            }
+                        } catch (e) {
+                            console.log("error: ", e);
+                            swal({
+                                title: "Failed to Create or Update Form",
+                                icon: "error",
+                                button: "OK",
+                            });
+                        }
                     },
                     error: function(err) {
                         console.log("error: ", err);
-                        // alert("Error: " + err);
+                        swal({
+                            title: "Something Went Wrong While Creating or Updating Form",
+                            icon: "error",
+                            button: "OK",
+                        });
                     }
                 });
             }

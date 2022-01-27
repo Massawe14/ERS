@@ -8,31 +8,31 @@
 			</a>
 		</li>
 		<li>
-			<a href="index">
+			<a href="index" id="home" class="btn-active">
 				<span class="icon"><ion-icon name="speedometer"></ion-icon></span>
 				<span class="title">Dashboard</span>
 			</a>
 		</li>
 		<li>
-			<a href="event">
+			<a href="event" id="event">
 				<span class="icon"><ion-icon name="calendar"></ion-icon></span>
 				<span class="title">Events</span>
 			</a>
 		</li>
 		<li>
-			<a href="report">
+			<a href="report" id="report">
 				<span class="icon"><ion-icon name="print"></ion-icon></span>
 				<span class="title">Reports</span>
 			</a>
 		</li>
 		<li>
-			<a href="form-setting">
+			<a href="form-setting" id="form-setting">
 				<span class="icon"><ion-icon name="settings"></ion-icon></span>
 				<span class="title">Form Setting</span>
 			</a>
 		</li>
 		<li>
-			<a href="logout">
+			<a href="logout" id="logout">
 				<span class="icon"><ion-icon name="exit"></ion-icon></span>
 				<span class="title">Log Out</span>
 			</a>

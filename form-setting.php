@@ -102,8 +102,9 @@
 			background-color: #fff;
 			width: 1000px;
 			padding: 25px;
-			margin: 25px auto 0;
-			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+			/* margin: 25px auto 0; */
+			margin: 80px 25px 25px 25px;
+			/* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); */
 			border-radius: 20px;
 			position: relative;
 		}
@@ -225,20 +226,20 @@
 
 		/*  */
 
-		/* .container {
-            width: 60%;
-            height: 70%;
+		.wrapper {
+            /* width: 60%; */
+            /* height: 70%; */
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-radius: 32px;
-            border-color: transparent;
-            border-style: solid;
-            box-shadow: 1px 0px 20px 0px rgba(22, 22, 22, 0.5);
-            padding: 20px;
-            background-color: #ffffff;
-            overflow: auto;
-        } */
+            /* border-radius: 32px; */
+            /* border-color: transparent; */
+            /* border-style: solid; */
+            /* box-shadow: 1px 0px 20px 0px rgba(22, 22, 22, 0.5); */
+            /* padding: 20px; */
+            /* background-color: #ffffff; */
+            overflow: hidden;
+        }
         
         .fields-container {
             width: 60%;
@@ -264,6 +265,8 @@
             border-width: 1px;
             padding: 8px;
             margin: 8px;
+			animation-name: add-field-anim;
+            animation-duration: 1s;
         }
         
         .close-field-btn {
@@ -329,7 +332,7 @@
         }
         
         .action-btn {
-            width: 100px;
+            width: auto;
             height: 40px;
             display: flex;
             flex-direction: column;
@@ -366,6 +369,17 @@
         .remove-anim {
             animation-name: remove-field-anim;
             animation-duration: 1s;
+        }
+
+		@keyframes add-field-anim {
+            0% {
+                opacity: 0;
+                height: 0px;
+            }
+            100% { 
+				opacity: 1;
+                height: 190px;
+            }
         }
         
         @keyframes remove-field-anim {
@@ -438,6 +452,9 @@
 		}
 	</script>-->
 	<script type="text/javascript">
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     document.getElementById("form-setting").className = "btn-active";
+        // });
         const fields_container = document.getElementById("fields-container");
         const add_btn = document.getElementById("add-btn");
         const ok_btn = document.getElementById("ok-btn");

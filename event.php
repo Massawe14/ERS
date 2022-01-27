@@ -367,6 +367,9 @@
 	<?php include('includes/script.php'); ?>
 	<!-- how to make close when click on any point of the browser -->
 	<script>
+		// document.addEventListener("DOMContentLoaded", function() {
+        //     document.getElementById("event").className = "btn-active";
+        // });
 		var valueList = document.getElementById('valueList');
 		var text = '<span> you have selected : </span>'
 		var listArray = [];

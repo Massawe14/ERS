@@ -142,6 +142,9 @@
   <script
   src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   <script>
+    // document.addEventListener("DOMContentLoaded", function() {
+    //         document.getElementById("report").className = "btn-active";
+    //     });
     $(document).ready( function () {
       $('#table').DataTable();
     });

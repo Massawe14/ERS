@@ -123,4 +123,9 @@
 	</div>
 <?php include('includes/script.php'); ?>
 <?php include('includes/footer.php'); ?>
-  	
+
+<script type="text/javascript">
+    // document.addEventListener("DOMContentLoaded", function() {
+	// 	document.getElementById("home").className = "btn-active";
+	// });
+</script>

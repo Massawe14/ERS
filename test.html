@@ -182,12 +182,11 @@
         <div class="fields-container" id="fields-container">
         </div>
         <div class="btn-container">
-            <div id="ok-btn" class="action-btn">Create</div>
+            <div id="ok-btn" class="action-btn">Create / Update</div>
             <div id="add-btn" class="action-btn">+ Add Field</div>
         </div>
     </div>
     <script type="text/javascript">
-        console.log("DOM loaded");
         const fields_container = document.getElementById("fields-container");
         const add_btn = document.getElementById("add-btn");
         const ok_btn = document.getElementById("ok-btn");
@@ -198,7 +197,7 @@
         add_btn.onclick = () => {
             if (is_updating) return;
             if (fields_count <= 6) {
-                addField(fields_count + 1);
+                addField(fields_count + 1, "", "", "text");
             }
             if (fields_count <= 6) {
                 add_btn.style.display = "flex";
@@ -240,8 +239,7 @@
             }
 
             fields_container.appendChild(list_item_view);
-            console.log("added: " + i);
-
+            //console.log("added: " + i);
 
             fields_count++;
             setTimeout(() => {
@@ -262,10 +260,6 @@
             const _input1 = document.getElementById(`name-${oldId}`);
             const _input2 = document.getElementById(`hint-${oldId}`);
             const _selector = document.getElementById(`selector-${oldId}`);
-            // const _option1 = document.getElementById(`option-${oldId}`);
-            // const _option2 = document.getElementById(`option-${oldId}`);
-            // const _option3 = document.getElementById(`option-${oldId}`);
-            // const _option4 = document.getElementById(`option-${oldId}`);
 
             _div.id = `field-${newId}`;
             _remove.id = `delete-${newId}`;
@@ -274,16 +268,11 @@
             _input1.id = `name-${newId}`;
             _input2.id = `hint-${newId}`;
             _selector.id = `selector-${newId}`;
-            // _option1.id = `option-${newId}`;
-            // _option2.id = `option-${newId}`;
-            // _option3.id = `option-${newId}`;
-            // _option4.id = `option-${newId}`;
-
-            console.log("updated old: " + oldId + "   new: " + newId);
+            //console.log("updated old: " + oldId + "   new: " + newId);
         }
 
         document.addEventListener("click", function(evnt) {
-            console.log("clicked: ", evnt.target.id);
+            //console.log("clicked: ", evnt.target.id);
             if (evnt.target.id.includes("delete-")) {
                 const id = evnt.target.id.split("-")[1];
                 if (is_updating) return;
@@ -327,14 +316,14 @@
 
         const fieldList = [];
 
-        var form_id = 0;
+        var event_id = 0;
 
         function loadFields(id, list) {
             fieldList.length = 0;
             if (id === 0) {
                 id = new Date().getTime();
             }
-            form_id = id;
+            event_id = id;
             if (list.length > 0) {
                 for (var i = 0; i < list.length; i++) {
                     const field = list[i];

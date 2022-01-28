@@ -4,6 +4,8 @@
 
   error_reporting(0);
 
+  include('includes/message.php');
+
   if (isset($_SESSION['username'])) {
     // code...
     header("Location: subscription");

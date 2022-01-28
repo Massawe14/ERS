@@ -30,7 +30,7 @@
       exit(0);
   	}
   	else {
-  		$allowed_extension = array('png','jpg','jpeg');
+  		$allowed_extension = array('png','jpg','jpeg', 'PNG', 'JPG', 'JPEG');
 	    $file_extension = pathinfo($image, PATHINFO_EXTENSION);
 
 	    $filename = time().'.'.$file_extension;

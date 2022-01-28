@@ -1,6 +1,8 @@
 <?php  
   session_start();
 
+  include('includes/message.php');
+
   if (!isset($_SESSION['username'])) {
     // code...
     header("Location: authentication");

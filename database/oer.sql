@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2022 at 01:58 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.11
+-- Generation Time: Jan 28, 2022 at 04:26 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,8 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `event` (
-  `id` int(11) NOT NULL,
-  `eventname` varchar(100) NOT NULL,
+  `n` int(11) NOT NULL,
+  `id` varchar(100) NOT NULL,
+  `name` varchar(100) NOT NULL,
   `venue` varchar(100) NOT NULL,
   `image` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -38,10 +39,9 @@ CREATE TABLE `event` (
 -- Dumping data for table `event`
 --
 
-INSERT INTO `event` (`id`, `eventname`, `venue`, `image`) VALUES
-(1, 'crdb', 'mlimani city', '1643182783.jpg'),
-(2, 'crdb', 'mlimani city', '1643183914.jpg'),
-(3, 'crdb', 'mlimani city', '1643184316.jpg');
+INSERT INTO `event` (`n`, `id`, `name`, `venue`, `image`) VALUES
+(1, '1234', 'crdb', 'mlimani city', '1643182783.jpg'),
+(4, '96f8d078e3', 'CRDB', 'somewhere', '1643279287.PNG');
 
 -- --------------------------------------------------------
 
@@ -58,6 +58,30 @@ CREATE TABLE `form_list` (
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_updated` datetime DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `form_setting`
+--
+
+CREATE TABLE `form_setting` (
+  `event_id` varchar(100) NOT NULL,
+  `field_1` mediumtext NOT NULL DEFAULT '',
+  `field_2` mediumtext NOT NULL DEFAULT '',
+  `field_3` mediumtext NOT NULL DEFAULT '',
+  `field_4` mediumtext NOT NULL DEFAULT '',
+  `field_5` mediumtext NOT NULL DEFAULT '',
+  `field_6` mediumtext NOT NULL DEFAULT '',
+  `field_7` mediumtext NOT NULL DEFAULT ''
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `form_setting`
+--
+
+INSERT INTO `form_setting` (`event_id`, `field_1`, `field_2`, `field_3`, `field_4`, `field_5`, `field_6`, `field_7`) VALUES
+('96f8d078e3', '{\"name\":\"Name\",\"hint\":\"enter name\",\"type\":\"text\"}', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -114,13 +138,20 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`) VALUES
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`n`),
+  ADD UNIQUE KEY `id` (`id`);
 
 --
 -- Indexes for table `form_list`
 --
 ALTER TABLE `form_list`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `form_setting`
+--
+ALTER TABLE `form_setting`
+  ADD UNIQUE KEY `event_id` (`event_id`);
 
 --
 -- Indexes for table `responses`
@@ -148,7 +179,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `n` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `form_list`

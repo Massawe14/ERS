@@ -18,11 +18,15 @@
 
   if (isset($_POST['addEvent'])) {
   	// code...
-  	$eventname = $_POST['eventname'];
+  	$name = $_POST['eventname'];
   	$venue = $_POST['venue'];
   	$image = $_FILES['image']['name'];
+	// generate random id with string length of 10
+	$eventid = substr(md5(time()), 0, 10) . "";
+	//$id = date('YmdHis');
+	//$id = $id . rand(10, 99);
 
-  	if ($eventname == '' || $venue == '' || $image == '') {
+  	if ($name == '' || $venue == '' || $image == '') {
   		// code...
   		$_SESSION['status'] = "Please check the missing field";
     	$_SESSION['status_code'] = "error";
@@ -57,7 +61,7 @@
 		    exit(0);
 		  }
 		  else {
-		  	$sql = $db->insert($eventname,$venue,$filename);
+		  	$sql = $db->insert($eventid,$name,$venue,$filename);
 
 		  	if($sql == true)
 	      {
@@ -126,8 +130,8 @@
 			background-color: #fff;
 			width: 1000px;
 			padding: 25px;
-			margin: 25px auto 0;
-			box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
+			margin: 80px 25px 25px 25px;
+			/* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); */
 			border-radius: 20px;
 		}
 
@@ -363,6 +367,12 @@
 	<?php include('includes/script.php'); ?>
 	<!-- how to make close when click on any point of the browser -->
 	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+			document.getElementById("home").className = "";
+			document.getElementById("event").className = "btn-active";
+			document.getElementById("report").className = "";
+			document.getElementById("form-setting").className = "";
+		});
 		var valueList = document.getElementById('valueList');
 		var text = '<span> you have selected : </span>'
 		var listArray = [];

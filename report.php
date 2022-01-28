@@ -24,7 +24,7 @@
 
     .report-container {
       width: 940px;
-      margin: 0 auto;
+			margin: 80px 25px 25px 25px;
       padding: 25px;
     }
 
@@ -142,6 +142,12 @@
   <script
   src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
   <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("home").className = "";
+        document.getElementById("event").className = "";
+        document.getElementById("report").className = "btn-active";
+        document.getElementById("form-setting").className = "";
+    });
     $(document).ready( function () {
       $('#table').DataTable();
     });

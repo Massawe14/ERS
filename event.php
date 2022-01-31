@@ -4,6 +4,7 @@
   error_reporting(0);
 
   include "eventdb.php";
+  include('config/dbconn.php');
 
   include('includes/header.php');
   include('includes/sidemenu.php');
@@ -81,6 +82,24 @@
 		  }
   	}
   }
+
+  if (isset($_POST['DeleteEventbtn'])) {
+    $eventid = $_POST['delete_event'];
+
+    $sql = "DELETE FROM event WHERE n = '$eventid'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+      $_SESSION['status'] = "Event Deleted Successfully";
+      $_SESSION['status_code'] = "success";
+      header("Location: event");
+    }
+    else{
+      $_SESSION['status'] = "Event Deleting Failed";
+      $_SESSION['status_code'] = "error";
+      header("Location: event");
+    }
+  }
 ?>
 <!DOCTYPE html>
 <html>
@@ -153,18 +172,12 @@
 			opacity: 0.8;
 		}
 
-		/*.cancel {
-			width: 100%;
-			background-color: #e1251b;
-		}*/
-
-		/*img.avatar {
-		  width: 40%;
-		  border-radius: 50%;
-		}*/
-
 		.eventcontainer {
 			padding: 15px;
+		}
+
+		.deletecontainer {
+			padding: 30px;
 		}
 
 		.input-group {
@@ -222,12 +235,6 @@
 	    from {transform: scale(0)} 
 	    to {transform: scale(1)}
 		}
-
-		/*@media screen and (max-width: 300px) {
-	    .cancel {
-	      width: 100%;
-	    }
-		}*/
 
 		.controls {
 			width: 294px;
@@ -299,6 +306,22 @@
       opacity: 0.8;
     }
 
+    .btn-edit {
+    	background-color: green;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-edit:hover {
+    	opacity: 0.8;
+    }
+
 	</style>
 </head>
 <body>
@@ -326,36 +349,67 @@
       <table class="table" id="table">
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Points</th>
-            <th>Team</th>
+            <th>Number</th>
+            <th>Event ID</th>
+            <th>Event Name</th>
+            <th>Venue</th>
+            <th>Artwork</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Domenic</td>
-            <td>88,110</td>
-            <td>dcode</td>
-          </tr>
-          <tr class="active-row">
-            <td>2</td>
-            <td>Sally</td>
-            <td>72,400</td>
-            <td>Students</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Nick</td>
-            <td>52,300</td>
-            <td>dcode</td>
-          </tr>
+        	<?php  
+        	  $sql = "SELECT * FROM event";
+        	  $result = mysqli_query($conn, $sql);
+
+        	  if (mysqli_num_rows($result) > 0) {
+        	  	foreach ($result as $row) {
+        	  		?>
+        	  		  <tr>
+        	  		  	<td><?php echo $row['n']; ?></td>
+        	  		  	<td><?php echo $row['id'] ?></td>
+        	  		  	<td><?php echo $row['name'] ?></td>
+        	  		  	<td><?php echo $row['venue'] ?></td>
+        	  		  	<td>
+                      <img src="<?php echo "uploads/images/".$row['image']; ?>" width="100px" alt="image">
+                    </td>
+                    <td>
+                      <a href="#?n=<?php echo $row['n']; ?>" class="btn-edit btn-info btn-sm">Edit</a>
+                      <button type="button" onclick="document.getElementById('DeleteEventModal').style.display='block'" value="<?php echo $row['n']; ?>" class="btn btn-danger btn-sm deleteEventBtn">Delete</button>
+                    </td>
+        	  		  </tr>
+        	  		<?php
+        	  	}
+        	  }
+        	  else{
+              ?>
+                <tr>
+                  <td>No Event Found</td>
+                </tr>
+              <?php
+            }
+        	?>
         </tbody>
       </table>
     </div>
   </div>
 	</div>
+
+	<!-- Delete User -->
+  <div class="modal" id="DeleteEventModal">
+    <form class="modal-content animate" method="POST">
+      <div class="deletecontainer" align="center">
+      	<h2 align="center">Delete Event</h2>
+        <input type="hidden" name="delete_event" class="delete_event_id">
+        <p>
+          Are you sure. you want to delete this event ?
+        </p>
+        <button type="button" onclick="document.getElementById('DeleteEventModal').style.display='none'" class="btn btn-secondary">Close</button>
+        <button type="submit" name="DeleteEventbtn" class="btn btn-danger">Yes, Delete</button>
+      </div>
+    </form>
+  </div>
+  <!-- Delete User -->
 
 	<!-- Event Modal -->
 	<div class="modal" id="eventmodal">
@@ -372,85 +426,6 @@
 	      <label for="artwork">Artwork</label>
 	      <input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
 	      <input type="submit" value="Save" name="addEvent">
-				<!-- <h2 align="center">Event Registration Form</h2>
-				<div class="checkbox-card">
-					<label for="firstname">First Name</label>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" class="checkme" value="firstname" id="firstname"> Yes
-						</label>
-					</div>
-					<div class="input-group" id="fname">
-						<input type="text" name="firstname" placeholder="Enter First Name" required>
-					</div>
-				</div>
-				<div class="checkbox-card">
-					<label for="lastname">Last Name</label>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" class="checkme" value="lastname" id="lastname"> Yes
-						</label>
-					</div>
-					<div class="input-group" id="lname">
-						<input type="text" name="lastname" placeholder="Enter Last Name" required>
-					</div>
-				</div>
-				<div class="checkbox-card">
-					<label for="fullname">Full Name</label>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" class="checkme" value="fullname" id="fullname"> Yes
-						</label>
-					</div>
-					<div class="input-group" id="fullname">
-						<input type="text" name="fullname" placeholder="Enter Full Name" required>
-					</div>
-				</div>
-				<div class="checkbox-card">
-					<label for="email">Email</label>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" class="checkme" value="email" id="email"> Yes
-						</label>
-					</div>
-					<div class="input-group" id="email">
-						<input type="email" name="email" placeholder="Enter Email Address" required>
-					</div>
-				</div>
-				<div class="checkbox-card">
-					<label for="phonenumber">Phone Number</label>
-					<div class="checkbox">
-						<label>
-							<input type="checkbox" class="checkme" value="phonenumber" id="phonenumber"> Yes
-						</label>
-					</div>
-					<div class="input-group" id="pnumber">
-						<input type="tel" name="phonenumber" placeholder="Enter Phone Number" required>
-					</div>
-			  </div>
-			  <div class="checkbox-card">
-			  	<label for="companyname">Company Name</label>
-			  	<div class="checkbox">
-						<label>
-							<input type="checkbox" class="checkme" value="companyname" id="companyname"> Yes
-						</label>
-					</div>
-					<div class="input-group" id="cname">
-						<input type="text" name="companyname" placeholder="Enter Company Name" required>
-					</div>
-			  </div>
-			  <div class="checkbox-card">
-			  	<label for="position">Position</label>
-			  	<div class="checkbox">
-						<label>
-							<input type="checkbox" class="checkme" value="position" id="position"> Yes
-						</label>
-					</div>
-					<div class="input-group" id="position">
-						<input type="text" name="position" placeholder="Enter Position" required>
-					</div>
-				</div>	
-				<input type="button" value="Save Form" name="save"> -->
 			</div>
 		</form>
 	</div>
@@ -494,5 +469,17 @@
 			}
 		}
 	</script>
+	<script>
+  $(document).ready(function () {
+
+    $('.deleteEventBtn').click(function (e) {
+      e.preventDefault();
+      var user_id = $(this).val();
+      $('.delete_event_id').val(user_id);
+      $('.DeleteEventModal').modal('show');
+    });
+
+  });
+</script>
 </body>
 </html>

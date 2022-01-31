@@ -65,6 +65,7 @@
 
 		  	if($sql == true)
 	      {
+	      	move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/images/'.$filename);
 	        $_SESSION['status'] = "Thank You. Event created successfully";
 	        $_SESSION['status_code'] = "success";
 	        header('Location: event');
@@ -132,7 +133,7 @@
 			padding: 25px;
 			margin: 80px 25px 25px 25px;
 			/* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); */
-			border-radius: 20px;
+			/*border-radius: 20px;*/
 		}
 
 		.event {
@@ -247,12 +248,63 @@
 			text-decoration: none;
 		}
 
+		.table {
+      border-collapse: collapse;
+      padding: 25px;
+      margin: 25px auto 0;
+      font-size: 0.9em;
+      width: 100%;
+      border-radius: 5px 5px 0 0;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    th, td {
+      border: 1px solid #bbb;
+      padding: 10px;
+      text-align: left;
+    }
+
+    tr:hover {
+      background-color: #e5e5e5;
+    }
+
+    .tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    th {
+      background-color: #e1251b;
+      color: white;
+      border: #e1251b;
+    }
+
+    .table tbody tr:last-of-type {
+      border-bottom: 2px solid #e1251b;
+    }
+
+    .btn {
+      background-color: #e1251b;
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+
 	</style>
 </head>
 <body>
 
 	<div class="wrapper">
-		<form method="POST" enctype="multipart/form-data">
+		<!-- <form method="POST" enctype="multipart/form-data">
 		    <div class="event">
 		      <h2 align="center">Add Event</h2>
 		      <label for="ename">Event Name</label>
@@ -261,20 +313,66 @@
 		      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php $_POST['venue']; ?>">
 		      <label for="artwork">Artwork</label>
 		      <input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
-		      <input type="submit" value="Next" name="addEvent">
+		      <input type="submit" value="Next" name="" onclick="document.getElementById('eventmodal').style.display='block'">
 		    </div>
-		</form>
+		</form> -->
+		<div class="report-container">
+    <div class="print-btn">
+      <p>
+        <button onclick="document.getElementById('eventmodal').style.display='block'" class="btn">Add Event</button>
+      </p>
+    </div>
+    <div class="print-table">
+      <table class="table" id="table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Name</th>
+            <th>Points</th>
+            <th>Team</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Domenic</td>
+            <td>88,110</td>
+            <td>dcode</td>
+          </tr>
+          <tr class="active-row">
+            <td>2</td>
+            <td>Sally</td>
+            <td>72,400</td>
+            <td>Students</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Nick</td>
+            <td>52,300</td>
+            <td>dcode</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 	</div>
 
 	<!-- Event Modal -->
 	<div class="modal" id="eventmodal">
-		<form class="modal-content animate" method="POST">
+		<form class="modal-content animate" method="POST" enctype="multipart/form-data">
 			<div class="img">
 				<span onclick="document.getElementById('eventmodal').style.display='none'" class="close" title="close button">&times;</span>
-				<!-- <img src="" alt="Avatar" class="avater"> -->
 			</div>
 			<div class="eventcontainer">
-				<h2 align="center">Event Registration Form</h2>
+				<h2 align="center">Add Event</h2>
+	      <label for="ename">Event Name</label>
+	      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $_POST['eventname']; ?>">
+	      <label for="venue">Venue</label>
+	      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php $_POST['venue']; ?>">
+	      <label for="artwork">Artwork</label>
+	      <input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
+	      <input type="submit" value="Save" name="addEvent">
+				<!-- <h2 align="center">Event Registration Form</h2>
 				<div class="checkbox-card">
 					<label for="firstname">First Name</label>
 					<div class="checkbox">
@@ -283,7 +381,6 @@
 						</label>
 					</div>
 					<div class="input-group" id="fname">
-						<!-- <label for="firstname">First Name</label> -->
 						<input type="text" name="firstname" placeholder="Enter First Name" required>
 					</div>
 				</div>
@@ -295,7 +392,6 @@
 						</label>
 					</div>
 					<div class="input-group" id="lname">
-						<!-- <label for="lastname">Last Name</label> -->
 						<input type="text" name="lastname" placeholder="Enter Last Name" required>
 					</div>
 				</div>
@@ -307,7 +403,6 @@
 						</label>
 					</div>
 					<div class="input-group" id="fullname">
-						<!-- <label for="fullname">Full Name</label> -->
 						<input type="text" name="fullname" placeholder="Enter Full Name" required>
 					</div>
 				</div>
@@ -319,7 +414,6 @@
 						</label>
 					</div>
 					<div class="input-group" id="email">
-						<!-- <label for="email">Email</label> -->
 						<input type="email" name="email" placeholder="Enter Email Address" required>
 					</div>
 				</div>
@@ -331,7 +425,6 @@
 						</label>
 					</div>
 					<div class="input-group" id="pnumber">
-						<!-- <label for="phonenumber">Phone Number</label> -->
 						<input type="tel" name="phonenumber" placeholder="Enter Phone Number" required>
 					</div>
 			  </div>
@@ -343,7 +436,6 @@
 						</label>
 					</div>
 					<div class="input-group" id="cname">
-						<!-- <label for="companyname">Company Name</label> -->
 						<input type="text" name="companyname" placeholder="Enter Company Name" required>
 					</div>
 			  </div>
@@ -355,11 +447,10 @@
 						</label>
 					</div>
 					<div class="input-group" id="position">
-						<!-- <label for="position">Position</label> -->
 						<input type="text" name="position" placeholder="Enter Position" required>
 					</div>
 				</div>	
-				<input type="button" value="Save Form" name="save">
+				<input type="button" value="Save Form" name="save"> -->
 			</div>
 		</form>
 	</div>

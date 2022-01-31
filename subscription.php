@@ -59,12 +59,20 @@
 
     .button {
       background-color: #e1251b;
+      width: 150px;
+      height: 49px;
       border: none;
       color: white;
       padding: 10px 25px;
       text-align: center;
       text-decoration: none;
       font-size: 18px;
+      border-radius: 49px;
+    }
+
+    .button:hover {
+      /*background-color: #e1251b;*/ /*#4d84e2*/
+      opacity: 0.8;
     }
 
     @media only screen and (max-width: 600px) {

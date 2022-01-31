@@ -101,11 +101,11 @@
   <div class="report-container">
     <div class="print-btn">
       <p>
-        <button onclick="window.print();" class="btn">Print</button>
+        <button onclick="printDiv('printReport')" class="btn">Print</button>
       </p>
     </div>
-    <div class="print-table">
-      <table class="table" id="table">
+    <div id="printReport" class="print-table">
+      <table class="table">
         <thead>
           <tr>
             <th>Rank</th>
@@ -148,9 +148,21 @@
         document.getElementById("report").className = "btn-active";
         document.getElementById("form-setting").className = "";
     });
-    $(document).ready( function () {
-      $('#table').DataTable();
-    });
+  </script>
+  <script>
+    function printDiv(divID) {
+      //Get the HTML of div
+      var divElements = document.getElementById(divID).innerHTML;
+      //Get the HTML of whole page
+      var oldPage = document.body.innerHTML;
+      //Reset the page's HTML with div's HTML only
+      document.body.innerHTML =
+        "<html><head><title></title></head><body>" + divElements + "</body>";
+      //Print Page
+      window.print();
+      //Restore orignal HTML
+      document.body.innerHTML = oldPage;
+    }
   </script>
 </body>
 </html>

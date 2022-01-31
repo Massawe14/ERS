@@ -56,8 +56,7 @@ body {
 }
 
 .navigation ul li:hover,
-.navigation ul li.hovered,
-.navigation ul li.btn-active {
+.navigation ul li.hovered{
     background: var(--white);
 }
 
@@ -76,8 +75,7 @@ body {
 }
 
 .navigation ul li:hover a,
-.navigation ul li.hovered a,
-.navigation ul li.btn-active a {
+.navigation ul li.hovered a {
     color: var(--red);
 }
 
@@ -108,8 +106,7 @@ body {
 /* curve outside */
 
 .navigation ul li:hover a::before,
-.navigation ul li.hovered a::before,
-.navigation ul li.btn-active a::before {
+.navigation ul li.hovered a::before {
     content: '';
     position: absolute;
     right: 0;
@@ -123,8 +120,7 @@ body {
 }
 
 .navigation ul li:hover a::after,
-.navigation ul li.hovered a::after,
-.navigation ul li.btn-active a::after {
+.navigation ul li.hovered a::after {
     content: '';
     position: absolute;
     right: 0;

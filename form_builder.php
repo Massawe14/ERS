@@ -6,13 +6,315 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registration Form</title>
 	<style>
-		
+		body {
+		    font-family: Arial, Helvetica, sans-serif;
+		    display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			overflow: auto;
+		}
+
+		/* Full-width input fields */
+		input[type=text], input[type=password] {
+		    width: 100%;
+		    padding: 12px 20px;
+		    margin: 8px 0;
+		    display: inline-block;
+		    border: 1px solid #ccc;
+		    box-sizing: border-box;
+		}
+
+		/* Set a style for all buttons */
+		input[type=submit]{
+		    background-color: #e1251b;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 8px 0;
+		    border: none;
+		    cursor: pointer;
+		    width: 100%;
+		    text-align: center;
+		    text-decoration: none;
+		}
+
+		input[type=submit]:hover {
+		    opacity: 0.8;
+		}
+
+		/* Extra styles for the cancel button */
+		.cancelbtn {
+		    width: auto;
+		    padding: 10px 18px;
+		    background-color: #f44336;
+		}
+
+		/* Center the image and position the close button */
+		.imgcontainer {
+		    text-align: center;
+		    margin: 24px 0 12px 0;
+		    position: relative;
+		}
+
+		img.avatar {
+		    width: 40%;
+		    border-radius: 50%;
+		}
+        
+        /* Fields container */
+		.container {
+		    padding: 16px;
+		}
+        
+        /* Submit button container */
+		.submit-button {
+			padding: 16px;
+		}
+
+		span.psw {
+		    float: right;
+		    padding-top: 16px;
+		}
+
+		/* The Modal (background) */
+		.modal {
+		     /* Hidden by default */
+		    position: fixed; /* Stay in place */
+		    z-index: 1; /* Sit on top */
+		    left: 0;
+		    top: 0;
+		    width: 100%; /* Full width */
+		    height: 100%; /* Full height */
+		    overflow: auto; /* Enable scroll if needed */
+		    background-color: rgb(0,0,0); /* Fallback color */
+		    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		    padding-top: 60px;
+		}
+
+		/* Modal Content/Box */
+		.modal-content {
+		    background-color: #fefefe;
+		    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+		    border: 1px solid #888;
+		    width: 80%; /* Could be more or less, depending on screen size */
+		}
+
+		/* The Close Button (x) */
+		.close {
+		    position: absolute;
+		    right: 25px;
+		    top: 0;
+		    color: #000;
+		    font-size: 35px;
+		    font-weight: bold;
+		}
+
+		.close:hover,
+		.close:focus {
+		    color: red;
+		    cursor: pointer;
+		}
+
+		/* Add Zoom Animation */
+		.animate {
+		    -webkit-animation: animatezoom 0.6s;
+		    animation: animatezoom 0.6s
+		}
+
+		@-webkit-keyframes animatezoom {
+		    from {-webkit-transform: scale(0)} 
+		    to {-webkit-transform: scale(1)}
+		}
+		    
+		@keyframes animatezoom {
+		    from {transform: scale(0)} 
+		    to {transform: scale(1)}
+		}
+
+		/* Change styles for span and cancel button on extra small screens */
+		@media screen and (max-width: 300px) {
+		    span.psw {
+		       display: block;
+		       float: none;
+		    }
+		    .cancelbtn {
+		       width: 100%;
+		    }
+		}
+
+		#qrSucc {
+		  width: 800px;
+		  height: 800px;
+		  margin:  8px 8px 20px 8px;
+		  text-align: center;
+		  overflow: auto;
+		  position: relative;
+		  display: flex;
+		  flex-direction: column;
+		}
+
+		#result {
+		    width: 800px;
+		    height: 690px;
+		    margin-bottom: 20px !important;
+		    background: white;
+		    position:  relative;
+		    display: flex;
+		    flex-direction: column;
+		    padding: 0 !important;
+		    margin: 0 !important;
+		}
+
+		#img {
+		    width: inherit;
+		    height: 695px;
+		    position:  absolute;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    z-index: 0;
+		    padding: 0 !important;
+		    margin: 0 !important;
+		}
+
+		#contents {
+		    width: 800px;
+		    height: 695px;
+		    position:  absolute;
+		    z-index: 1;
+		    padding: 0 !important;
+		    margin: 0 !important;
+		    display: flex;
+		    flex-direction: column;
+		    justify-content: center;
+		    align-items: center;
+		}
+
+		#qrSucc a {
+		    background-color: #e1251b;
+		    color: white;
+		    padding: 14px 20px;
+		    margin: 20px 20px -40px 20px;
+		    border: none;
+		    cursor: pointer;
+		    width: 100%;
+		    text-align: center;
+		    text-decoration: none;
+		}
+
+		#qrSucc a:hover {
+			opacity: 0.8;
+		}
 	</style>
 </head>
 <body>
-	<h1 align="center">Registration Form</h1>
-	<div class="container" id="container"></div>
+	<?php 
+	  include ('plugins/meRaviQr/qrlib.php');
+	  include ('plugins/config.php');
+	  include('includes/message.php');
+
+	  if(isset($_POST['create'])) {
+		  	$event_id = $_POST['variable'];
+		  	$field_1 =  $_POST['fullname'];
+		    $field_2 = $_POST['branchname'];
+		    $field_3 = $_POST['zone'];
+		    $field_4 = $_POST['variable'];
+		    $field_5 = $_POST['variable'];
+		    $field_6 = $_POST['variable'];
+		    $field_7 = $_POST['variable'];
+		    $qrImgName = "$fullname".rand();
+
+		    if($fullname=="" && $branchname=="" && $zone=="") {
+		      // echo "<script>alert('Please Fill all fields');</script>";
+		    	$_SESSION['status'] = "Please Fill all fields";
+		    	$_SESSION['status_code'] = "error";
+		        header('Location: form_builder');
+		        exit(0);
+		    }
+		    elseif($fullname=="") {
+		      // echo "<script>alert('Please Enter Your Full Name');</script>";
+		    	$_SESSION['status'] = "Please Enter Your Full Name";
+		    	$_SESSION['status_code'] = "error";
+		        header('Location: form_builder');
+		        exit(0);
+		    }
+		    elseif($branchname=="") {
+		      // echo "<script>alert('Please Enter Your Branch Name');</script>";
+		    	$_SESSION['status'] = "Please Enter Your Branch Name";
+		    	$_SESSION['status_code'] = "error";
+		        header('Location: form_builder');
+		        exit(0);
+		    }
+		    elseif($zone=="") {
+		      // echo "<script>alert('Please Enter Your Zone');</script>";
+		    	$_SESSION['status'] = "Please Enter Your Zone";
+		    	$_SESSION['status_code'] = "error";
+		        header('Location: form_builder');
+		        exit(0);
+		    }
+		    else {
+		      $qrimage = $qrImgName.".png";
+		      $qrs = QRcode::png($qrimage,"userQr/$qrImgName.png","H","3","3");
+		      $workDir = $_SERVER['HTTP_HOST'];
+		      $qrlink = $workDir."/qrcode".$qrImgName.".png";
+		      $insQr = $register->insertQr($event_id,$field_1,$field_2,$field_3,$field_4,$field_5,$field_6,$field_7,$qrimage,$qrlink);
+
+		      if($insQr == true) {
+		        echo "<script> window.location='form_builder.php?success=$qrimage&fname=$fullname';</script>";
+		        $_SESSION['status'] = "QR code created successfully";
+		    	$_SESSION['status_code'] = "success";
+		        header('Location: form_builder');
+		        exit(0);
+		      }
+		      else {
+		        // echo "<script>alert('cant create QR Code');</script>";
+		        $_SESSION['status'] = "Can't create QR code";
+		    	$_SESSION['status_code'] = "error";
+		        header('Location: form_builder');
+		        exit(0);
+		      }
+		    }
+	    }
+	?>
+	<?php 
+	  if(isset($_GET['success']))
+	  {
+	  ?>
+	  <div id="qrSucc" class="convert">
+	      <div id="result" class="modal-content animate container"> 
+	        <img id="img" src="assets/background.png" />  
+	        <div id="contents">
+	          <img src="userQr/<?php echo $_GET['success']; ?>" alt="">
+	          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['fname']); ?></p>
+	          <p style="color: white;">YOU ARE INVITED TO THE</p>
+	          <center>
+	            <img src="assets/eventname.png" alt="centered image" height="150" width="300"><br/>
+	          </center>
+	          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
+	        </div>
+	      </div>
+	      <div id="output" hidden></div>
+	      <a class="a" href="">Download Now</a>
+	   </div>
+	  <?php
+	} else {
+			?>
+				<div id="id01" class="modal">
+					<form class="modal-content animate" method="POST" enctype="multipart/form-data">
+						<div class="container" id="container">
+							<h2 align="center">Registration Form</h2>
+						</div>
+						<div class="submit-button">
+							<input type="submit" value="Submit" name="create">
+						</div>
+					</form>
+				</div>
+			<?php
+	    }
+	?>
 	<script type="text/javascript">
+
 		// Load json data from mysql
 		var event_fields = <?php  
 		  include('config/dbconn.php');
@@ -30,6 +332,7 @@
 		console.log(event_fields, typeof event_fields);
 
          const element = document.createElement("div");
+         element.className = "allFields";
 		if (event_fields.length > 0) {
 			for (var item in event_fields[0]) {
 				var temp = "";
@@ -42,35 +345,31 @@
 					const field_input_name = key + ""
 					if (field.length > 0) {
 						const div = document.createElement("div");
+						// div.className = "input-field";
 						const field_json = JSON.parse(field);
 						// temp += "<div>";
 						temp += "<label>" + field_json["name"] + "</label>";
 						temp += "<input type=\"" + field_json["type"] + "\" name=\"" + field_input_name + "\" placeholder=\"" + field_json["hint"] + "\" />";
-						div.innerHTML = temp;
-						element.appendChild(div);
+						element.innerHTML = temp;
+						// element.appendChild(div);
 					}
 				}
 			}
 
 			document.getElementById("container").appendChild(element);
-
-			// if (field_1.length > 0) {
-			// 	const field_1_json = JSON.parse(field_1);
-			// 	temp += "<div>";
-			// 	temp += "<label>" + field_1_json["name"] + "</label>";
-			// 	temp += "<input type=\"" + field_1_json["type"] + "\" name=\"field_1_name\" placeholder=\"" + field_1_json["hint"] + "\" />";
-			// 	temp += "</div>";
-			// }
-
-			// start for loop
-
-			// event_fields.forEach((u) => {
-			// 	console.log("field: ",u);
-			// 	// temp += "<label>"+u.+"</label>";
-			// });
-
-			// close for loop
 		}
+	</script>
+	<script src="plugins/html2canvas.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.js"></script>
+	<script>
+	    const elm = document.querySelector("#result");
+	    html2canvas(elm).then(function (canvas) {
+	        document.querySelector("#output").append(canvas);
+	        let cvs = document.querySelector("canvas");
+	        let a = document.querySelector(".a")
+	        a.href = cvs.toDataURL();
+	        a.download = "invation.png";
+	    });
 	</script>
 </body>
 </html>

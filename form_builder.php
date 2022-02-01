@@ -225,28 +225,28 @@
 		    $field_7 = $_POST['variable'];
 		    $qrImgName = "$fullname".rand();
 
-		    if($fullname=="" && $branchname=="" && $zone=="") {
+		    if($fullname == "" && $branchname == "" && $zone == "") {
 		      // echo "<script>alert('Please Fill all fields');</script>";
 		    	$_SESSION['status'] = "Please Fill all fields";
 		    	$_SESSION['status_code'] = "error";
 		        header('Location: form_builder');
 		        exit(0);
 		    }
-		    elseif($fullname=="") {
+		    elseif($fullname == "") {
 		      // echo "<script>alert('Please Enter Your Full Name');</script>";
 		    	$_SESSION['status'] = "Please Enter Your Full Name";
 		    	$_SESSION['status_code'] = "error";
 		        header('Location: form_builder');
 		        exit(0);
 		    }
-		    elseif($branchname=="") {
+		    elseif($branchname == "") {
 		      // echo "<script>alert('Please Enter Your Branch Name');</script>";
 		    	$_SESSION['status'] = "Please Enter Your Branch Name";
 		    	$_SESSION['status_code'] = "error";
 		        header('Location: form_builder');
 		        exit(0);
 		    }
-		    elseif($zone=="") {
+		    elseif($zone == "") {
 		      // echo "<script>alert('Please Enter Your Zone');</script>";
 		    	$_SESSION['status'] = "Please Enter Your Zone";
 		    	$_SESSION['status_code'] = "error";

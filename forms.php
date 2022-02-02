@@ -216,15 +216,11 @@
 	  if(isset($_GET['success'])) {
 		  ?>
 			  <div id="qrSucc" class="convert">
-			      <div id="result" class="modal-content animate container"> 
-			        <img id="img" src="assets/background.png" />  
+			      <div id="result" class="modal-content animate container">  
 			        <div id="contents">
-			          <img src="userQr/<?php echo $_GET['success']; ?>" alt="">
+			          <img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
 			          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field_1']); ?></p>
 			          <p style="color: white;">YOU ARE INVITED TO THE</p>
-			          <center>
-			            <img src="assets/eventname.png" alt="centered image" height="150" width="300"><br/>
-			          </center>
 			          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
 			        </div>
 			      </div>

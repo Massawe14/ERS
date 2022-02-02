@@ -220,7 +220,7 @@
 			        <img id="img" src="assets/background.png" />  
 			        <div id="contents">
 			          <img src="userQr/<?php echo $_GET['success']; ?>" alt="">
-			          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['event_id']); ?></p>
+			          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field_1']); ?></p>
 			          <p style="color: white;">YOU ARE INVITED TO THE</p>
 			          <center>
 			            <img src="assets/eventname.png" alt="centered image" height="150" width="300"><br/>
@@ -235,9 +235,10 @@
 	    } else {
 			?>
 				<div id="id01" class="modal">
-					<form id="form" class="modal-content animate" action="code.php" method="POST" enctype="multipart/form-data">
+					<form id="form" class="modal-content animate" enctype="multipart/form-data">
 						<div class="container" id="container">
 							<h2 align="center">Registration Form</h2>
+							<input type="hidden" name="event_id" value="<?php echo $_GET['event_id']; ?>">
 						</div>
 						<div class="submit-button">
 							<input type="submit" id="submit" value="Submit" name="create">
@@ -297,7 +298,7 @@
 
 		const submit = document.getElementById("submit");
 		submit.onclick = () => {
-			var form = $("#fields");
+			var form = $("#container");
 			$.ajax({
 			   cache: false,
 			   url: form.attr('action'),

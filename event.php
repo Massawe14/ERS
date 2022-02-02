@@ -283,7 +283,7 @@
     th, td {
       border: 1px solid #bbb;
       padding: 10px;
-      text-align: left;
+      text-align: center;
     }
 
     tr:hover {
@@ -308,7 +308,7 @@
       background-color: #e1251b;
       border: none;
       color: white;
-      padding: 15px 32px;
+      padding: 15px 15px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -328,7 +328,8 @@
     	background-color: #287bff;
       border: none;
       color: white;
-      padding: 15px 32px;
+      border-radius: 8px;
+      padding: 15px 20px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -337,6 +338,23 @@
     }
 
     .btn-edit:hover {
+    	opacity: 0.8;
+    }
+
+    .btn-share-link {
+    	background-color: greenyellow;
+      border: none;
+      color: white;
+      border-radius: 8px;
+      padding: 15px 10px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn-share-link:hover {
     	opacity: 0.8;
     }
 
@@ -382,6 +400,7 @@
                     <td>
                       <a href="#?n=<?php echo $row['n']; ?>" class="btn-edit btn-info btn-sm">Edit</a>
                       <button type="button" onclick="document.getElementById('DeleteEventModal').style.display='block'" value="<?php echo $row['n']; ?>" class="btn btn-danger btn-sm deleteEventBtn">Delete</button>
+                      <button onclick="" class="btn-share-link">Share Link</button>
                     </td>
         	  		  </tr>
         	  		<?php

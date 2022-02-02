@@ -188,10 +188,24 @@
 			display: none;
 			position: fixed;
 			z-index: 1;
-			left: 0;
-			top: 0;
-			width: 100%;
+			left: 299px;
+			top: 60px;
+			width: 80%;
 			height: 100%;
+			overflow: auto;
+			background-color: rgb(0, 0, 0);
+			background-color: rgba(0, 0, 0, 0.4);
+			padding-top: 60px;
+		}
+
+		#DeleteEventModal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 400px;
+			top: 165px;
+			width: 60%;
+			height: 60%;
 			overflow: auto;
 			background-color: rgb(0, 0, 0);
 			background-color: rgba(0, 0, 0, 0.4);
@@ -207,7 +221,7 @@
 
 		.close {
 			position: absolute;
-			right: 25px;
+			right: 30px;
 			top: 0;
 	    color: #000;
 	    font-size: 35px;
@@ -306,8 +320,12 @@
       opacity: 0.8;
     }
 
+    #close {
+    	background-color: #287bff;
+    }
+
     .btn-edit {
-    	background-color: green;
+    	background-color: #287bff;
       border: none;
       color: white;
       padding: 15px 32px;
@@ -327,18 +345,6 @@
 <body>
 
 	<div class="wrapper">
-		<!-- <form method="POST" enctype="multipart/form-data">
-		    <div class="event">
-		      <h2 align="center">Add Event</h2>
-		      <label for="ename">Event Name</label>
-		      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $_POST['eventname']; ?>">
-		      <label for="venue">Venue</label>
-		      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php $_POST['venue']; ?>">
-		      <label for="artwork">Artwork</label>
-		      <input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
-		      <input type="submit" value="Next" name="" onclick="document.getElementById('eventmodal').style.display='block'">
-		    </div>
-		</form> -->
 		<div class="report-container">
     <div class="print-btn">
       <p>
@@ -404,8 +410,8 @@
         <p>
           Are you sure. you want to delete this event ?
         </p>
-        <button type="button" onclick="document.getElementById('DeleteEventModal').style.display='none'" class="btn btn-secondary">Close</button>
-        <button type="submit" name="DeleteEventbtn" class="btn btn-danger">Yes, Delete</button>
+        <button id="close" type="button" onclick="document.getElementById('DeleteEventModal').style.display='none'" class="btn btn-secondary">Close</button>
+        <button type="submit" name="DeleteEventbtn" class="btn btn-danger">Delete</button>
       </div>
     </form>
   </div>

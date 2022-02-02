@@ -263,9 +263,9 @@
 
 		console.log(event_fields, typeof event_fields);
 
-         const element = document.createElement("div");
-         element.className = "allFields";
-         element.id = "fields";
+    const element = document.createElement("div");
+    element.className = "allFields";
+    element.id = "fields";
 		if (event_fields.length > 0) {
 			for (var item in event_fields[0]) {
 				var temp = "";

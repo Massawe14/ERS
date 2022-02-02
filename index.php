@@ -4,6 +4,7 @@
   include('includes/header.php');
   include('includes/sidemenu.php');
   include('includes/topbar.php');
+  include('config/dbconn.php');
 
   if (!isset($_SESSION['username'])) {
   	// code...
@@ -16,7 +17,28 @@
 	<div class="cardBox">
 		<div class="card">
 			<div>
-				<div class="numbers">1,000</div>
+				<?php 
+          $query = "SELECT id FROM event ORDER BY id";
+          $result = mysqli_query($conn, $query);
+
+          $row = mysqli_num_rows($result);
+          echo '<div class="numbers">'.$row.'</div>';
+        ?>
+				<div class="cardName">Total Events</div>
+			</div>
+			<div class="iconBx">
+				<ion-icon name="person-add"></ion-icon>
+			</div>
+		</div>
+		<div class="card">
+			<div>
+				<?php 
+          $query = "SELECT event_id FROM registered ORDER BY event_id";
+          $result = mysqli_query($conn, $query);
+
+          $row = mysqli_num_rows($result);
+          echo '<div class="numbers">'.$row.'</div>';
+        ?>
 				<div class="cardName">Registered</div>
 			</div>
 			<div class="iconBx">
@@ -34,17 +56,14 @@
 		</div>
 		<div class="card">
 			<div>
-				<div class="numbers">1,504</div>
-				<div class="cardName">Registered</div>
-			</div>
-			<div class="iconBx">
-				<ion-icon name="person-add"></ion-icon>
-			</div>
-		</div>
-		<div class="card">
-			<div>
-				<div class="numbers">950</div>
-				<div class="cardName">Attended</div>
+				<?php 
+          $query = "SELECT event_id FROM form_setting ORDER BY event_id";
+          $result = mysqli_query($conn, $query);
+
+          $row = mysqli_num_rows($result);
+          echo '<div class="numbers">'.$row.'</div>';
+        ?>
+				<div class="cardName">Forms</div>
 			</div>
 			<div class="iconBx">
 				<ion-icon name="pulse"></ion-icon>

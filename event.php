@@ -358,6 +358,37 @@
     	opacity: 0.8;
     }
 
+    #ShareLinkModal {
+			display: none;
+			position: fixed;
+			z-index: 1;
+			left: 400px;
+			top: 165px;
+			width: 60%;
+			height: 60%;
+			overflow: auto;
+			background-color: rgb(0, 0, 0);
+			background-color: rgba(0, 0, 0, 0.4);
+			padding-top: 60px;
+		}
+
+		.share {
+			padding: 30px;
+		}
+
+  	.share button {
+  		background-color: #287bff;
+  		border: none;
+  		padding: .8em 1.2em;
+  		margin-top: 3em;
+  		width: 32%;
+  		cursor: pointer;
+  	}
+
+  	.share button:hover {
+  		opacity: 0.8;
+  	}
+
 	</style>
 </head>
 <body>
@@ -400,7 +431,7 @@
                     <td>
                       <a href="#?n=<?php echo $row['n']; ?>" class="btn-edit btn-info btn-sm">Edit</a>
                       <button type="button" onclick="document.getElementById('DeleteEventModal').style.display='block'" value="<?php echo $row['n']; ?>" class="btn btn-danger btn-sm deleteEventBtn">Delete</button>
-                      <button onclick="" class="btn-share-link">Share Link</button>
+                      <button type="button" onclick="document.getElementById('ShareLinkModal').style.display='block'" class="btn-share-link shareLinkBtn">Share Link</button>
                     </td>
         	  		  </tr>
         	  		<?php
@@ -419,6 +450,22 @@
     </div>
   </div>
 	</div>
+
+	<!-- Share Link -->
+  <div class="modal" id="ShareLinkModal">
+    <form class="modal-content animate" method="POST">
+    	<div class="img">
+				<span onclick="document.getElementById('ShareLinkModal').style.display='none'" class="close" title="close button">&times;</span>
+			</div>
+      <div class="share" align="center">
+      	<h2 align="center">Share now</h2>
+        <button class="whatsapp">Whatsapp</button>
+				<button class="email">Email</button>
+				<button class="telegram">Telegram</button>
+      </div>
+    </form>
+  </div>
+  <!-- Delete User -->
 
 	<!-- Delete User -->
   <div class="modal" id="DeleteEventModal">
@@ -502,6 +549,31 @@
       var user_id = $(this).val();
       $('.delete_event_id').val(user_id);
       $('.DeleteEventModal').modal('show');
+    });
+
+  });
+</script>
+<script>
+	$(document).ready(function () {
+
+    $('.shareLinkBtn').click(function (e) {
+      e.preventDefault();
+      var event_id = $(this).val();
+      // $('.share_event_id').val(window.location='forms.php?event_id=event_id');
+      const href = 'forms.php?event_id=event_id';
+      const url = window.location.href;
+      console.log(url);
+      if (navigator.share) {
+      	navigator.share({
+      		url: `${url}`
+      	}).then(() => {
+      		console.log('Thanks for sharing!');
+      	})
+      	.catch(console.error);
+      }
+      else {
+      	$('.ShareLinkModal').modal('show');
+      }
     });
 
   });

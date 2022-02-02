@@ -11,15 +11,16 @@
   					<ion-icon name="search"></ion-icon>
   				</label>
   			</div>
-  			<!-- userimg -->
-			<!-- <button class="userdetails">
-				<?php  
-				  // if (isset($_SESSION['username'])) {
-				  // 	// code...
-				  // 	echo $_SESSION['username'];
-				  // }
-				?>
-			</button> -->
+  			<!-- <div class="username"> -->
+  				<!-- username -->
+				<!-- <label class="userdetails">
+					<?php  
+					  if (isset($_SESSION['username'])) {
+					  	echo $_SESSION['username'];
+					  }
+					?>
+				</label> -->
+  			<!-- </div> -->
   			<div class="user">
   				<img src="assets/profile.png">
   			</div>

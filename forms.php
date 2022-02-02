@@ -235,12 +235,12 @@
 	    } else {
 			?>
 				<div id="id01" class="modal">
-					<form class="modal-content animate" method="POST" enctype="multipart/form-data">
+					<form id="form" class="modal-content animate" action="code.php" method="POST" enctype="multipart/form-data">
 						<div class="container" id="container">
 							<h2 align="center">Registration Form</h2>
 						</div>
 						<div class="submit-button">
-							<input type="submit" value="Submit" name="create">
+							<input type="submit" id="submit" value="Submit" name="create">
 						</div>
 					</form>
 				</div>
@@ -268,6 +268,7 @@
 
          const element = document.createElement("div");
          element.className = "allFields";
+         element.id = "fields";
 		if (event_fields.length > 0) {
 			for (var item in event_fields[0]) {
 				var temp = "";
@@ -292,6 +293,20 @@
 			}
 
 			document.getElementById("container").appendChild(element);
+		}
+
+		const submit = document.getElementById("submit");
+		submit.onclick = () => {
+			var form = $("#fields");
+			$.ajax({
+			   cache: false,
+			   url: form.attr('action'),
+			   type: form.attr('method'),
+			   dataType: 'php',
+			   data: form.serialize(),
+			   success: success,
+			   error: error
+			});
 		}
 	</script>
 	<script src="plugins/html2canvas.js"></script>

@@ -21,6 +21,6 @@
 				?>
 			</button> -->
   			<div class="user">
-  				<img src="assets/Passport.jpg">
+  				<img src="assets/profile.png">
   			</div>
   		</div>

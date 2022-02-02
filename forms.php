@@ -231,7 +231,7 @@
 	    } else {
 			?>
 				<div id="id01" class="modal">
-					<form id="form" class="modal-content animate" enctype="multipart/form-data">
+					<form id="form" class="modal-content animate" action="code.php" method="POST" enctype="multipart/form-data">
 						<div class="container" id="container">
 							<h2 align="center">Registration Form</h2>
 							<input type="hidden" name="event_id" value="<?php echo $_GET['event_id']; ?>">
@@ -259,7 +259,7 @@
 			}
 			print(json_encode($json_array));
           }
-		?>;
+		?>
 
 		console.log(event_fields, typeof event_fields);
 

@@ -1,3 +1,6 @@
+<?php  
+  include('config/dbconn.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -210,95 +213,26 @@
 </head>
 <body>
 	<?php 
-	  include ('plugins/meRaviQr/qrlib.php');
-	  include ('plugins/config.php');
-	  include('includes/message.php');
-
-	  if(isset($_POST['create'])) {
-		  	$event_id = $_POST['variable'];
-		  	$field_1 =  $_POST['fullname'];
-		    $field_2 = $_POST['branchname'];
-		    $field_3 = $_POST['zone'];
-		    $field_4 = $_POST['variable'];
-		    $field_5 = $_POST['variable'];
-		    $field_6 = $_POST['variable'];
-		    $field_7 = $_POST['variable'];
-		    $qrImgName = "$fullname".rand();
-
-		    if($fullname == "" && $branchname == "" && $zone == "") {
-		      // echo "<script>alert('Please Fill all fields');</script>";
-		    	$_SESSION['status'] = "Please Fill all fields";
-		    	$_SESSION['status_code'] = "error";
-		        header('Location: form_builder');
-		        exit(0);
-		    }
-		    elseif($fullname == "") {
-		      // echo "<script>alert('Please Enter Your Full Name');</script>";
-		    	$_SESSION['status'] = "Please Enter Your Full Name";
-		    	$_SESSION['status_code'] = "error";
-		        header('Location: form_builder');
-		        exit(0);
-		    }
-		    elseif($branchname == "") {
-		      // echo "<script>alert('Please Enter Your Branch Name');</script>";
-		    	$_SESSION['status'] = "Please Enter Your Branch Name";
-		    	$_SESSION['status_code'] = "error";
-		        header('Location: form_builder');
-		        exit(0);
-		    }
-		    elseif($zone == "") {
-		      // echo "<script>alert('Please Enter Your Zone');</script>";
-		    	$_SESSION['status'] = "Please Enter Your Zone";
-		    	$_SESSION['status_code'] = "error";
-		        header('Location: form_builder');
-		        exit(0);
-		    }
-		    else {
-		      $qrimage = $qrImgName.".png";
-		      $qrs = QRcode::png($qrimage,"userQr/$qrImgName.png","H","3","3");
-		      $workDir = $_SERVER['HTTP_HOST'];
-		      $qrlink = $workDir."/qrcode".$qrImgName.".png";
-		      $insQr = $register->insertQr($event_id,$field_1,$field_2,$field_3,$field_4,$field_5,$field_6,$field_7,$qrimage,$qrlink);
-
-		      if($insQr == true) {
-		        echo "<script> window.location='form_builder.php?success=$qrimage&fname=$fullname';</script>";
-		        $_SESSION['status'] = "QR code created successfully";
-		    	$_SESSION['status_code'] = "success";
-		        header('Location: form_builder');
-		        exit(0);
-		      }
-		      else {
-		        // echo "<script>alert('cant create QR Code');</script>";
-		        $_SESSION['status'] = "Can't create QR code";
-		    	$_SESSION['status_code'] = "error";
-		        header('Location: form_builder');
-		        exit(0);
-		      }
-		    }
-	    }
-	?>
-	<?php 
-	  if(isset($_GET['success']))
-	  {
-	  ?>
-	  <div id="qrSucc" class="convert">
-	      <div id="result" class="modal-content animate container"> 
-	        <img id="img" src="assets/background.png" />  
-	        <div id="contents">
-	          <img src="userQr/<?php echo $_GET['success']; ?>" alt="">
-	          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['fname']); ?></p>
-	          <p style="color: white;">YOU ARE INVITED TO THE</p>
-	          <center>
-	            <img src="assets/eventname.png" alt="centered image" height="150" width="300"><br/>
-	          </center>
-	          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
-	        </div>
-	      </div>
-	      <div id="output" hidden></div>
-	      <a class="a" href="">Download Now</a>
-	   </div>
-	  <?php
-	} else {
+	  if(isset($_GET['success'])) {
+		  ?>
+			  <div id="qrSucc" class="convert">
+			      <div id="result" class="modal-content animate container"> 
+			        <img id="img" src="assets/background.png" />  
+			        <div id="contents">
+			          <img src="userQr/<?php echo $_GET['success']; ?>" alt="">
+			          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['event_id']); ?></p>
+			          <p style="color: white;">YOU ARE INVITED TO THE</p>
+			          <center>
+			            <img src="assets/eventname.png" alt="centered image" height="150" width="300"><br/>
+			          </center>
+			          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
+			        </div>
+			      </div>
+			      <div id="output" hidden></div>
+			      <a class="a" href="">Download Now</a>
+			   </div>
+		  <?php
+	    } else {
 			?>
 				<div id="id01" class="modal">
 					<form class="modal-content animate" method="POST" enctype="multipart/form-data">
@@ -317,16 +251,17 @@
 
 		// Load json data from mysql
 		var event_fields = <?php  
-		  include('config/dbconn.php');
+          if (isset($_GET['event_id'])) {
+          	$event_id = $_GET['event_id'];
+          	$sql = "SELECT * FROM form_setting WHERE event_id = '$event_id'";
+			$result = mysqli_query($conn, $sql);
 
-		  $sql = "SELECT * FROM form_setting";
-		  $result = mysqli_query($conn, $sql);
-
-		  $json_array = array();
-		  while ($row = mysqli_fetch_assoc($result)) {
-		  	$json_array[] = $row;
-		  }
-		  print(json_encode($json_array));
+			$json_array = array();
+			while ($row = mysqli_fetch_assoc($result)) {
+			  $json_array[] = $row;
+			}
+			print(json_encode($json_array));
+          }
 		?>;
 
 		console.log(event_fields, typeof event_fields);
@@ -361,6 +296,7 @@
 	</script>
 	<script src="plugins/html2canvas.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.3/html2canvas.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script>
 	    const elm = document.querySelector("#result");
 	    html2canvas(elm).then(function (canvas) {

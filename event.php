@@ -3,7 +3,6 @@
 
   error_reporting(0);
 
-  include "eventdb.php";
   include('config/dbconn.php');
 
   include('includes/header.php');
@@ -19,15 +18,15 @@
 
   if (isset($_POST['addEvent'])) {
   	// code...
-  	$name = $_POST['eventname'];
+  	$eventname = $_POST['eventname'];
   	$venue = $_POST['venue'];
   	$image = $_FILES['image']['name'];
-	// generate random id with string length of 10
-	$eventid = substr(md5(time()), 0, 10) . "";
-	//$id = date('YmdHis');
-	//$id = $id . rand(10, 99);
+		// generate random id with string length of 10
+		$eventid = substr(md5(time()), 0, 10) . "";
+		//$id = date('YmdHis');
+		//$id = $id . rand(10, 99);
 
-  	if ($name == '' || $venue == '' || $image == '') {
+  	if ($eventname == '' || $venue == '' || $image == '') {
   		// code...
   		$_SESSION['status'] = "Please check the missing field";
     	$_SESSION['status_code'] = "error";
@@ -56,15 +55,16 @@
 	     exit(0);
 	    }
 		  elseif (!in_array($file_extension, $allowed_extension)) {
-		    $_SESSION['status'] = "You are allowed with only jpg, png and jpeg Image";
+		    $_SESSION['status'] = "You are allowed with only jpg, png, jpeg, PNG, JPG and JPEG Image";
 		    $_SESSION['status_code'] = "error";
 		    header('Location: event');
 		    exit(0);
 		  }
 		  else {
-		  	$sql = $db->insert($eventid,$name,$venue,$filename);
+		  	$sql = "INSERT INTO event (id, name, venue, image) VALUES ('$eventid', '$eventname', '$venue', '$filename')";
+      	$result = mysqli_query($conn, $sql);
 
-		  	if($sql == true)
+		  	if($result)
 	      {
 	      	move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/images/'.$filename);
 	        $_SESSION['status'] = "Thank You. Event created successfully";
@@ -108,6 +108,8 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
+	<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.css" />
+	<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
 	<title>Event</title>
 	<style>
 		/*body {
@@ -365,8 +367,8 @@
 			z-index: 1;
 			left: 400px;
 			top: 165px;
-			width: 60%;
-			height: 60%;
+			width: 68%;
+			height: 68%;
 			overflow: auto;
 			background-color: rgb(0, 0, 0);
 			background-color: rgba(0, 0, 0, 0.4);
@@ -435,6 +437,10 @@
 			border-color: yellow;
 		}
 
+		.jssocials-share-link { 
+			border-radius: 50%; 
+		}
+
 	</style>
 </head>
 <body>
@@ -477,7 +483,7 @@
                     <td>
                       <a href="#?n=<?php echo $row['n']; ?>" class="btn-edit btn-info btn-sm">Edit</a>
                       <button type="button" onclick="document.getElementById('DeleteEventModal').style.display='block'" value="<?php echo $row['n']; ?>" class="btn btn-danger btn-sm deleteEventBtn">Delete</button>
-                      <button type="button" onclick="document.getElementById('ShareLinkModal').style.display='block'" class="btn-share-link shareLinkBtn">Share Link</button>
+                      <button type="button" onclick="document.getElementById('ShareLinkModal').style.display='block'" value="http://localhost/ERS/forms?event_id=<?php echo $row['id']; ?>" class="btn-share-link shareLinkBtn">Share Link</button>
                     </td>
         	  		  </tr>
         	  		<?php
@@ -508,7 +514,7 @@
         <!-- <button class="whatsapp">Whatsapp</button>
 				<button class="email">Email</button>
 				<button class="telegram">Telegram</button> -->
-				<div class="social-media">
+				<!-- <div class="social-media">
           <a href="#" class="social-icon" id="envelope">
             <i class="fa fa-envelope-o" aria-hidden="true"></i>
           </a>
@@ -521,11 +527,13 @@
           <a href="#" class="social-icon" id="message">
             <i class="fa fa-comment" aria-hidden="true"></i>
           </a>
-        </div>
+        </div> -->
+        <input type="hidden" name="share_link" class="share_link_id">
+        <div id="share-container"></div>
       </div>
     </form>
   </div>
-  <!-- Delete User -->
+  <!-- Share Link -->
 
 	<!-- Delete User -->
   <div class="modal" id="DeleteEventModal">
@@ -563,6 +571,7 @@
 	</div>
 
 	<?php include('includes/script.php'); ?>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
 	<!-- how to make close when click on any point of the browser -->
 	<script>
 		document.addEventListener("DOMContentLoaded", function() {
@@ -606,36 +615,42 @@
 
     $('.deleteEventBtn').click(function (e) {
       e.preventDefault();
-      var user_id = $(this).val();
-      $('.delete_event_id').val(user_id);
+      var event_id = $(this).val();
+      $('.delete_event_id').val(event_id);
       $('.DeleteEventModal').modal('show');
     });
 
   });
 </script>
 <script>
-	$(document).ready(function () {
+  $(document).ready(function () {
 
     $('.shareLinkBtn').click(function (e) {
       e.preventDefault();
       var event_id = $(this).val();
-      const href = 'forms.php?event_id=event_id';
-      const url = window.location.href;
-      console.log(url);
-      if (navigator.share) {
-      	navigator.share({
-      		url: `${url}`
-      	}).then(() => {
-      		console.log('Thanks for sharing!');
-      	})
-      	.catch(console.error);
-      }
-      else {
-      	$('.ShareLinkModal').modal('show');
-      }
+      $('.share_link_id').val(event_id);
+      const url = event_id;
+      $("#share-container").jsSocials({
+				shareIn: "popup",
+				showLabel: false,
+		    showCount: false,
+		    url: url,
+		    text: "Registration Form",
+				shares: ["email", "twitter", "facebook", "whatsapp", "telegram"],
+			});
     });
 
   });
+</script>
+<script>
+	// $("#share-container").jsSocials({
+	// 	shareIn: "popup",
+	// 	showLabel: false,
+ //    showCount: false,
+ //    url: "",
+ //    text: "Registration Form",
+	// 	shares: ["email", "twitter", "facebook", "whatsapp", "telegram"],
+	// });
 </script>
 </body>
 </html>

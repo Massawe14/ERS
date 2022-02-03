@@ -3,8 +3,6 @@
 
   error_reporting(0);
 
-  include "eventdb.php";
-
   include('includes/header.php');
   include('includes/sidemenu.php');
   include('includes/topbar.php');
@@ -612,6 +610,7 @@
                     success: function(result) {
                         // convert json to object
                         try {
+                            console.log("result: ", result);
                             const data = JSON.parse(result);
                             console.log("result: ", data);
                             if (data.success) {

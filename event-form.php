@@ -2,7 +2,7 @@
 
   include('config/dbconn.php'); 
 
-  if (isset($_POST['event_id']) && isset($_POST['fields'])) {.
+  if (isset($_POST['event_id']) && isset($_POST['fields'])) {
 		$event_id = $_POST['event_id'];
 		$fields = $_POST['fields'];
 		// convert string to json in php

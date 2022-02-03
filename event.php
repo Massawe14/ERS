@@ -107,6 +107,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
 	<title>Event</title>
 	<style>
 		/*body {
@@ -376,7 +377,7 @@
 			padding: 30px;
 		}
 
-  	.share button {
+  	/*.share button {
   		background-color: #287bff;
   		border: none;
   		padding: .8em 1.2em;
@@ -387,7 +388,52 @@
 
   	.share button:hover {
   		opacity: 0.8;
-  	}
+  	}*/
+
+  	.social-media {
+		  display: flex;
+		  justify-content: center;
+		}
+
+		.social-icon {
+		  height: 46px;
+		  width: 46px;
+		  display: flex;
+		  justify-content: center;
+		  align-items: center;
+		  margin: 0 0.45rem;
+		  color: #333;
+		  border-radius: 50%;
+		  border: 1px solid #333;
+		  text-decoration: none;
+		  font-size: 1.1rem;
+		  transition: 0.3s;
+		}
+
+		/*.social-icon:hover {
+		  color: #e1251b;
+		  border-color: #e1251b;
+		}*/
+
+		#envelope:hover {
+			color: #e1251b;
+			border-color: #e1251b;
+		}
+
+		#whatsapp:hover {
+			color: green;
+			border-color: green;
+		}
+
+		#telegram:hover {
+			color: #287bff;
+			border-color: #287bff;
+		}
+
+		#message:hover {
+			color: yellow;
+			border-color: yellow;
+		}
 
 	</style>
 </head>
@@ -459,9 +505,23 @@
 			</div>
       <div class="share" align="center">
       	<h2 align="center">Share now</h2>
-        <button class="whatsapp">Whatsapp</button>
+        <!-- <button class="whatsapp">Whatsapp</button>
 				<button class="email">Email</button>
-				<button class="telegram">Telegram</button>
+				<button class="telegram">Telegram</button> -->
+				<div class="social-media">
+          <a href="#" class="social-icon" id="envelope">
+            <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-icon" id="whatsapp">
+            <i class="fa fa-whatsapp" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-icon" id="telegram">
+            <i class="fa fa-telegram" aria-hidden="true"></i>
+          </a>
+          <a href="#" class="social-icon" id="message">
+            <i class="fa fa-comment" aria-hidden="true"></i>
+          </a>
+        </div>
       </div>
     </form>
   </div>
@@ -559,7 +619,6 @@
     $('.shareLinkBtn').click(function (e) {
       e.preventDefault();
       var event_id = $(this).val();
-      // $('.share_event_id').val(window.location='forms.php?event_id=event_id');
       const href = 'forms.php?event_id=event_id';
       const url = window.location.href;
       console.log(url);

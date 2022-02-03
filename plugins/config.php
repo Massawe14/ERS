@@ -14,11 +14,27 @@ s<?php
     		die("connection failed");
     	}
     }
-   	public function insertQr($event_id,$field_1,$qrimage,$qrlink)
+   	public function insertQr($event_id,$fields,$qrimage,$qrlink)
    	{
-   			$sql = "INSERT INTO registered (event_id,field_1,qrImage,qrlink) VALUES('$event_id','$field_1','$qrimage','$qrlink')";
-   			$query = $this->conn->query($sql);
-   			return $query;
+      $sql = "REPLACE INTO registered (event_id ";
+      for ($i=0; $i < count($fields); $i++) { 
+        $aa = $i + 1;
+        $sql = $sql . ", field_" . $aa;
+        $sql = $sql . ", qrImage ";
+        $sql = $sql . ", qrlink ";
+      }
+      $sql = $sql . ") VALUES ('$event_id'";
+      for ($j=0; $j < count($fields); $j++) { 
+        $field = $fields[$j];
+        $sql = $sql . ", '$field'";
+        $sql = $sql . ", qrimage ";
+        $sql = $sql . ", qrlink ";
+      }
+      $sql = $sql . ")";
+
+ 			// $sql = "INSERT INTO registered (event_id,field_1,qrImage,qrlink) VALUES('$event_id','$field_1','$qrimage','$qrlink')";
+ 			$query = $this->conn->query($sql);
+ 			return $query;
    	}
    	public function displayImg()
    	{

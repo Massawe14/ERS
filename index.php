@@ -27,7 +27,7 @@
 				<div class="cardName">Total Events</div>
 			</div>
 			<div class="iconBx">
-				<ion-icon name="person-add"></ion-icon>
+				<ion-icon name="calendar"></ion-icon>
 			</div>
 		</div>
 		<div class="card">
@@ -66,7 +66,7 @@
 				<div class="cardName">Forms</div>
 			</div>
 			<div class="iconBx">
-				<ion-icon name="pulse"></ion-icon>
+				<ion-icon name="browsers"></ion-icon>
 			</div>
 		</div>
 	</div>
@@ -81,43 +81,41 @@
 			<table>
 				<thead>
 					<tr>
-						<td>Full Name</td>
-						<td>Branch Name</td>
-						<td>Zone</td>
+						<td>Event ID</td>
+						<td>Event Name</td>
+						<td>Venue</td>
+						<td>Artwork</td>
 						<td>Created At</td>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>Ramadhani Massawe</td>
-						<td>Singida</td>
-						<td>Central</td>
-						<td>2022-1-11</td>
-					</tr>
-					<tr>
-						<td>Ramadhani Massawe</td>
-						<td>Singida</td>
-						<td>Central</td>
-						<td>2022-1-11</td>
-					</tr>
-					<tr>
-						<td>Ramadhani Massawe</td>
-						<td>Singida</td>
-						<td>Central</td>
-						<td>2022-1-11</td>
-					</tr>
-					<tr>
-						<td>Ramadhani Massawe</td>
-						<td>Singida</td>
-						<td>Central</td>
-						<td>2022-1-11</td>
-					</tr>
-					<tr>
-						<td>Ramadhani Massawe</td>
-						<td>Singida</td>
-						<td>Central</td>
-						<td>2022-1-11</td>
-					</tr>
+					<?php  
+        	  $sql = "SELECT * FROM event";
+        	  $result = mysqli_query($conn, $sql);
+
+        	  if (mysqli_num_rows($result) > 0) {
+        	  	foreach ($result as $row) {
+        	  		?>
+        	  		  <tr>
+        	  		  	<td><?php echo $row['id']; ?></td>
+        	  		  	<td><?php echo $row['name'] ?></td>
+        	  		  	<td><?php echo $row['venue'] ?></td>
+        	  		  	<td>
+                      <img src="<?php echo "uploads/images/".$row['image']; ?>" width="100px" alt="image">
+                    </td>
+                    <td><?php echo $row['created_at'] ?></td>
+        	  		  </tr>
+        	  		<?php
+        	  	}
+        	  }
+        	  else{
+              ?>
+                <tr>
+                  <td>No Event Found</td>
+                </tr>
+              <?php
+            }
+        	?>
 				</tbody>
 			</table>
 		</div>

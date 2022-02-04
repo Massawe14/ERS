@@ -317,6 +317,10 @@ body {
     border-radius: 6px;
 }
 
+.btn:hover {
+    opacity: 0.8;
+}
+
 .details table {
     width: 100%;
     border-collapse: collapse;

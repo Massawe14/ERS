@@ -14,7 +14,7 @@ s<?php
     		die("connection failed");
     	}
     }
-   	public function insertQr($event_id,$fields,$qrimage,$qrlink)
+   	public function insertQr($event_id,$field_1,$field_2,$field_3,$field_4,$field_5,$field_6,$field_7,$qrimage,$qrlink)
    	{
       $sql = "REPLACE INTO registered (event_id ";
       for ($i=0; $i < count($fields); $i++) { 
@@ -32,7 +32,8 @@ s<?php
       }
       $sql = $sql . ")";
 
- 			// $sql = "INSERT INTO registered (event_id,field_1,qrImage,qrlink) VALUES('$event_id','$field_1','$qrimage','$qrlink')";
+ 			// $sql = "INSERT INTO registered (event_id,field_1,field_2,field_3,field_4,field_5,field_6,field_7,qrImage,qrlink) VALUES('$event_id','$field_1','$field_2','$field_3','$field_4','$field_5','$field_6','$field_7','$qrimage','$qrlink')";
+      
  			$query = $this->conn->query($sql);
  			return $query;
    	}

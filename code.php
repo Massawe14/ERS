@@ -13,6 +13,12 @@
     $field_6 =  isset($_POST['field_6']) ? $_POST['field_6'] : '';
     $field_7 =  isset($_POST['field_7']) ? $_POST['field_7'] : '';
 
+    $qrImgName = "$field_1"."$event_id".rand();
+    $qrimage = $qrImgName.".png";
+    $qrs = QRcode::png($qrimage,"plugins/userQr/$qrImgName.png","H","3","3");
+    $workDir = $_SERVER['HTTP_HOST'];
+    $qrlink = $workDir."/qrcode".$qrImgName.".png";
+
     $fields = array("$field_1","$field_2","$field_3","$field_4","$field_5","$field_6","$field_7");
     ksort($fields);
 
@@ -29,15 +35,10 @@
       $field = $fields[$i];
       if (isset($field)) {
         // code...
-        $qrImgName = "$field".rand();
-        $qrimage = $qrImgName.".png";
-        $qrs = QRcode::png($qrimage,"plugins/userQr/$qrImgName.png","H","3","3");
-        $workDir = $_SERVER['HTTP_HOST'];
-        $qrlink = $workDir."/qrcode".$qrImgName.".png";
         $insQr = $register->insertQr($event_id,$fields,$qrimage,$qrlink);
 
         if($insQr == true) {
-            echo "<script>alert('Thank You. Success Create Your QR Code'); window.location='forms.php?success=$qrimage&field_=$field';</script>";
+            echo "<script>alert('Thank You. Success Create Your QR Code'); window.location='forms.php?success=$qrimage&field=$field_1';</script>";
         }
         else {
           echo "<script>alert('cant create QR Code');

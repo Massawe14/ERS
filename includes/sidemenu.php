@@ -21,14 +21,14 @@
 		</li>
 		<li id="report">
 			<a href="report">
-				<span class="icon"><ion-icon name="print"></ion-icon></span>
+				<span class="icon"><ion-icon name="paper"></ion-icon></span>
 				<span class="title">Reports</span>
 			</a>
 		</li>
 		<li id="form-setting">
 			<a href="form-setting">
-				<span class="icon"><ion-icon name="settings"></ion-icon></span>
-				<span class="title">Form Setting</span>
+				<span class="icon"><ion-icon name="list-box"></ion-icon></span>
+				<span class="title">Registration Form</span>
 			</a>
 		</li>
 		<li id="logout">

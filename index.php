@@ -47,11 +47,11 @@
 		</div>
 		<div class="card">
 			<div>
-				<div class="numbers">950</div>
+				<div class="numbers">0</div>
 				<div class="cardName">Attended</div>
 			</div>
 			<div class="iconBx">
-				<ion-icon name="pulse"></ion-icon>
+				<ion-icon name="stats"></ion-icon>
 			</div>
 		</div>
 		<div class="card">
@@ -66,7 +66,7 @@
 				<div class="cardName">Forms</div>
 			</div>
 			<div class="iconBx">
-				<ion-icon name="browsers"></ion-icon>
+				<ion-icon name="list-box"></ion-icon>
 			</div>
 		</div>
 	</div>
@@ -133,7 +133,17 @@
   				<div class="mask half">
   					<div class="fill"></div>
   				</div>
-  				<div class="inside-circle">80%</div>
+  				<div class="inside-circle">
+  					<?php 
+  					  $sql = "SELECT * FROM registered";
+        	    $result = mysqli_query($conn, $sql);
+        	    $totalrows = mysqli_num_rows($result);
+        	    $total = $totalrows / 100;
+        	    $percentage = $total * 100;
+        	    $percentage = number_format($percentage, 0);
+        	    echo "$percentage%";
+  					?>
+  				</div>
 				</div>
 			</div>
 		</div>

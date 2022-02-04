@@ -511,23 +511,6 @@
 			</div>
       <div class="share" align="center">
       	<h2 align="center">Share now</h2>
-        <!-- <button class="whatsapp">Whatsapp</button>
-				<button class="email">Email</button>
-				<button class="telegram">Telegram</button> -->
-				<!-- <div class="social-media">
-          <a href="#" class="social-icon" id="envelope">
-            <i class="fa fa-envelope-o" aria-hidden="true"></i>
-          </a>
-          <a href="#" class="social-icon" id="whatsapp">
-            <i class="fa fa-whatsapp" aria-hidden="true"></i>
-          </a>
-          <a href="#" class="social-icon" id="telegram">
-            <i class="fa fa-telegram" aria-hidden="true"></i>
-          </a>
-          <a href="#" class="social-icon" id="message">
-            <i class="fa fa-comment" aria-hidden="true"></i>
-          </a>
-        </div> -->
         <input type="hidden" name="share_link" class="share_link_id">
         <div id="share-container"></div>
       </div>
@@ -641,16 +624,6 @@
     });
 
   });
-</script>
-<script>
-	// $("#share-container").jsSocials({
-	// 	shareIn: "popup",
-	// 	showLabel: false,
- //    showCount: false,
- //    url: "",
- //    text: "Registration Form",
-	// 	shares: ["email", "twitter", "facebook", "whatsapp", "telegram"],
-	// });
 </script>
 </body>
 </html>

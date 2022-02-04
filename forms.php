@@ -19,13 +19,14 @@
 		}
 
 		/* Full-width input fields */
-		input[type=text], input[type=password] {
-		    width: 100%;
-		    padding: 12px 20px;
-		    margin: 8px 0;
-		    display: inline-block;
-		    border: 1px solid #ccc;
-		    box-sizing: border-box;
+		input[type=text], input[type=password], 
+		input[type=email], input[type=tel], input[type=number] {
+	    width: 100%;
+	    padding: 12px 20px;
+	    margin: 8px 0;
+	    display: inline-block;
+	    border: 1px solid #ccc;
+	    box-sizing: border-box;
 		}
 
 		/* Set a style for all buttons */
@@ -248,9 +249,9 @@
 
 		// Load json data from mysql
 		var event_fields = <?php  
-          if (isset($_GET['event_id'])) {
-          	$event_id = $_GET['event_id'];
-          	$sql = "SELECT * FROM form_setting WHERE event_id = '$event_id'";
+    if (isset($_GET['event_id'])) {
+    	$event_id = $_GET['event_id'];
+    	$sql = "SELECT * FROM form_setting WHERE event_id = '$event_id'";
 			$result = mysqli_query($conn, $sql);
 
 			$json_array = array();
@@ -258,7 +259,7 @@
 			  $json_array[] = $row;
 			}
 			print(json_encode($json_array));
-          }
+    }
 		?>
 
 		console.log(event_fields, typeof event_fields);

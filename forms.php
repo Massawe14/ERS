@@ -267,14 +267,14 @@
     const element = document.createElement("div");
     element.className = "allFields";
     element.id = "fields";
+    var temp = "";
 		if (event_fields.length > 0) {
 			for (var item in event_fields[0]) {
-				var temp = "";
 				const key = item + "";
 				const value = event_fields[0][item];
 				console.log("key: ", key);
 				console.log("value: ", value);
-				if (key.startsWith("field_") && value) {
+				if (key.startsWith("field") && value) {
 					const field = value;
 					const field_input_name = key + ""
 					if (field.length > 0) {

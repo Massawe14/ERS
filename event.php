@@ -311,7 +311,7 @@
       background-color: #e1251b;
       border: none;
       color: white;
-      padding: 15px 15px;
+      padding: 10px 10px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -328,11 +328,11 @@
     }
 
     .btn-edit {
-    	background-color: #287bff;
+    	background-color: #00263A;
       border: none;
       color: white;
-      border-radius: 8px;
-      padding: 15px 20px;
+      border-radius: 6px;
+      padding: 10px 10px;
       text-align: center;
       text-decoration: none;
       display: inline-block;
@@ -345,11 +345,11 @@
     }
 
     .btn-share-link {
-    	background-color: greenyellow;
+    	background-color: #187890;
       border: none;
       color: white;
-      border-radius: 8px;
-      padding: 15px 10px;
+      border-radius: 6px;
+      padding: 10px 10px;
       text-align: center;
       text-decoration: none;
       display: inline-block;

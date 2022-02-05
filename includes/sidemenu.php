@@ -19,16 +19,22 @@
 				<span class="title">Events</span>
 			</a>
 		</li>
-		<li id="report">
-			<a href="report">
-				<span class="icon"><ion-icon name="paper"></ion-icon></span>
-				<span class="title">Reports</span>
-			</a>
-		</li>
 		<li id="form-setting">
 			<a href="form-setting">
 				<span class="icon"><ion-icon name="list-box"></ion-icon></span>
 				<span class="title">Registration Form</span>
+			</a>
+		</li>
+		<li id="scanner">
+			<a href="#">
+				<span class="icon"><ion-icon name="qr-scanner"></ion-icon></span>
+				<span class="title">Scanner</span>
+			</a>
+		</li>
+		<li id="report">
+			<a href="report">
+				<span class="icon"><ion-icon name="paper"></ion-icon></span>
+				<span class="title">Reports</span>
 			</a>
 		</li>
 		<li id="logout">

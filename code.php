@@ -16,7 +16,10 @@
       'field_7' =>  isset($_POST['field_7']) ? $_POST['field_7'] : '',
     );
 
-    $qrImgName = "$fields[1]"."$fields[0]".rand();
+    $event_id = $fields[0];
+    $field_1 = $fields[1];
+
+    $qrImgName = "$field_1"."$event_id".rand();
     $qrimage = $qrImgName.".png";
     $qrs = QRcode::png($qrimage,"plugins/userQr/$qrImgName.png","H","3","3");
     $workDir = $_SERVER['HTTP_HOST'];

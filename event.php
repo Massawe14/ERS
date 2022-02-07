@@ -112,14 +112,6 @@
 	<link type="text/css" rel="stylesheet" href="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials-theme-classic.css" />
 	<title>Event</title>
 	<style>
-		/*body {
-			font-family: Arial, Helvetica, sans-serif;
-		    display: flex;
-		    flex-direction: column;
-		    justify-content: center;
-		    align-items: center;
-		    overflow: auto;
-		}*/
 
 		/* Full-width input fields */
 		input[type=text], input[type=password], input[type=file], input[type=email], 
@@ -379,19 +371,6 @@
 			padding: 30px;
 		}
 
-  	/*.share button {
-  		background-color: #287bff;
-  		border: none;
-  		padding: .8em 1.2em;
-  		margin-top: 3em;
-  		width: 32%;
-  		cursor: pointer;
-  	}
-
-  	.share button:hover {
-  		opacity: 0.8;
-  	}*/
-
   	.social-media {
 		  display: flex;
 		  justify-content: center;
@@ -411,11 +390,6 @@
 		  font-size: 1.1rem;
 		  transition: 0.3s;
 		}
-
-		/*.social-icon:hover {
-		  color: #e1251b;
-		  border-color: #e1251b;
-		}*/
 
 		#envelope:hover {
 			color: #e1251b;

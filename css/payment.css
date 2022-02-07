@@ -1,68 +1,56 @@
-body
-{
-	padding: 0;
-	margin: 0;
-	font-family: 'Poppins', sans-serif;
-	color: #4e4e4e;
-	background: #fff;
-}
-.card-box
-{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 250px;
-	border-radius: 5px;
-	padding: 30px 20px;
-	background: #fff;
-	box-shadow: 10px 10px 15px #eaeaea, -10px -10px 15px #eaeaea;
-}
-.card-box .card-title h1
-{
-	font-size: 24px;
-	margin: 0 0 15px;
-}
-.card-box .card
-{
-	align-items: center;
+body {
+	font-family: Arial, Helvetica, sans-serif;
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: auto;
 }
-.card-box .card input[type="radio"]
-{
-	width: 30px;
-	height: 30px;
-	-webkit-appearance: none;
-	border: 3px solid #999;
-	border-radius: 50%;
-	margin: 10px 15px 10px 0;
+
+/* Full-width input fields */
+input[type=text], input[type=password], 
+input[type=email], input[type=tel], input[type=number] {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+input[type=submit]{
+	background-color: #e1251b;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
 	cursor: pointer;
-	position: relative;
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
 }
-.card-box .card input[type="radio"]:checked::after
-{
-	content: "";
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	margin: auto;
-	width: 15px;
-	height: 15px;
-	border-radius: 50%;
-	background: #3dc7d6;
+
+input[type=submit]:hover {
+  opacity: 0.8;
 }
-.card-box .card .form-step-active
-{
-	font-size: 24px;
-	margin-right: 15px;
-	width: 30px;
-	cursor: pointer;
+
+select {
+	width: 100%;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
 }
-.card-box .card span
-{
-	font-size: 18px;
-	font-weight: 400;
-	cursor: pointer;
+
+.paymentcontainer {
+	padding: 15px;
+}
+
+.form-content {
+	background-color: #fefefe;
+	margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+	border: 1px solid #888;
+	width: 80%; /* Could be more or less, depending on screen size */
 }

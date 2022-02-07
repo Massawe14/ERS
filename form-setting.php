@@ -22,14 +22,6 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Event</title>
 	<style>
-		/*body {
-			font-family: Arial, Helvetica, sans-serif;
-		    display: flex;
-		    flex-direction: column;
-		    justify-content: center;
-		    align-items: center;
-		    overflow: auto;
-		}*/
 
 		/* Full-width input fields */
 		input[type=text], input[type=password], input[type=file], input[type=email], 
@@ -86,16 +78,6 @@
 		input[type='button']:hover {
 			opacity: 0.8;
 		}
-
-		/*.cancel {
-			width: 100%;
-			background-color: #e1251b;
-		}*/
-
-		/*img.avatar {
-		  width: 40%;
-		  border-radius: 50%;
-		}*/
 
 		.eventcontainer {
 			padding: 15px;
@@ -156,12 +138,6 @@
 	    from {transform: scale(0)} 
 	    to {transform: scale(1)}
 		}
-
-		/*@media screen and (max-width: 300px) {
-	    .cancel {
-	      width: 100%;
-	    }
-		}*/
 
 		.controls {
 			width: 294px;

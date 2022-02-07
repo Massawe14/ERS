@@ -210,17 +210,15 @@
         
         .field {
             width: 100%;
-            height: 190px;
+            height: 290px;
             position: relative;
             display: flex;
             flex-direction: column;
-            background-color: #3c87ba;
-            border-radius: 8px;
-            border-color: rgb(36, 36, 36);
-            border-style: solid;
-            border-width: 1px;
-            padding: 8px;
-            margin: 8px;
+            background: var(--white);
+            padding: 20px;
+            /*box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);*/
+            border-radius: 20px;
+            /*margin: 8px 0;*/
 			animation-name: add-field-anim;
             animation-duration: 1s;
         }
@@ -253,27 +251,24 @@
         }
         
         label {
-            color: rgb(255, 255, 255);
+            color: #222;
             font-style: bold;
-            font-size: 20px;
+            font-size: 18px;
             margin: 0 0 0 10px;
         }
         
         input,
         select {
             width: calc(100% - 24px);
-            height: 30px;
-            border-radius: 8px;
-            border-color: transparent;
-            border-style: solid;
-            border-width: 1px;
-            padding: 4px;
-            margin: 8px;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
         }
         
         select {
-            width: calc(100% - 16px);
-            height: 40px !important;
+            width: calc(100% - 24px);
             cursor: pointer;
         }
         
@@ -307,19 +302,35 @@
         }
         
         #add-btn {
-            background-color: #3c87ba;
+            background-color: #e1251b;
+            border: none;
+            color: white;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
         }
         
         #ok-btn {
-            background-color: #34bb97;
+            background-color: #187890;
+            border: none;
+            color: white;
+            padding: 10px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            cursor: pointer;
         }
         
         #add-btn:hover {
-            background-color: #285e82;
+            opacity: 0.8;
         }
         
         #ok-btn:hover {
-            background-color: #26876d;
+            opacity: 0.8;
         }
         
         .remove-anim {
@@ -360,45 +371,9 @@
             <div id="ok-btn" class="action-btn">Create</div>
             <div id="add-btn" class="action-btn">Add Field</div>
         </div>
-        <!-- <form id="the-form" action="form-setting" method="post" style="display: none">
-            <input id="the-event-id" type="hidden" name="event_id" value="" />
-            <input id="the-fields" type="hidden" name="fields" value="" />
-        </form> -->
 	</div>
 
 	<?php include('includes/script.php'); ?>
-	<!-- how to make close when click on any point of the browser -->
-	<!-- <script>
-		var valueList = document.getElementById('valueList');
-		var text = '<span> you have selected : </span>'
-		var listArray = [];
-		var checkboxes = document.querySelectorAll('.checkme');
-
-		for (var checkbox of checkboxes) {
-			checkbox.addEventListener('click',function(){
-				if (this.checked == true) {
-					$(this).parents(".checkbox-card").find('.input-group').show();
-					console.log(this.value);
-					listArray.push(this.value);
-					valueList.innerHTML = text + listArray.join(' / ');
-				}
-				else {
-					$(this).parents(".checkbox-card").find('.input-group').hide();
-					console.log('You unchecked the checkbox');
-					listArray = listArray.filter(e => e !== this.value);
-					valueList.innerHTML = text + listArray.join(' / ');
-				}
-			});
-		} 
-	 </script> 
-	<script>
-		var modal = document.getElementById('eventmodal');
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
-			}
-		}
-	</script>-->
 	<script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
 			document.getElementById("home").className = "";
@@ -409,10 +384,6 @@
         const fields_container = document.getElementById("fields-container");
         const add_btn = document.getElementById("add-btn");
         const ok_btn = document.getElementById("ok-btn");
-
-        // const the_form = document.getElementById("the-form");
-        // const the_event_id = document.getElementById("the-event-id");
-        // const the_fields = document.getElementById("the-fields");
 
         var fields_count = 0;
         var is_updating = false;

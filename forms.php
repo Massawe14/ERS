@@ -214,7 +214,6 @@
 </head>
 <body>
 	<?php 
-
 		if(isset($_GET['success'])) {
 	  ?>
 		  <div id="qrSucc" class="convert">

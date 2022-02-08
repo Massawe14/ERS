@@ -16,6 +16,9 @@
       'field_7' =>  isset($_POST['field_7']) ? $_POST['field_7'] : '',
     );
 
+    $event_id = $fields['event_id'];
+    $field_1 = $fields['field_1'];
+
     $qrImgName = "$field_1"."$event_id".rand();
     $qrimage = $qrImgName.".png";
     $qrs = QRcode::png($qrimage,"plugins/userQr/$qrImgName.png","H","3","3");

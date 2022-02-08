@@ -213,12 +213,11 @@
 	</style>
 </head>
 <body>
-	<?php 
-		if(isset($_GET['success'])) {
-	  ?>
-		  <div id="qrSucc" class="convert">
-		      <div id="result" class="modal-content animate container">
-		        <img id="img" src="<?php echo "uploads/images/".$row['image']; ?>" alt="">
+	<?php  
+	  if(isset($_GET['success'])) {
+		  ?>
+			  <div id="qrSucc" class="convert">
+		      <div id="result" class="modal-content animate container">  
 		        <div id="contents">
 		          <img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
 		          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field']); ?></p>
@@ -229,22 +228,23 @@
 		      <div id="output" hidden></div>
 		      <a class="a" href="">Download Now</a>
 		   </div>
-	  <?php
-    } else {
-		?>
-			<div id="id01" class="modal">
-				<form id="form" class="modal-content animate" action="code.php" method="POST" enctype="multipart/form-data">
-					<div class="container" id="container">
-						<h2 align="center">Registration Form</h2>
-						<input type="hidden" name="event_id" value="<?php echo $_GET['event_id']; ?>">
-					</div>
-					<div class="submit-button">
-						<input type="submit" id="submit" value="Submit" name="create">
-					</div>
-				</form>
-			</div>
-		<?php
-    }
+		  <?php
+	  } 
+	  else {
+			?>
+				<div id="id01" class="modal">
+					<form id="form" class="modal-content animate" action="code.php" method="POST" enctype="multipart/form-data">
+						<div class="container" id="container">
+							<h2 align="center">Registration Form</h2>
+							<input type="hidden" name="event_id" value="<?php echo $_GET['event_id']; ?>">
+						</div>
+						<div class="submit-button">
+							<input type="submit" id="submit" value="Submit" name="create">
+						</div>
+					</form>
+				</div>
+			<?php
+	  }
 	?>
 	<script type="text/javascript">
 

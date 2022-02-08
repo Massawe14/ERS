@@ -127,12 +127,12 @@
 			</div>
 			<div class="circle-wrap">
 				<div class="circle">
-					<div class="mask full">
+					<!-- <div class="mask full">
   					<div class="fill"></div>
   				</div>
   				<div class="mask half">
   					<div class="fill"></div>
-  				</div>
+  				</div> -->
   				<div class="inside-circle">
   					<?php 
   					  $sql = "SELECT * FROM registered";
@@ -141,7 +141,7 @@
         	    $total = $totalrows / 100;
         	    $percentage = $total * 100;
         	    $percentage = number_format($percentage, 0);
-        	    echo "$percentage%";
+        	    // echo "$percentage%";
   					?>
   				</div>
 				</div>
@@ -158,4 +158,25 @@
 		document.getElementById("report").className = "";
 		document.getElementById("form-setting").className = "";
 	});
+</script>
+<script>
+	let progressBar = document.querySelector(".circle-wrap");
+	let valueContainer = document.querySelector(".inside-circle");
+
+	let progressValue = 0;
+	var progressEndValue = "<?=$percentage?>";
+	console.log(progressEndValue);
+	let speed = 20;
+
+	let progress = setInterval(() => {
+		progressValue++;
+		valueContainer.textContent = `${progressValue}%`;
+		progressBar.style.background = `conic-gradient(
+		  #e1251b ${progressValue * 3.6}deg,
+		  #fbe0de ${progressValue * 3.6}deg
+		)`;
+		if (progressValue == progressEndValue) {
+			clearInterval(progress);
+		}
+	}, speed);
 </script>

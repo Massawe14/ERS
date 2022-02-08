@@ -173,7 +173,7 @@
 		valueContainer.textContent = `${progressValue}%`;
 		progressBar.style.background = `conic-gradient(
 		  #e1251b ${progressValue * 3.6}deg,
-		  #fbe0de ${progressValue * 3.6}deg
+		  #f5f5f5 ${progressValue * 3.6}deg
 		)`;
 		if (progressValue == progressEndValue) {
 			clearInterval(progress);

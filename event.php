@@ -430,7 +430,6 @@
       <table class="table" id="table">
         <thead>
           <tr>
-            <th>Number</th>
             <th>Event ID</th>
             <th>Event Name</th>
             <th>Venue</th>
@@ -447,7 +446,6 @@
         	  	foreach ($result as $row) {
         	  		?>
         	  		  <tr>
-        	  		  	<td><?php echo $row['n']; ?></td>
         	  		  	<td><?php echo $row['id'] ?></td>
         	  		  	<td><?php echo $row['name'] ?></td>
         	  		  	<td><?php echo $row['venue'] ?></td>

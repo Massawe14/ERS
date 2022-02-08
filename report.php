@@ -6,6 +6,7 @@
   include('includes/header.php');
   include('includes/sidemenu.php');
   include('includes/topbar.php');
+  include('config/dbconn.php');
 
   if (!isset($_SESSION['username'])) {
     // code...
@@ -17,9 +18,11 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Report</title>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
   <style>
 
     .report-container {
@@ -101,38 +104,54 @@
   <div class="report-container">
     <div class="print-btn">
       <p>
-        <button onclick="printDiv('printReport')" class="btn">Print</button>
+        <button onclick="printJS('printJS-table', 'html')" class="btn">Print</button>
       </p>
     </div>
     <div id="printReport" class="print-table">
-      <table class="table">
+      <table id="printJS-table" class="table">
         <thead>
           <tr>
-            <th>Rank</th>
-            <th>Name</th>
-            <th>Points</th>
-            <th>Team</th>
+            <th>Event ID</th>
+            <th>Field1</th>
+            <th>Field2</th>
+            <th>Field3</th>
+            <th>Field4</th>
+            <th>Field5</th>
+            <th>Field6</th>
+            <th>Field7</th>
+            <th>Registered At</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Domenic</td>
-            <td>88,110</td>
-            <td>dcode</td>
-          </tr>
-          <tr class="active-row">
-            <td>2</td>
-            <td>Sally</td>
-            <td>72,400</td>
-            <td>Students</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Nick</td>
-            <td>52,300</td>
-            <td>dcode</td>
-          </tr>
+          <?php  
+            $sql = "SELECT * FROM registered";
+            $result = mysqli_query($conn, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+              foreach ($result as $row) {
+                ?>
+                  <tr>
+                    <td><?php echo $row['event_id']; ?></td>
+                    <td><?php echo $row['field_1']; ?></td>
+                    <td><?php echo $row['field_2']; ?></td>
+                    <td><?php echo $row['field_3']; ?></td>
+                    <td><?php echo $row['field_4']; ?></td>
+                    <td><?php echo $row['field_5']; ?></td>
+                    <td><?php echo $row['field_6']; ?></td>
+                    <td><?php echo $row['field_7']; ?></td>
+                    <td><?php echo $row['registered_at']; ?></td>
+                  </tr>
+                <?php
+              }
+            }
+            else{
+              ?>
+                <tr>
+                  <td>No Event Found</td>
+                </tr>
+              <?php
+            }
+          ?>
         </tbody>
       </table>
     </div>
@@ -141,6 +160,7 @@
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script
   src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("home").className = "";
@@ -149,7 +169,7 @@
         document.getElementById("form-setting").className = "";
     });
   </script>
-  <script>
+  <!-- <script>
     function printDiv(divID) {
       //Get the HTML of div
       var divElements = document.getElementById(divID).innerHTML;
@@ -163,6 +183,6 @@
       //Restore orignal HTML
       document.body.innerHTML = oldPage;
     }
-  </script>
+  </script> -->
 </body>
 </html>

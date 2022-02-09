@@ -19,11 +19,9 @@
     $event_id = $_GET['event_id'];
     $sql = "SELECT * FROM event WHERE id = '$event_id'";
     $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-        while ($row = mysqli_fetch_assoc($result)) {
-            $event_id = $row['event_id'];
-        }
+    
+    if ($row = mysqli_fetch_assoc($result)) {
+        $event_id = $row['event_id'];
     }
   }
 ?>

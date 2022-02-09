@@ -6,11 +6,9 @@
     $sql = "SELECT * FROM event WHERE id = '$event_id'";
 		$result = mysqli_query($conn, $sql);
 
-		if ($result) {
-			while ($row = mysqli_fetch_assoc($result)) {
-				$name = $row['name'];
-				$image = $row['image'];
-			}
+		if($row = mysqli_fetch_assoc($result)) {
+		  $name = $row['name'];
+		  $image = $row['image'];
 		}
   }
 ?>
@@ -231,11 +229,11 @@
 		  ?>
 			  <div id="qrSucc" class="convert">
 		      <div id="result" class="modal-content animate container">
-		        <img id="img" src="<?php echo "uploads/images/".$image; ?>" />  
+		        <img id="img" src="<?php echo "uploads/images/".$row['image']; ?>" />  
 		        <div id="contents">
 		          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field']); ?></p>
 		          <p style="color: white;">YOU ARE INVITED TO THE</p>
-		          <p><?php echo strtoupper($name); ?></p>
+		          <p><?php echo strtoupper($row['name']); ?></p>
 		          <img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
 		          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
 		        </div>

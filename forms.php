@@ -32,7 +32,7 @@
 		}
 
 		/* Full-width input fields */
-		input[type=text], input[type=password], 
+		input[type=text], input[type=password], input[type=phone], 
 		input[type=email], input[type=tel], input[type=number] {
 	    width: 100%;
 	    padding: 12px 20px;

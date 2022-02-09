@@ -3,13 +3,16 @@
 
   if (isset($_GET['event_id'])) {
   	$event_id = $_GET['event_id'];
-    $sql = "SELECT * FROM event WHERE id = '$event_id'";
+    $sql = "SELECT name, image FROM event WHERE id = '$event_id'";
+
+    // make query & get result
 		$result = mysqli_query($conn, $sql);
 
-		if($row = mysqli_fetch_assoc($result)) {
-		  $name = $row['name'];
-		  $image = $row['image'];
-		}
+		// fetch the resulting rows as an array
+		$event = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+		// free result from memory
+		mysqli_free_result($result);
   }
 ?>
 <!DOCTYPE html>

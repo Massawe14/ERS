@@ -7,11 +7,24 @@
   include('includes/sidemenu.php');
   include('includes/topbar.php');
   include('includes/message.php');
+  include('config/dbconn.php');
 
   if (!isset($_SESSION['username'])) {
   	// code...
   	header("Location: authentication");
   	exit(0);
+  }
+
+  if (isset($_GET['event_id'])) {
+    $event_id = $_GET['event_id'];
+    $sql = "SELECT * FROM event WHERE event_id = '$event_id'";
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $event_id = $row['event_id'];
+        }
+    }
   }
 ?>
 <!DOCTYPE html>
@@ -112,9 +125,9 @@
 			position: absolute;
 			right: 25px;
 			top: 0;
-	    color: #000;
-	    font-size: 35px;
-	    font-weight: bold;
+    	    color: #000;
+    	    font-size: 35px;
+    	    font-weight: bold;
 		}
 
 		.close:hover,
@@ -130,13 +143,13 @@
 		}
 
 		@-webkit-keyframes animatezoom {
-	    from {-webkit-transform: scale(0)} 
-	    to {-webkit-transform: scale(1)}
+    	    from {-webkit-transform: scale(0)} 
+    	    to {-webkit-transform: scale(1)}
 		}
 		    
 		@keyframes animatezoom {
-	    from {transform: scale(0)} 
-	    to {transform: scale(1)}
+    	    from {transform: scale(0)} 
+    	    to {transform: scale(1)}
 		}
 
 		.controls {
@@ -486,7 +499,7 @@
 
         const fieldList = [];
 
-        var event_id = 0;
+        var event_id = "<?=$event_id?>";
 
         function loadFields(id, list) {
             fieldList.length = 0;

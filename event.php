@@ -69,7 +69,7 @@
 	      	move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/images/'.$filename);
 	        $_SESSION['status'] = "Thank You. Event created successfully";
 	        $_SESSION['status_code'] = "success";
-	        header('Location: event');
+	        header('Location: form-setting.php?event_id='.$eventid);
 	        exit(0);
 	      }
 	      else

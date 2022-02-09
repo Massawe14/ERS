@@ -1,5 +1,18 @@
 <?php  
   include('config/dbconn.php');
+
+  if (isset($_GET['event_id'])) {
+  	$event_id = $_GET['event_id'];
+    $sql = "SELECT * FROM event WHERE event_id = '$event_id'";
+		$result = mysqli_query($conn, $sql);
+
+		if ($result) {
+			while ($row = mysqli_num_rows($result)) {
+				$name = $row['name'];
+				$image = $row['image'];
+			}
+		}
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -217,11 +230,13 @@
 	  if(isset($_GET['success'])) {
 		  ?>
 			  <div id="qrSucc" class="convert">
-		      <div id="result" class="modal-content animate container">  
+		      <div id="result" class="modal-content animate container">
+		        <img id="img" src="<?php echo "uploads/images/".$image; ?>" />  
 		        <div id="contents">
-		          <img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
 		          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field']); ?></p>
 		          <p style="color: white;">YOU ARE INVITED TO THE</p>
+		          <p><?php echo strtoupper($name) ?></p>
+		          <img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
 		          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
 		        </div>
 		      </div>

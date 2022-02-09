@@ -17,7 +17,7 @@
 
   if (isset($_GET['event_id'])) {
     $event_id = $_GET['event_id'];
-    $sql = "SELECT * FROM event WHERE event_id = '$event_id'";
+    $sql = "SELECT * FROM event WHERE id = '$event_id'";
     $result = mysqli_query($conn, $sql);
 
     if ($result) {

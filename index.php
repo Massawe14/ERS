@@ -85,7 +85,7 @@
 						<td>Event Name</td>
 						<td>Venue</td>
 						<td>Artwork</td>
-						<td>Created At</td>
+						<td>Registered At</td>
 					</tr>
 				</thead>
 				<tbody>

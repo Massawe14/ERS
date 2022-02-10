@@ -4,7 +4,6 @@
   include('includes/message.php');
 
   if (!isset($_SESSION['username'])) {
-    // code...
     header("Location: authentication");
     exit(0);
   }
@@ -71,7 +70,6 @@
     }
 
     .button:hover {
-      /*background-color: #e1251b;*/ /*#4d84e2*/
       opacity: 0.8;
     }
 

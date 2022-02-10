@@ -8,18 +8,15 @@
   error_reporting(0); 
 
   if (isset($_SESSION['username'])) {
-  	// code...
   	header("Location: subscription");
     exit(0);
   }
 
   if (isset($_POST['loginbtn'])) {
-  	// code...
    	$username = $_POST['username'];
    	$password = md5($_POST['password']);
 
     if ($username == '' || $password == '') {
-      // code...
       $_SESSION['status'] = "Please check the missing field";
       $_SESSION['status_code'] = "error";
       header('Location: authentication');
@@ -30,7 +27,6 @@
       $result = mysqli_query($conn, $sql);
 
       if ($result->num_rows > 0) {
-        // code...
         $row = mysqli_fetch_assoc($result);
         $_SESSION['username'] = $row['username'];
         $_SESSION['status'] = "Logged In Successfully";

@@ -1,24 +1,5 @@
 <?php  
   include('config/dbconn.php');
-
-  // if (isset($_GET['event_id'])) {
-  // 	$event_id = $_GET['event_id'];
-  //   $sql = "SELECT * FROM event WHERE id = '$event_id'";
-
-  //   // make query & get result
-		// $result = mysqli_query($conn, $sql);
-
-		// // fetch the resulting rows as an array
-		// $event = mysqli_fetch_all($result, MYSQLI_ASSOC);
-    
-  //   // This will move array elements one level up and you can access any array element without using [0] key
-		// $event = array_shift($event);
-
-		// // free result from memory
-		// mysqli_free_result($result);
-
-		// print_r($event);
-  // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,8 +10,8 @@
 	<title>Registration Form</title>
 	<style>
 		body {
-		  font-family: Arial, Helvetica, sans-serif;
-		  display: flex;
+			font-family: Arial, Helvetica, sans-serif;
+			display: flex;
 			flex-direction: column;
 			justify-content: center;
 			align-items: center;
@@ -40,25 +21,25 @@
 		/* Full-width input fields */
 		input[type=text], input[type=password], input[type=phone], 
 		input[type=email], input[type=tel], input[type=number] {
-	    width: 100%;
-	    padding: 12px 20px;
-	    margin: 8px 0;
-	    display: inline-block;
-	    border: 1px solid #ccc;
-	    box-sizing: border-box;
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
 		}
 
 		/* Set a style for all buttons */
 		input[type=submit]{
-	    background-color: #e1251b;
-	    color: white;
-	    padding: 14px 20px;
-	    margin: 8px 0;
-	    border: none;
-	    cursor: pointer;
-	    width: 100%;
-	    text-align: center;
-	    text-decoration: none;
+			background-color: #e1251b;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			text-align: center;
+			text-decoration: none;
 		}
 
 		input[type=submit]:hover {
@@ -67,102 +48,102 @@
 
 		/* Extra styles for the cancel button */
 		.cancelbtn {
-	    width: auto;
-	    padding: 10px 18px;
-	    background-color: #f44336;
+			width: auto;
+			padding: 10px 18px;
+			background-color: #f44336;
 		}
 
 		/* Center the image and position the close button */
 		.imgcontainer {
-	    text-align: center;
-	    margin: 24px 0 12px 0;
-	    position: relative;
+			text-align: center;
+			margin: 24px 0 12px 0;
+			position: relative;
 		}
 
 		img.avatar {
-	    width: 40%;
-	    border-radius: 50%;
+			width: 40%;
+			border-radius: 50%;
 		}
         
-    /* Fields container */
+        /* Fields container */
 		.container {
 		  padding: 16px;
 		}
         
-    /* Submit button container */
+        /* Submit button container */
 		.submit-button {
 			padding: 16px;
 		}
 
 		span.psw {
-	    float: right;
-	    padding-top: 16px;
+			float: right;
+			padding-top: 16px;
 		}
 
 		/* The Modal (background) */
 		.modal {
 	    /* Hidden by default */
-	    position: fixed; /* Stay in place */
-	    z-index: 1; /* Sit on top */
-	    left: 0;
-	    top: 0;
-	    width: 100%; /* Full width */
-	    height: 100%; /* Full height */
-	    overflow: auto; /* Enable scroll if needed */
-	    background-color: rgb(0,0,0); /* Fallback color */
-	    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	    padding-top: 60px;
+			position: fixed; /* Stay in place */
+			z-index: 1; /* Sit on top */
+			left: 0;
+			top: 0;
+			width: 100%; /* Full width */
+			height: 100%; /* Full height */
+			overflow: auto; /* Enable scroll if needed */
+			background-color: rgb(0,0,0); /* Fallback color */
+			background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+			padding-top: 60px;
 		}
 
 		/* Modal Content/Box */
 		.modal-content {
-	    background-color: #fefefe;
-	    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-	    border: 1px solid #888;
-	    width: 80%; /* Could be more or less, depending on screen size */
+			background-color: #fefefe;
+			margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+			border: 1px solid #888;
+			width: 80%; /* Could be more or less, depending on screen size */
 		}
 
 		/* The Close Button (x) */
 		.close {
-	    position: absolute;
-	    right: 25px;
-	    top: 0;
-	    color: #000;
-	    font-size: 35px;
-	    font-weight: bold;
+			position: absolute;
+			right: 25px;
+			top: 0;
+			color: #000;
+			font-size: 35px;
+			font-weight: bold;
 		}
 
 		.close:hover,
 		.close:focus {
-	    color: red;
-	    cursor: pointer;
+			color: red;
+			cursor: pointer;
 		}
 
 		/* Add Zoom Animation */
 		.animate {
-	    -webkit-animation: animatezoom 0.6s;
-	    animation: animatezoom 0.6s
+			-webkit-animation: animatezoom 0.6s;
+			animation: animatezoom 0.6s;
 		}
 
 		@-webkit-keyframes animatezoom {
-	    from {-webkit-transform: scale(0)} 
-	    to {-webkit-transform: scale(1)}
+			from {-webkit-transform: scale(0)} 
+			to {-webkit-transform: scale(1)}
 		}
 		    
 		@keyframes animatezoom {
-	    from {transform: scale(0)} 
-	    to {transform: scale(1)}
+			from {transform: scale(0)} 
+			to {transform: scale(1)}
 		}
 
 		/* Change styles for span and cancel button on extra small screens */
 		@media screen and (max-width: 300px) {
-	    span.psw {
-       display: block;
-       float: none;
-	    }
-	    .cancelbtn {
-	      width: 100%;
-	    }
+			span.psw {
+				display: block;
+				float: none;
+			}
+			.cancelbtn {
+			   width: 100%;
+			}
 		}
 
 		#qrSucc {
@@ -177,54 +158,54 @@
 		}
 
 		#result {
-	    width: 800px;
-	    height: 690px;
-	    margin-bottom: 20px !important;
-	    background: white;
-	    position:  relative;
-	    display: flex;
-	    flex-direction: column;
-	    padding: 0 !important;
-	    margin: 0 !important;
+			width: 800px;
+			height: 690px;
+			margin-bottom: 20px !important;
+			background: white;
+			position:  relative;
+			display: flex;
+			flex-direction: column;
+			padding: 0 !important;
+			margin: 0 !important;
 		}
 
 		#img {
-	    width: inherit;
-	    height: 695px;
-	    position:  absolute;
-	    top: 0;
-	    left: 0;
-	    right: 0;
-	    bottom: 0;
-	    z-index: 0;
-	    padding: 0 !important;
-	    margin: 0 !important;
-	    opacity: 0.6;
+			width: inherit;
+			height: 695px;
+			position:  absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 0;
+			padding: 0 !important;
+			margin: 0 !important;
+			opacity: 0.6;
 		}
 
 		#contents {
-	    width: 700px;
-	    height: 695px;
-	    position:  absolute;
-	    z-index: 1;
-	    padding: 0 !important;
-	    margin: 0 !important;
-	    display: flex;
-	    flex-direction: column;
-	    justify-content: center;
-	    align-items: center;
+			width: 700px;
+			height: 695px;
+			position:  absolute;
+			z-index: 1;
+			padding: 0 !important;
+			margin: 0 !important;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
 		}
 
 		#qrSucc a {
-	    background-color: #e1251b;
-	    color: white;
-	    padding: 14px 20px;
-	    margin: 20px 20px -40px 20px;
-	    border: none;
-	    cursor: pointer;
-	    width: 100%;
-	    text-align: center;
-	    text-decoration: none;
+			background-color: #e1251b;
+			color: white;
+			padding: 14px 20px;
+			margin: 20px 20px -40px 20px;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			text-align: center;
+			text-decoration: none;
 		}
 
 		#qrSucc a:hover {
@@ -235,22 +216,22 @@
 <body>
 	<?php  
 	  if(isset($_GET['success'])) {
-		  ?>
-			  <div id="qrSucc" class="convert">
-		      <div id="result" class="modal-content animate container">
-		        <img id="img" src="<?php echo "uploads/images/".$_GET['image']; ?>" />  
-		        <div id="contents">
-		          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field']); ?></p>
-		          <p style="color: white;">YOU ARE INVITED TO THE</p>
-		          <p><?php echo strtoupper($_GET['name']); ?></p>
-		          <img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
-		          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
-		        </div>
-		      </div>
-		      <div id="output" hidden></div>
-		      <a class="a" href="">Download Now</a>
-		   </div>
-		  <?php
+		?>
+			<div id="qrSucc" class="convert">
+				<div id="result" class="modal-content animate container">
+				<img id="img" src="<?php echo "uploads/images/".$_GET['image']; ?>" />  
+				<div id="contents">
+					<p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field']); ?></p>
+					<p style="color: white;">YOU ARE INVITED TO THE</p>
+					<p><?php echo strtoupper($_GET['name']); ?></p>
+					<img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
+					<p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
+				</div>
+				</div>
+				<div id="output" hidden></div>
+				<a class="a" href="">Download Now</a>
+			</div>
+		<?php
 	  } 
 	  else {
 			?>
@@ -272,25 +253,25 @@
 
 		// Load json data from mysql
 		var event_fields = <?php  
-    if (isset($_GET['event_id'])) {
-    	$event_id = $_GET['event_id'];
-    	$sql = "SELECT * FROM form_setting WHERE event_id = '$event_id'";
-			$result = mysqli_query($conn, $sql);
+			if (isset($_GET['event_id'])) {
+				$event_id = $_GET['event_id'];
+				$sql = "SELECT * FROM form_setting WHERE event_id = '$event_id'";
+				$result = mysqli_query($conn, $sql);
 
-			$json_array = array();
-			while ($row = mysqli_fetch_assoc($result)) {
-			  $json_array[] = $row;
+				$json_array = array();
+				while ($row = mysqli_fetch_assoc($result)) {
+					$json_array[] = $row;
+				}
+				print(json_encode($json_array));
 			}
-			print(json_encode($json_array));
-    }
 		?>
 
 		console.log(event_fields, typeof event_fields);
 
-    const element = document.createElement("div");
-    element.className = "allFields";
-    element.id = "fields";
-    var temp = "";
+		const element = document.createElement("div");
+		element.className = "allFields";
+		element.id = "fields";
+		var temp = "";
 		if (event_fields.length > 0) {
 			for (var item in event_fields[0]) {
 				const key = item + "";
@@ -302,13 +283,10 @@
 					const field_input_name = key + ""
 					if (field.length > 0) {
 						const div = document.createElement("div");
-						// div.className = "input-field";
 						const field_json = JSON.parse(field);
-						// temp += "<div>";
 						temp += "<label>" + field_json["name"] + "</label>";
 						temp += "<input type=\"" + field_json["type"] + "\" name=\"" + field_input_name + "\" placeholder=\"" + field_json["hint"] + "\" />";
 						element.innerHTML = temp;
-						// element.appendChild(div);
 					}
 				}
 			}

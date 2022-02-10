@@ -15,8 +15,8 @@
 		    <input type="text" name="fname" placeholder="Enter Full Name" value="">
 		    <label for="pnumber">Phone Number</label>
 		    <input type="text" name="pnumber" placeholder="Enter Phone Number" value="">
-		    <label for="amount">Payment Amount</label>
-		    <input type="text" name="amount" placeholder="Enter Payment Amount" value=""> 
+		    <label for="amount">Amount</label>
+		    <input type="text" name="amount" placeholder="Enter Amount" value=""> 
 		    <label for="currency_code">Currency Code</label> 
 		    <select class="currency_code">
 		    	<option value="text">TZS</option>

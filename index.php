@@ -7,7 +7,6 @@
   include('config/dbconn.php');
 
   if (!isset($_SESSION['username'])) {
-  	// code...
   	header("Location: authentication");
   	exit(0);
   }
@@ -18,13 +17,13 @@
 		<div class="card">
 			<div>
 				<?php 
-          $query = "SELECT id FROM event ORDER BY id";
-          $result = mysqli_query($conn, $query);
+					$query = "SELECT id FROM event ORDER BY id";
+					$result = mysqli_query($conn, $query);
 
-          $row = mysqli_num_rows($result);
-          echo '<div class="numbers">'.$row.'</div>';
-        ?>
-				<div class="cardName">Total Events</div>
+					$row = mysqli_num_rows($result);
+					echo '<div class="numbers">'.$row.'</div>';
+				?>
+			    <div class="cardName">Total Events</div>
 			</div>
 			<div class="iconBx">
 				<ion-icon name="calendar"></ion-icon>
@@ -33,12 +32,12 @@
 		<div class="card">
 			<div>
 				<?php 
-          $query = "SELECT event_id FROM registered ORDER BY event_id";
-          $result = mysqli_query($conn, $query);
+					$query = "SELECT event_id FROM registered ORDER BY event_id";
+					$result = mysqli_query($conn, $query);
 
-          $row = mysqli_num_rows($result);
-          echo '<div class="numbers">'.$row.'</div>';
-        ?>
+					$row = mysqli_num_rows($result);
+					echo '<div class="numbers">'.$row.'</div>';
+				?>
 				<div class="cardName">Registered</div>
 			</div>
 			<div class="iconBx">
@@ -57,12 +56,12 @@
 		<div class="card">
 			<div>
 				<?php 
-          $query = "SELECT event_id FROM form_setting ORDER BY event_id";
-          $result = mysqli_query($conn, $query);
+					$query = "SELECT event_id FROM form_setting ORDER BY event_id";
+					$result = mysqli_query($conn, $query);
 
-          $row = mysqli_num_rows($result);
-          echo '<div class="numbers">'.$row.'</div>';
-        ?>
+					$row = mysqli_num_rows($result);
+					echo '<div class="numbers">'.$row.'</div>';
+				?>
 				<div class="cardName">Forms</div>
 			</div>
 			<div class="iconBx">
@@ -90,32 +89,32 @@
 				</thead>
 				<tbody>
 					<?php  
-        	  $sql = "SELECT * FROM event";
-        	  $result = mysqli_query($conn, $sql);
+						$sql = "SELECT * FROM event";
+						$result = mysqli_query($conn, $sql);
 
-        	  if (mysqli_num_rows($result) > 0) {
-        	  	foreach ($result as $row) {
-        	  		?>
-        	  		  <tr>
-        	  		  	<td><?php echo $row['id']; ?></td>
-        	  		  	<td><?php echo $row['name'] ?></td>
-        	  		  	<td><?php echo $row['venue'] ?></td>
-        	  		  	<td>
-                      <img src="<?php echo "uploads/images/".$row['image']; ?>" width="100px" alt="image">
-                    </td>
-                    <td><?php echo $row['created_at'] ?></td>
-        	  		  </tr>
-        	  		<?php
-        	  	}
-        	  }
-        	  else{
-              ?>
-                <tr>
-                  <td>No Event Found</td>
-                </tr>
-              <?php
-            }
-        	?>
+						if (mysqli_num_rows($result) > 0) {
+							foreach ($result as $row) {
+								?>
+								<tr>
+									<td><?php echo $row['id']; ?></td>
+									<td><?php echo $row['name'] ?></td>
+									<td><?php echo $row['venue'] ?></td>
+									<td>
+								<img src="<?php echo "uploads/images/".$row['image']; ?>" width="100px" alt="image">
+								</td>
+								<td><?php echo $row['created_at'] ?></td>
+								</tr>
+								<?php
+							}
+						}
+						else {
+							?>
+								<tr>
+								<td>No Event Found</td>
+								</tr>
+							<?php
+						}
+					?>
 				</tbody>
 			</table>
 		</div>
@@ -127,23 +126,16 @@
 			</div>
 			<div class="circle-wrap">
 				<div class="circle">
-					<!-- <div class="mask full">
-  					<div class="fill"></div>
-  				</div>
-  				<div class="mask half">
-  					<div class="fill"></div>
-  				</div> -->
-  				<div class="inside-circle">
-  					<?php 
-  					  $sql = "SELECT * FROM registered";
-        	    $result = mysqli_query($conn, $sql);
-        	    $totalrows = mysqli_num_rows($result);
-        	    $total = $totalrows / 100;
-        	    $percentage = $total * 100;
-        	    $percentage = number_format($percentage, 0);
-        	    // echo "$percentage%";
-  					?>
-  				</div>
+					<div class="inside-circle">
+						<?php 
+							$sql = "SELECT * FROM registered";
+							$result = mysqli_query($conn, $sql);
+							$totalrows = mysqli_num_rows($result);
+							$total = $totalrows / 100;
+							$percentage = $total * 100;
+							$percentage = number_format($percentage, 0);
+						?>
+					</div>
 				</div>
 			</div>
 		</div>

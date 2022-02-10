@@ -35,10 +35,10 @@ s<?php
  			$query = $this->conn->query($sql);
  			return $query;
    	}
-   	public function displayImg()
-   	{
-   		$sql = "SELECT qrImage,qrlink from registered where qrImage='$qrimage'";
-   	}
+   	// public function displayImg()
+   	// {
+   	// 	$sql = "SELECT qrImage,qrlink from registered where qrImage='$qrimage'";
+   	// }
   }
   $register = new EventQR();
 ?>

@@ -7,7 +7,6 @@
   include('includes/message.php');
 
   if (isset($_SESSION['username'])) {
-    // code...
     header("Location: subscription");
     exit(0);
   }
@@ -32,7 +31,7 @@
             <h2 class="title">Sign in</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="username" value="<?php echo $username; ?>" placeholder="Username" required>
+              <input type="text" name="username" value="<?php echo $_POST['username']; ?>" placeholder="Username" required>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>
@@ -59,11 +58,11 @@
             <h2 class="title">Sign up</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="username" value="<?php echo $username; ?>" placeholder="Username" required>
+              <input type="text" name="username" value="<?php echo $_POST['username']; ?>" placeholder="Username" required>
             </div>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" name="email" value="<?php echo $email; ?>" placeholder="Email" required>
+              <input type="email" name="email" value="<?php echo $_POST['email']; ?>" placeholder="Email" required>
             </div>
             <div class="input-field">
               <i class="fas fa-lock"></i>

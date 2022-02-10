@@ -26,16 +26,16 @@
 		if ($query) {
 			echo '{"success":{"message":"data updated"}}';
 			$_SESSION['status'] = "Thank You. Form created successfully";
-      $_SESSION['status_code'] = "success";
-      header('Location: event');
-      exit(0);
+			$_SESSION['status_code'] = "success";
+			header('Location: event');
+			exit(0);
 		}
 		else{
 			echo '{"error"{"message":"data not updated"}}';
 			$_SESSION['status'] = "Sorry. Can't create Form";
-      $_SESSION['status_code'] = "error";
-      header('Location: form-setting');
-      exit(0);
+			$_SESSION['status_code'] = "error";
+			header('Location: form-setting');
+			exit(0);
 		}
 	}
 ?>

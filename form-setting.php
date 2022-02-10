@@ -10,7 +10,6 @@
   include('config/dbconn.php');
 
   if (!isset($_SESSION['username'])) {
-  	// code...
   	header("Location: authentication");
   	exit(0);
   }
@@ -403,7 +402,7 @@
                         <option value="email">field type: 3. Email Address</option>             
                         <option value="phone">field type: 4. Phone Number</option>          
                     </select>
-                    `;
+                `;
             } else {
                 list_item_view.innerHTML = `
                     <label id="label-${i}">Field ${i}</label>
@@ -416,11 +415,10 @@
                         <option value="phone">field type: 4. Phone Number</option>             
                     </select>
                     <div class="close-field-btn" id="delete-${i}">Remove</div>
-                    `;
+                `;
             }
 
             fields_container.appendChild(list_item_view);
-            //console.log("added: " + i);
 
             fields_count++;
             setTimeout(() => {
@@ -449,11 +447,9 @@
             _input1.id = `name-${newId}`;
             _input2.id = `hint-${newId}`;
             _selector.id = `selector-${newId}`;
-            //console.log("updated old: " + oldId + "   new: " + newId);
         }
 
         document.addEventListener("click", function(evnt) {
-            //console.log("clicked: ", evnt.target.id);
             if (evnt.target.id.includes("delete-")) {
                 const id = evnt.target.id.split("-")[1];
                 if (is_updating) return;
@@ -473,20 +469,16 @@
                 add_btn.style.display = "none";
             }
             const _div = document.getElementById(`field-${id}`);
-            //_div.style.visibility = "hidden";
             _div.className = _div.className + " remove-anim";
             setTimeout(() => {
                 fields_container.removeChild(_div);
                 console.log("removed: " + id);
-                //if (id >= 7) return;
                 setTimeout(() => {
                     for (var i = 0; i < fields_container.childElementCount; i++) {
                         const element = fields_container.children[i];
                         const id_number = element.id.split("-")[1];
                         console.log("element id: ", id_number);
-                        //if (id > parseInt(id_number)) {
                         updateField(element.id.split("-")[1], i + 1);
-                        //}
                     }
                     setTimeout(() => {
                         is_updating = false;
@@ -525,7 +517,6 @@
             for (var i = 0; i < fields_container.childElementCount; i++) {
                 const element = fields_container.children[i];
                 const id_number = element.id.split("-")[1];
-                //console.log("element id: ", id_number);
                 const _remove = document.getElementById(`delete-${id_number}`);
                 const _label = document.getElementById(`label-${id_number}`);
                 const _input1 = document.getElementById(`name-${id_number}`);

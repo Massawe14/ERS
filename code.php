@@ -54,7 +54,7 @@
       $result = mysqli_query($conn, $sql);
 
       // fetch the resulting rows as an array
-      $event = mysqli_fetch_all($result, MYSQLI_ASSOC);
+      $event = mysqli_fetch_all($result, 'MYSQLI_ASSOC');
       
       // This will move array elements one level up and you can access any array element without using [0] key
       $event = array_shift($event);

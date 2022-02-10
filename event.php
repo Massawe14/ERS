@@ -11,27 +11,24 @@
   include('includes/message.php');
 
   if (!isset($_SESSION['username'])) {
-  	// code...
   	header("Location: authentication");
   	exit(0);
   }
 
   if (isset($_POST['addEvent'])) {
-  	// code...
-  	$eventname = $_POST['eventname'];
-  	$venue = $_POST['venue'];
-  	$image = $_FILES['image']['name'];
+		$eventname = $_POST['eventname'];
+		$venue = $_POST['venue'];
+		$image = $_FILES['image']['name'];
 		// generate random id with string length of 10
 		$eventid = substr(md5(time()), 0, 10) . "";
 		//$id = date('YmdHis');
 		//$id = $id . rand(10, 99);
 
   	if ($eventname == '' || $venue == '' || $image == '') {
-  		// code...
   		$_SESSION['status'] = "Please check the missing field";
     	$_SESSION['status_code'] = "error";
-      header('Location: event');
-      exit(0);
+		header('Location: event');
+		exit(0);
   	}
   	else {
   		$allowed_extension = array('png','jpg','jpeg', 'PNG', 'JPG', 'JPEG');
@@ -42,11 +39,10 @@
 	    $check = getimagesize($_FILES["image"]["tmp_name"]);
 
 	    if ($check == false) {
-	    	// code...
 	    	$_SESSION['status'] = "File is not an image.";
 	    	$_SESSION['status_code'] = "error";
-	      header('Location: event');
-	      exit(0);
+			header('Location: event');
+			exit(0);
 	    }
 	    elseif (file_exists($filename)) {
 	     $_SESSION['status'] = "Sorry, file already exists.";
@@ -54,51 +50,49 @@
 	     header('Location: event');
 	     exit(0);
 	    }
-		  elseif (!in_array($file_extension, $allowed_extension)) {
-		    $_SESSION['status'] = "You are allowed with only jpg, png, jpeg, PNG, JPG and JPEG Image";
-		    $_SESSION['status_code'] = "error";
-		    header('Location: event');
-		    exit(0);
-		  }
-		  else {
-		  	$sql = "INSERT INTO event (id, name, venue, image) VALUES ('$eventid', '$eventname', '$venue', '$filename')";
-      	$result = mysqli_query($conn, $sql);
+		elseif (!in_array($file_extension, $allowed_extension)) {
+			$_SESSION['status'] = "You are allowed with only jpg, png, jpeg, PNG, JPG and JPEG Image";
+			$_SESSION['status_code'] = "error";
+			header('Location: event');
+			exit(0);
+		}
+		else {
+			$sql = "INSERT INTO event (id, name, venue, image) VALUES ('$eventid', '$eventname', '$venue', '$filename')";
+			$result = mysqli_query($conn, $sql);
 
-		  	if($result)
-	      {
-	      	move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/images/'.$filename);
-	        $_SESSION['status'] = "Thank You. Event created successfully";
-	        $_SESSION['status_code'] = "success";
-	        header('Location: form-setting.php?event_id='.$eventid);
-	        exit(0);
-	      }
-	      else
-	      {
-	        $_SESSION['status'] = "cant create Event";
-	        $_SESSION['status_code'] = "error";
-	        header('Location: event');
-	        exit(0);
-	      }
-		  }
+			if($result) {
+				move_uploaded_file($_FILES['image']['tmp_name'], 'uploads/images/'.$filename);
+				$_SESSION['status'] = "Thank You. Event created successfully";
+				$_SESSION['status_code'] = "success";
+				header('Location: form-setting.php?event_id='.$eventid);
+				exit(0);
+			}
+			else {
+				$_SESSION['status'] = "cant create Event";
+				$_SESSION['status_code'] = "error";
+				header('Location: event');
+				exit(0);
+			}
+		}
   	}
   }
 
   if (isset($_POST['DeleteEventbtn'])) {
-    $eventid = $_POST['delete_event'];
+	$eventid = $_POST['delete_event'];
 
-    $sql = "DELETE FROM event WHERE n = '$eventid'";
-    $result = mysqli_query($conn, $sql);
+	$sql = "DELETE FROM event WHERE n = '$eventid'";
+	$result = mysqli_query($conn, $sql);
 
-    if ($result) {
-      $_SESSION['status'] = "Event Deleted Successfully";
-      $_SESSION['status_code'] = "success";
-      header("Location: event");
-    }
-    else{
-      $_SESSION['status'] = "Event Deleting Failed";
-      $_SESSION['status_code'] = "error";
-      header("Location: event");
-    }
+	if ($result) {
+	$_SESSION['status'] = "Event Deleted Successfully";
+	$_SESSION['status_code'] = "success";
+	header("Location: event");
+	}
+	else{
+	$_SESSION['status'] = "Event Deleting Failed";
+	$_SESSION['status_code'] = "error";
+	header("Location: event");
+	}
   }
 ?>
 <!DOCTYPE html>
@@ -218,9 +212,9 @@
 			position: absolute;
 			right: 30px;
 			top: 0;
-	    color: #000;
-	    font-size: 35px;
-	    font-weight: bold;
+			color: #000;
+			font-size: 35px;
+			font-weight: bold;
 		}
 
 		.close:hover,
@@ -236,13 +230,13 @@
 		}
 
 		@-webkit-keyframes animatezoom {
-	    from {-webkit-transform: scale(0)} 
-	    to {-webkit-transform: scale(1)}
+			from {-webkit-transform: scale(0)} 
+			to {-webkit-transform: scale(1)}
 		}
 		    
 		@keyframes animatezoom {
-	    from {transform: scale(0)} 
-	    to {transform: scale(1)}
+			from {transform: scale(0)} 
+			to {transform: scale(1)}
 		}
 
 		.controls {
@@ -265,95 +259,95 @@
 		}
 
 		.table {
-      border-collapse: collapse;
-      padding: 25px;
-      margin: 25px auto 0;
-      font-size: 0.9em;
-      width: 100%;
-      border-radius: 5px 5px 0 0;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-    }
+			border-collapse: collapse;
+			padding: 25px;
+			margin: 25px auto 0;
+			font-size: 0.9em;
+			width: 100%;
+			border-radius: 5px 5px 0 0;
+			overflow: hidden;
+			box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+		}
 
-    th, td {
-      border: 1px solid #bbb;
-      padding: 10px;
-      text-align: center;
-    }
+		th, td {
+		border: 1px solid #bbb;
+		padding: 10px;
+		text-align: center;
+		}
 
-    tr:hover {
-      background-color: #e5e5e5;
-    }
+		tr:hover {
+		background-color: #e5e5e5;
+		}
 
-    .tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
+		.tr:nth-child(even) {
+		background-color: #f2f2f2;
+		}
 
-    th {
-      background-color: #e1251b;
-      color: white;
-      border: #e1251b;
-    }
+		th {
+		background-color: #e1251b;
+		color: white;
+		border: #e1251b;
+		}
 
-    .table tbody tr:last-of-type {
-      border-bottom: 2px solid #e1251b;
-    }
+		.table tbody tr:last-of-type {
+		border-bottom: 2px solid #e1251b;
+		}
 
-    .btn {
-      background-color: #e1251b;
-      border: none;
-      color: white;
-      padding: 10px 10px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-    }
+		.btn {
+		background-color: #e1251b;
+		border: none;
+		color: white;
+		padding: 10px 10px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+		}
 
-    .btn:hover {
-      opacity: 0.8;
-    }
+		.btn:hover {
+		opacity: 0.8;
+		}
 
-    #close {
-    	background-color: #287bff;
-    }
+		#close {
+			background-color: #287bff;
+		}
 
-    .btn-edit {
-    	background-color: #00263A;
-      border: none;
-      color: white;
-      border-radius: 6px;
-      padding: 10px 10px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-    }
+		.btn-edit {
+			background-color: #00263A;
+		border: none;
+		color: white;
+		border-radius: 6px;
+		padding: 10px 10px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+		}
 
-    .btn-edit:hover {
-    	opacity: 0.8;
-    }
+		.btn-edit:hover {
+			opacity: 0.8;
+		}
 
-    .btn-share-link {
-    	background-color: #187890;
-      border: none;
-      color: white;
-      border-radius: 6px;
-      padding: 10px 10px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      cursor: pointer;
-    }
+		.btn-share-link {
+			background-color: #187890;
+		border: none;
+		color: white;
+		border-radius: 6px;
+		padding: 10px 10px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		font-size: 16px;
+		cursor: pointer;
+		}
 
-    .btn-share-link:hover {
-    	opacity: 0.8;
-    }
+		.btn-share-link:hover {
+			opacity: 0.8;
+		}
 
-    #ShareLinkModal {
+		#ShareLinkModal {
 			display: none;
 			position: fixed;
 			z-index: 1;
@@ -371,9 +365,9 @@
 			padding: 30px;
 		}
 
-  	.social-media {
-		  display: flex;
-		  justify-content: center;
+		.social-media {
+			display: flex;
+			justify-content: center;
 		}
 
 		.social-icon {
@@ -479,8 +473,8 @@
   <div class="modal" id="ShareLinkModal">
     <form class="modal-content animate" method="POST">
     	<div class="img">
-				<span onclick="document.getElementById('ShareLinkModal').style.display='none'" class="close" title="close button">&times;</span>
-			</div>
+			<span onclick="document.getElementById('ShareLinkModal').style.display='none'" class="close" title="close button">&times;</span>
+		</div>
       <div class="share" align="center">
       	<h2 align="center">Share now</h2>
         <input type="hidden" name="share_link" class="share_link_id">
@@ -514,86 +508,86 @@
 			</div>
 			<div class="eventcontainer">
 				<h2 align="center">Add Event</h2>
-	      <label for="ename">Event Name</label>
-	      <input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $_POST['eventname']; ?>">
-	      <label for="venue">Venue</label>
-	      <input type="text" name="venue" placeholder="Enter Event Venue" value="<?php $_POST['venue']; ?>">
-	      <label for="artwork">Artwork</label>
-	      <input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
-	      <input type="submit" value="Save" name="addEvent">
+				<label for="ename">Event Name</label>
+				<input type="text" name="eventname" placeholder="Enter Event Name" value="<?php echo $_POST['eventname']; ?>">
+				<label for="venue">Venue</label>
+				<input type="text" name="venue" placeholder="Enter Event Venue" value="<?php $_POST['venue']; ?>">
+				<label for="artwork">Artwork</label>
+				<input type="file" name="image" value="<?php echo $_POST['filename']; ?>">  
+				<input type="submit" value="Save" name="addEvent">
 			</div>
 		</form>
 	</div>
 
-	<?php include('includes/script.php'); ?>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
-	<!-- how to make close when click on any point of the browser -->
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-			document.getElementById("home").className = "";
-			document.getElementById("event").className = "btn-active";
-			document.getElementById("report").className = "";
-			document.getElementById("form-setting").className = "";
-		});
-		var valueList = document.getElementById('valueList');
-		var text = '<span> you have selected : </span>'
-		var listArray = [];
-		var checkboxes = document.querySelectorAll('.checkme');
+<?php include('includes/script.php'); ?>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery.jssocials/1.4.0/jssocials.min.js"></script>
+<!-- how to make close when click on any point of the browser -->
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		document.getElementById("home").className = "";
+		document.getElementById("event").className = "btn-active";
+		document.getElementById("report").className = "";
+		document.getElementById("form-setting").className = "";
+	});
+	var valueList = document.getElementById('valueList');
+	var text = '<span> you have selected : </span>'
+	var listArray = [];
+	var checkboxes = document.querySelectorAll('.checkme');
 
-		for (var checkbox of checkboxes) {
-			checkbox.addEventListener('click',function(){
-				if (this.checked == true) {
-					$(this).parents(".checkbox-card").find('.input-group').show();
-					console.log(this.value);
-					listArray.push(this.value);
-					valueList.innerHTML = text + listArray.join(' / ');
-				}
-				else {
-					$(this).parents(".checkbox-card").find('.input-group').hide();
-					console.log('You unchecked the checkbox');
-					listArray = listArray.filter(e => e !== this.value);
-					valueList.innerHTML = text + listArray.join(' / ');
-				}
-			});
-		}
-	</script>
-	<script>
-		var modal = document.getElementById('eventmodal');
-		window.onclick = function(event) {
-			if (event.target == modal) {
-				modal.style.display = "none";
+	for (var checkbox of checkboxes) {
+		checkbox.addEventListener('click',function(){
+			if (this.checked == true) {
+				$(this).parents(".checkbox-card").find('.input-group').show();
+				console.log(this.value);
+				listArray.push(this.value);
+				valueList.innerHTML = text + listArray.join(' / ');
 			}
+			else {
+				$(this).parents(".checkbox-card").find('.input-group').hide();
+				console.log('You unchecked the checkbox');
+				listArray = listArray.filter(e => e !== this.value);
+				valueList.innerHTML = text + listArray.join(' / ');
+			}
+		});
+	}
+</script>
+<script>
+	var modal = document.getElementById('eventmodal');
+	window.onclick = function(event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
 		}
-	</script>
-	<script>
-  $(document).ready(function () {
+	}
+</script>
+<script>
+	$(document).ready(function () {
 
-    $('.deleteEventBtn').click(function (e) {
-      e.preventDefault();
-      var event_id = $(this).val();
-      $('.delete_event_id').val(event_id);
-      $('.DeleteEventModal').modal('show');
-    });
+		$('.deleteEventBtn').click(function (e) {
+		e.preventDefault();
+		var event_id = $(this).val();
+		$('.delete_event_id').val(event_id);
+		$('.DeleteEventModal').modal('show');
+		});
 
-  });
+	});  
 </script>
 <script>
   $(document).ready(function () {
 
-    $('.shareLinkBtn').click(function (e) {
-      e.preventDefault();
-      var event_id = $(this).val();
-      $('.share_link_id').val(event_id);
-      const url = event_id;
-      $("#share-container").jsSocials({
-				shareIn: "popup",
-				showLabel: false,
-		    showCount: false,
-		    url: url,
-		    text: "Registration Form",
-				shares: ["email", "twitter", "facebook", "whatsapp", "telegram"],
-			});
-    });
+	$('.shareLinkBtn').click(function (e) {
+	e.preventDefault();
+	var event_id = $(this).val();
+	$('.share_link_id').val(event_id);
+	const url = event_id;
+	$("#share-container").jsSocials({
+		shareIn: "popup",
+		showLabel: false,
+		showCount: false,
+		url: url,
+		text: "Registration Form",
+			shares: ["email", "twitter", "facebook", "whatsapp", "telegram"],
+		});
+	});
 
   });
 </script>

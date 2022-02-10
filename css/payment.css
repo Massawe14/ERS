@@ -31,6 +31,22 @@ input[type=submit]{
 	text-decoration: none;
 }
 
+.button {
+	background-color: #e1251b;
+	color: white;
+	padding: 14px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
+}
+
+.button:hover {
+	opacity: 0.8
+}
+
 input[type=submit]:hover {
   opacity: 0.8;
 }

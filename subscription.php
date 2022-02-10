@@ -96,7 +96,7 @@
           Debitis, ex ratione. Aliquid!
         </p>
       </li>
-      <li class="grey"><a href="index" class="button">Choose</a></li>
+      <li class="grey"><a href="payment" class="button">Choose</a></li>
     </ul>
   </div>
 
@@ -111,7 +111,7 @@
           Debitis, ex ratione. Aliquid!
         </p>
       </li>
-      <li class="grey"><a href="index" class="button">Choose</a></li>
+      <li class="grey"><a href="payment" class="button">Choose</a></li>
     </ul>
   </div>
 
@@ -126,7 +126,7 @@
           Debitis, ex ratione. Aliquid!
         </p>
       </li>
-      <li class="grey"><a href="index" class="button">Choose</a></li>
+      <li class="grey"><a href="payment" class="button">Choose</a></li>
     </ul>
   </div>
 

@@ -1,21 +1,24 @@
 <?php  
   include('config/dbconn.php');
 
-  if (isset($_GET['event_id'])) {
-  	$event_id = $_GET['event_id'];
-    $sql = "SELECT name, image FROM event WHERE id = '$event_id'";
+  // if (isset($_GET['event_id'])) {
+  // 	$event_id = $_GET['event_id'];
+  //   $sql = "SELECT * FROM event WHERE id = '$event_id'";
 
-    // make query & get result
-		$result = mysqli_query($conn, $sql);
+  //   // make query & get result
+		// $result = mysqli_query($conn, $sql);
 
-		// fetch the resulting rows as an array
-		$event = mysqli_fetch_all($result, MYSQLI_ASSOC);
+		// // fetch the resulting rows as an array
+		// $event = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    
+  //   // This will move array elements one level up and you can access any array element without using [0] key
+		// $event = array_shift($event);
 
-		// free result from memory
-		mysqli_free_result($result);
+		// // free result from memory
+		// mysqli_free_result($result);
 
 		// print_r($event);
-  }
+  // }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -196,10 +199,11 @@
 	    z-index: 0;
 	    padding: 0 !important;
 	    margin: 0 !important;
+	    opacity: 0.6;
 		}
 
 		#contents {
-	    width: 800px;
+	    width: 700px;
 	    height: 695px;
 	    position:  absolute;
 	    z-index: 1;
@@ -234,11 +238,11 @@
 		  ?>
 			  <div id="qrSucc" class="convert">
 		      <div id="result" class="modal-content animate container">
-		        <img id="img" src="<?php echo "uploads/images/".$event['image']; ?>" />  
+		        <img id="img" src="<?php echo "uploads/images/".$_GET['image']; ?>" />  
 		        <div id="contents">
 		          <p style="color: white; font-weight: 200; font-size: 40px;"><?php echo strtoupper($_GET['field']); ?></p>
 		          <p style="color: white;">YOU ARE INVITED TO THE</p>
-		          <p><?php echo strtoupper($event['name']); ?></p>
+		          <p><?php echo strtoupper($_GET['name']); ?></p>
 		          <img src="plugins/userQr/<?php echo $_GET['success']; ?>" alt="">
 		          <p style="color: white; font-weight: 50; font-size: 15px;">Please carry this invite with you to the event</p>
 		        </div>

@@ -146,6 +146,7 @@
     .dropdown-list-item:hover {
       background-color: #fff;
       color: #e1251b;
+      cursor: pointer;
     }
 
   </style>
@@ -163,9 +164,9 @@
         <ion-icon name="arrow-dropdown"></ion-icon>
       </div>
       <div class="dropdown-list">
-        <div class="dropdown-list-item">All</div>
-        <div class="dropdown-list-item">Registered</div>
-        <div class="dropdown-list-item">Attended</div>
+        <div id="all" class="dropdown-list-item">All</div>
+        <div id="registration" class="dropdown-list-item">Registered</div>
+        <div id="attended" class="dropdown-list-item">Attended</div>
       </div>
     </div>
     <div id="printReport" class="print-table">
@@ -183,7 +184,7 @@
             <th>Registered At</th>
           </tr>
         </thead>
-        <tbody>
+        <!-- <tbody>
           <?php  
             $sql = "SELECT * FROM registered"; //  WHERE column IS NOT NULL AND column <> ''
             $result = mysqli_query($conn, $sql);
@@ -213,6 +214,9 @@
               <?php
             }
           ?>
+        </tbody> -->
+        <tbody id="response">
+
         </tbody>
       </table>
     </div>
@@ -230,10 +234,24 @@
     });
   </script>
   <script>
-    let click = document.querySelector('.click');
-    click.addEventListener("click", () => {
-      let list = document.querySelector('.list');
-      list.classList.toggle('newlist');
+    $('#registration').click(function() {
+      $.ajax({
+        url: 'registration-report.php',
+        type: 'POST',
+        success: function name(responsedata) {
+          $('#response').html(responsedata);
+        }
+      });
+    });
+
+    $('#attended').click(function() {
+      $.ajax({
+        url: 'attendance-report.php',
+        type: 'POST',
+        success: function name(responsedata) {
+          $('#response').html(responsedata);
+        }
+      });
     });
   </script>
 </body>

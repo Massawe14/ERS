@@ -75,6 +75,7 @@
       display: inline-block;
       font-size: 16px;
       cursor: pointer;
+      float: right;
     }
 
     .btn:hover {
@@ -93,8 +94,55 @@
       }
     }
 
-    .print-table {
+    .print-btn {
       padding-top: 20px;
+    }
+
+    .report-btn {
+      width: 200px;
+      position: relative;
+    }
+
+    .click {
+      background-color: #e1251b;
+    }
+
+    .click:hover {
+      opacity: 0.8;
+    }
+
+    .click, .links {
+      padding: 15px 32px;
+      font-size: 16px;
+      border: none;
+      outline: inline-block;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      width: 200px;
+      color: #fff;
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .list {
+      position: absolute;
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: 0.3s;
+    }
+
+    .newlist {
+      transform: scaleY(1);
+    }
+
+    .links {
+      background-color: #222;
+    }
+
+    .links:hover {
+      background-color: #e1251b;
+      transform: scale(1.1);
     }
 
   </style>
@@ -105,6 +153,14 @@
       <p>
         <button onclick="printJS('printJS-table', 'html')" class="btn">Print</button>
       </p>
+    </div>
+    <div class="report-btn">
+      <button class="click">Reports</button>
+      <div class="list">
+        <button class="links">Registered</button>
+        <button class="links">Attended</button>
+        <button class="links">link3</button>
+      </div>
     </div>
     <div id="printReport" class="print-table">
       <table id="printJS-table" class="table">
@@ -162,10 +218,17 @@
   <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-        document.getElementById("home").className = "";
-        document.getElementById("event").className = "";
-        document.getElementById("report").className = "btn-active";
-        document.getElementById("form-setting").className = "";
+      document.getElementById("home").className = "";
+      document.getElementById("event").className = "";
+      document.getElementById("report").className = "btn-active";
+      document.getElementById("form-setting").className = "";
+    });
+  </script>
+  <script>
+    let click = document.querySelector('.click');
+    click.addEventListener("click", () => {
+      let list = document.querySelector('.list');
+      list.classList.toggle('newlist');
     });
   </script>
 </body>

@@ -205,8 +205,6 @@ body {
 }
 
 .user {
-    /* position: absolute; */
-    /* right: 10px; */
     float: right;
     width: 40px;
     height: 40px;
@@ -222,9 +220,7 @@ body {
 .user img {
     width: 40px;
     height: 40px;
-    /* top: 0;
-    left: 0; */
-    object-fit: cover;
+    fill: cover;
     border-radius: 50%;
 }
 
@@ -233,6 +229,7 @@ body {
     width: 100%;
     padding: 20px;
     margin-top: 60px;
+    display: -ms-grid;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 30px;
@@ -281,14 +278,15 @@ body {
     position: relative;
     width: 100%;
     padding: 20px;
+    display: -ms-grid;
     display: grid;
     grid-template-columns: 2fr 1fr;
     grid-gap: 30px;
-    /*margin-top: 10px;*/
 }
 
 .details .recentDetails {
     position: relative;
+    display: -ms-grid;
     display: grid;
     min-height: 500px;
     background: var(--white);
@@ -363,6 +361,7 @@ body {
 
 .totalRegister {
     position: relative;
+    display: -ms-grid;
     display: grid;
     min-height: 500px;
     padding: 20px;

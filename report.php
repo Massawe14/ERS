@@ -123,7 +123,7 @@
         </thead>
         <tbody>
           <?php  
-            $sql = "SELECT * FROM registered";
+            $sql = "SELECT * FROM registered"; //  WHERE column IS NOT NULL AND column <> ''
             $result = mysqli_query($conn, $sql);
 
             if (mysqli_num_rows($result) > 0) {

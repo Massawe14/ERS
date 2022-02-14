@@ -270,43 +270,43 @@
 		}
 
 		th, td {
-		border: 1px solid #bbb;
-		padding: 10px;
-		text-align: center;
+			border: 1px solid #bbb;
+			padding: 10px;
+			text-align: center;
 		}
 
 		tr:hover {
-		background-color: #e5e5e5;
+		    background-color: #e5e5e5;
 		}
 
 		.tr:nth-child(even) {
-		background-color: #f2f2f2;
+		    background-color: #f2f2f2;
 		}
 
 		th {
-		background-color: #e1251b;
-		color: white;
-		border: #e1251b;
+			background-color: #e1251b;
+			color: white;
+			border: #e1251b;
 		}
 
 		.table tbody tr:last-of-type {
-		border-bottom: 2px solid #e1251b;
+		   border-bottom: 2px solid #e1251b;
 		}
 
 		.btn {
-		background-color: #e1251b;
-		border: none;
-		color: white;
-		padding: 10px 10px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		cursor: pointer;
+			background-color: #e1251b;
+			border: none;
+			color: white;
+			padding: 10px 10px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
 		}
 
 		.btn:hover {
-		opacity: 0.8;
+		   opacity: 0.8;
 		}
 
 		#close {
@@ -315,15 +315,15 @@
 
 		.btn-edit {
 			background-color: #00263A;
-		border: none;
-		color: white;
-		border-radius: 6px;
-		padding: 10px 10px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		cursor: pointer;
+			border: none;
+			color: white;
+			border-radius: 6px;
+			padding: 10px 10px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
 		}
 
 		.btn-edit:hover {
@@ -332,15 +332,15 @@
 
 		.btn-share-link {
 			background-color: #187890;
-		border: none;
-		color: white;
-		border-radius: 6px;
-		padding: 10px 10px;
-		text-align: center;
-		text-decoration: none;
-		display: inline-block;
-		font-size: 16px;
-		cursor: pointer;
+			border: none;
+			color: white;
+			border-radius: 6px;
+			padding: 10px 10px;
+			text-align: center;
+			text-decoration: none;
+			display: inline-block;
+			font-size: 16px;
+			cursor: pointer;
 		}
 
 		.btn-share-link:hover {

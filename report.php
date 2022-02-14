@@ -20,7 +20,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
   <title>Report</title>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.css">
   <link rel="stylesheet" type="text/css" href="https://printjs-4de6.kxcdn.com/print.min.css">
   <style>
 
@@ -98,51 +98,54 @@
       padding-top: 20px;
     }
 
-    .report-btn {
+    .dropdown {
       width: 200px;
       position: relative;
     }
 
-    .click {
-      background-color: #e1251b;
+    .dropdown:hover .dropdown-list {
+      opacity: 1;
+      visibility: visible;
     }
 
-    .click:hover {
-      opacity: 0.8;
-    }
-
-    .click, .links {
+    .dropdown-select {
       padding: 15px 32px;
-      font-size: 16px;
-      border: none;
-      outline: inline-block;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      width: 200px;
+      border-radius: 4px;
       color: #fff;
-      transition: 0.3s;
+      background-color: #e1251b;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 16px;
       cursor: pointer;
     }
 
-    .list {
-      position: absolute;
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: 0.3s;
+    .dropdown-select:hover {
+      opacity: 0.8;
     }
 
-    .newlist {
-      transform: scaleY(1);
-    }
-
-    .links {
-      background-color: #222;
-    }
-
-    .links:hover {
+    .dropdown-list {
+      border-radius: 4px;
       background-color: #e1251b;
-      transform: scale(1.1);
+      color: #fff;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s linear, visibility 0.2s linear;
+    }
+
+    .dropdown-list-item {
+      padding: 1rem;
+      font-size: 16px;
+    }
+
+    .dropdown-list-item:hover {
+      background-color: #fff;
+      color: #e1251b;
     }
 
   </style>
@@ -154,12 +157,15 @@
         <button onclick="printJS('printJS-table', 'html')" class="btn">Print</button>
       </p>
     </div>
-    <div class="report-btn">
-      <button class="click">Reports</button>
-      <div class="list">
-        <button class="links">Registered</button>
-        <button class="links">Attended</button>
-        <button class="links">link3</button>
+    <div class="dropdown">
+      <div class="dropdown-select">
+        <span class="select">Reports</span>
+        <ion-icon name="arrow-dropdown"></ion-icon>
+      </div>
+      <div class="dropdown-list">
+        <div class="dropdown-list-item">All</div>
+        <div class="dropdown-list-item">Registered</div>
+        <div class="dropdown-list-item">Attended</div>
       </div>
     </div>
     <div id="printReport" class="print-table">
@@ -213,8 +219,7 @@
   </div>
   <?php include('includes/script.php'); ?>
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-  <script
-  src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js"></script>
   <script src="https://printjs-4de6.kxcdn.com/print.min.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -110,25 +110,25 @@
 		/* Full-width input fields */
 		input[type=text], input[type=password], input[type=file], input[type=email], 
 		input[type=tel] {
-	    width: 100%;
-	    padding: 12px 20px;
-	    margin: 8px 0;
-	    display: inline-block;
-	    border: 1px solid #ccc;
-	    box-sizing: border-box;
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			display: inline-block;
+			border: 1px solid #ccc;
+			box-sizing: border-box;
 		}
 
 		/* Set a style for all buttons */
 		input[type=submit]{
-	    background-color: #e1251b;
-	    color: white;
-	    padding: 14px 20px;
-	    margin: 8px 0;
-	    border: none;
-	    cursor: pointer;
-	    width: 100%;
-	    text-align: center;
-	    text-decoration: none;
+			background-color: #e1251b;
+			color: white;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			cursor: pointer;
+			width: 100%;
+			text-align: center;
+			text-decoration: none;
 		}
 
 		input[type=submit]:hover {
@@ -140,8 +140,6 @@
 			width: 1000px;
 			padding: 25px;
 			margin: 80px 25px 25px 25px;
-			/* box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); */
-			/*border-radius: 20px;*/
 		}
 
 		.event {

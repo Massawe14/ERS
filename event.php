@@ -27,7 +27,7 @@
   	if ($eventname == '' || $venue == '' || $image == '') {
   		$_SESSION['status'] = "Please check the missing field";
     	$_SESSION['status_code'] = "error";
-		header('Location: event');
+		header("Location: event");
 		exit(0);
   	}
   	else {
@@ -41,7 +41,7 @@
 	    if ($check == false) {
 	    	$_SESSION['status'] = "File is not an image.";
 	    	$_SESSION['status_code'] = "error";
-			header('Location: event');
+			header("Location: event");
 			exit(0);
 	    }
 	    elseif (file_exists($filename)) {
